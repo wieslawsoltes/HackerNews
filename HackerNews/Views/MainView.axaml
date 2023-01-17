@@ -20,7 +20,7 @@
                Height="80">
 
       <StackPanel Width="80"
-                  Spacing="3"
+                  Spacing="5"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   DockPanel.Dock="Left">
