@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Styling;
@@ -49,6 +48,5 @@ public class ItemsListBox : ListBox, IStyleable
             }
         }
     }
-
 }
 
