@@ -34,7 +34,7 @@ public partial class MainWindowViewModel : ViewModelBase
         var json = await response.Content.ReadAsStringAsync();
         _topStoriesIds = JsonSerializer.Deserialize<List<int>>(json);
 
-        var storiesIds = _topStoriesIds.Take(10);
+        var storiesIds = _topStoriesIds.Take(20);
         var index = 0;
 
         foreach (var id in storiesIds) 
