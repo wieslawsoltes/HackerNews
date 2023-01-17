@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:HackerNews.Views"
+             xmlns:controls="clr-namespace:HackerNews.Controls"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.MainView"
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
@@ -50,26 +51,24 @@
 
     </DockPanel>
 
-    <ListBox Items="{Binding Items}"
-             Background="Transparent">
+    <controls:ItemsListBox Items="{Binding Items}"
+                           Background="Transparent">
 
-      <ListBox.Styles>
+      <controls:ItemsListBox.Styles>
         <Style Selector="ListBoxItem">
           <Setter Property="Background" Value="Transparent" />
           <Setter Property="Margin" Value="0" />
           <Setter Property="Padding" Value="0" />
         </Style>
-      </ListBox.Styles>
+      </controls:ItemsListBox.Styles>
 
-      <ListBox.ItemTemplate>
-
+      <controls:ItemsListBox.ItemTemplate>
         <DataTemplate DataType="vm:ItemViewModel">
           <views:ItemView />
         </DataTemplate>
+      </controls:ItemsListBox.ItemTemplate>
 
-      </ListBox.ItemTemplate>
-
-    </ListBox>
+    </controls:ItemsListBox>
 
   </DockPanel>
 

@@ -1,19 +1,21 @@
 ﻿using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using HackerNews.Model;
+using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
 public partial class UserViewModel : ViewModelBase
 {
-    private User _user;
+    private readonly HackerNewsApiV0 _api;
+    private User? _user;
     [ObservableProperty] private string _id;
     [ObservableProperty] private int _created;
     [ObservableProperty] private int _karma;
     [ObservableProperty] private string _about;
     [ObservableProperty] private List<int> _submitted;
 
-    public UserViewModel(User user)
+    public UserViewModel(HackerNewsApiV0 api, User user)
     {
         _user = user;
     }
