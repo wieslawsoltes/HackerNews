@@ -27,6 +27,7 @@ public partial class MainViewViewModel : ViewModelBase
         _topStoriesIds = new List<int>();
         _topStoriesItems = new List<Item>();
         _items = new ObservableCollection<ItemViewModel>();
+
         LoadItemsCommand = new AsyncRelayCommand(LoadItems);
     }
 
