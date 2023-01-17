@@ -67,7 +67,7 @@ public partial class MainViewViewModel : ViewModelBase
                 _items.Add(itemViewModel);
             }
 
-#if true
+#if false
             if (itemViewModel is { } && item?.By is { })
             {
                 var userJson = await _api.GetUserJson(item.By, _client);
