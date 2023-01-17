@@ -6,7 +6,8 @@
              xmlns:views="clr-namespace:HackerNews.Views"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.MainView"
-             x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
+             Background="Transparent">
 
   <Design.DataContext>
     <vm:MainViewViewModel />
@@ -14,19 +15,47 @@
 
   <DockPanel>
 
-    <DockPanel DockPanel.Dock="Top" Height="80">
+    <DockPanel DockPanel.Dock="Top" 
+               Background="{DynamicResource TitleBackground}"
+               Height="80">
+
+      <StackPanel Width="80"
+                  Spacing="3"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  DockPanel.Dock="Left">
+        <Rectangle Fill="{DynamicResource HamburgerBackground}"
+                   Width="26"
+                   Height="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+        <Rectangle Fill="{DynamicResource HamburgerBackground}"
+                   Width="26"
+                   Height="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+        <Rectangle Fill="{DynamicResource HamburgerBackground}"
+                   Width="26"
+                   Height="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+      </StackPanel>
+
       <Button Content="Load"
               HorizontalAlignment="Right" 
               HorizontalContentAlignment="Center"
               VerticalAlignment="Center"
               Margin="12"
               Command="{Binding LoadItemsCommand}" />
+
     </DockPanel>
 
-    <ListBox Items="{Binding Items}">
+    <ListBox Items="{Binding Items}"
+             Background="Transparent">
 
       <ListBox.Styles>
         <Style Selector="ListBoxItem">
+          <Setter Property="Background" Value="Transparent" />
           <Setter Property="Margin" Value="0" />
           <Setter Property="Padding" Value="0" />
         </Style>
