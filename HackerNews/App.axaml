@@ -9,4 +9,11 @@
     <FluentTheme Mode="Dark" />
     <StyleInclude Source="/Theme.axaml" />
   </Application.Styles>
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="/ListBoxItem.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>
