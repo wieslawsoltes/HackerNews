@@ -37,6 +37,10 @@ public partial class MainViewViewModel : ViewModelBase
 
         var topStoriesJson = await GetTopStoriesJson(client);
         _topStoriesIds = JsonSerializer.Deserialize<List<int>>(topStoriesJson, options);
+        if (_topStoriesIds is null)
+        {
+            return;
+        }
 
         var storiesIds = _topStoriesIds.Take(20);
         var index = 1;
