@@ -75,11 +75,10 @@ public partial class MainViewViewModel : ViewModelBase
                 if (user is { })
                 {
                     itemViewModel.By = new UserViewModel(user);
-                    Debug.WriteLine(userJson);
+                    //Debug.WriteLine(userJson);
                 }
             }
 #endif
         }
     }
-
 }
