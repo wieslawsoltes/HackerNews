@@ -15,38 +15,51 @@
     </vm:ItemViewModel>
   </Design.DataContext>
 
+  <UserControl.Resources>
+    <SolidColorBrush x:Key="TitleForeground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="TitleBackground">#212121</SolidColorBrush>
+    <SolidColorBrush x:Key="IndexForeground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="IndexBackground">#424242</SolidColorBrush>
+    <SolidColorBrush x:Key="ScoreForeground">#A2A2A2</SolidColorBrush>
+    <SolidColorBrush x:Key="SeparatorBackground">#333333</SolidColorBrush>
+    <x:Double x:Key="TitleFontSize">16</x:Double>
+    <x:Double x:Key="IndexFontSize">16</x:Double>
+    <x:Double x:Key="ScoreFontSize">16</x:Double>
+  </UserControl.Resources>
+  
   <DockPanel MinHeight="100">
             
     <Border DockPanel.Dock="Left"
             Margin="0,0,0,2"
             Width="80" 
-            Background="#424242">
+            Background="{DynamicResource IndexBackground}">
 
       <StackPanel Spacing="6" 
                   HorizontalAlignment="Center" 
                   VerticalAlignment="Center">
         <TextBlock Text="{Binding Index}"
                    HorizontalAlignment="Center"
-                   Foreground="#FFFFFF"
-                   FontSize="16"
+                   Foreground="{DynamicResource IndexForeground}"
+                   FontSize="{DynamicResource IndexFontSize}"
                    FontWeight="Regular" />
         <TextBlock Text="{Binding Score, StringFormat={}{0}p}"
                    HorizontalAlignment="Center"
-                   Foreground="#A2A2A2"
-                   FontSize="16"
+                   Foreground="{DynamicResource ScoreForeground}"
+                   FontSize="{DynamicResource ScoreFontSize}"
                    FontWeight="Normal" />
       </StackPanel>
     </Border>
 
-    <Rectangle Fill="#333333" Height="2"
+    <Rectangle Fill="{DynamicResource SeparatorBackground}"
+               Height="2"
                HorizontalAlignment="Stretch"
                DockPanel.Dock="Bottom" />
             
-    <DockPanel Background="#212121">
+    <DockPanel Background="{DynamicResource TitleBackground}">
       <TextBlock Text="{Binding Title}"
                  TextWrapping="Wrap"
-                 Foreground="#FFFFFF"
-                 FontSize="16"
+                 Foreground="{DynamicResource TitleForeground}"
+                 FontSize="{DynamicResource TitleFontSize}"
                  FontWeight="Regular"
                  Margin="12"/>
     </DockPanel>
