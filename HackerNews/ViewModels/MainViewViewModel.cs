@@ -60,17 +60,17 @@ public partial class MainViewViewModel : ViewModelBase
                 }
             });
 
-            /*
+#if false
             if (item?.By is { })
             {
-                var userJson = await GetItemJson(item.By, client);
+                var userJson = await GetUserJson(item.By, client);
                 var user = JsonSerializer.Deserialize<UserViewModel>(userJson, options);
                 if (user is { })
                 {
                     Debug.WriteLine(userJson);
                 }
             }
-            //*/
+#endif
         }
     }
 
@@ -90,7 +90,7 @@ public partial class MainViewViewModel : ViewModelBase
         return json;
     }  
 
-    private static async Task<string> GetItemJson(string username, HttpClient client)
+    private static async Task<string> GetUserJson(string username, HttpClient client)
     {
         var requestUri = $"https://hacker-news.firebaseio.com/v0/user/{username}.json?print=pretty";
         var response = await client.GetAsync(requestUri);
