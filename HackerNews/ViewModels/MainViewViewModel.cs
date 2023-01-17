@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
@@ -9,17 +8,22 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
+using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase
 {
+    private HackerNewsApiV0 _api;
+    private HttpClient _client;
     private List<int> _topStoriesIds;
     private List<Item> _topStoriesItems;
     [ObservableProperty] private ObservableCollection<ItemViewModel> _items;
 
     public MainViewViewModel()
     {
+        _api = new HackerNewsApiV0();
+        _client = new HttpClient();
         _topStoriesIds = new List<int>();
         _topStoriesItems = new List<Item>();
         _items = new ObservableCollection<ItemViewModel>();
@@ -37,10 +41,8 @@ public partial class MainViewViewModel : ViewModelBase
         {
             PropertyNameCaseInsensitive = true
         };
-
-        var client = new HttpClient();
-
-        var topStoriesJson = await GetTopStoriesJson(client);
+        
+        var topStoriesJson = await _api.GetTopStoriesJson(_client);
         _topStoriesIds = await JsonSerializer.DeserializeAsync<List<int>>(topStoriesJson, options);
         if (_topStoriesIds is null)
         {
@@ -52,28 +54,27 @@ public partial class MainViewViewModel : ViewModelBase
 
         foreach (var id in storiesIds) 
         {
-            var itemJson = await GetItemJson(id, client);
-            var item = default(Item);
-
-            item = await JsonSerializer.DeserializeAsync<Item>(itemJson, options);
+            var itemJson = await _api.GetItemJson(id, _client);
+            var item = await JsonSerializer.DeserializeAsync<Item>(itemJson, options);
+            var itemViewModel = default(ItemViewModel);
             if (item is { })
             {
                 item.Index = index++;
                 _topStoriesItems.Add(item);
-
-                var itemViewModel = new ItemViewModel(item);
+                
+                itemViewModel = new ItemViewModel(item);
                 itemViewModel.Update();
                 _items.Add(itemViewModel);
             }
 
-#if false
-            if (item?.By is { })
+#if true
+            if (itemViewModel is { } && item?.By is { })
             {
-                var userJson = await GetUserJson(item.By, client);
-                var user = JsonSerializer.Deserialize<User>(userJson, options);
+                var userJson = await _api.GetUserJson(item.By, _client);
+                var user = await JsonSerializer.DeserializeAsync<User>(userJson, options);
                 if (user is { })
                 {
-                    // var userViewModel = new UserViewModel(user);
+                    itemViewModel.By = new UserViewModel(user);
                     Debug.WriteLine(userJson);
                 }
             }
@@ -81,29 +82,4 @@ public partial class MainViewViewModel : ViewModelBase
         }
     }
 
-    private const string UriPrefix = "https://hacker-news.firebaseio.com/v0/";
-
-    private static async Task<Stream> GetTopStoriesJson(HttpClient client)
-    {
-        var requestUri = $"{UriPrefix}/topstories.json?print=pretty";
-        var response = await client.GetAsync(requestUri);
-        var json = await response.Content.ReadAsStreamAsync();
-        return json;
-    }
-
-    private static async Task<Stream> GetItemJson(int id, HttpClient client)
-    {
-        var requestUri = $"{UriPrefix}/item/{id}.json?print=pretty";
-        var response = await client.GetAsync(requestUri);
-        var json = await response.Content.ReadAsStreamAsync();
-        return json;
-    }  
-
-    private static async Task<Stream> GetUserJson(string username, HttpClient client)
-    {
-        var requestUri = $"{UriPrefix}/user/{username}.json?print=pretty";
-        var response = await client.GetAsync(requestUri);
-        var json = await response.Content.ReadAsStreamAsync();
-        return json;
-    }
 }
