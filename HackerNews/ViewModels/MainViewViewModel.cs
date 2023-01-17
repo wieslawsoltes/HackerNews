@@ -74,9 +74,11 @@ public partial class MainViewViewModel : ViewModelBase
         }
     }
 
+    private const string UriPrefix = "https://hacker-news.firebaseio.com/v0/";
+
     private static async Task<string> GetTopStoriesJson(HttpClient client)
     {
-        var requestUri = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
+        var requestUri = $"{UriPrefix}/topstories.json?print=pretty";
         var response = await client.GetAsync(requestUri);
         var json = await response.Content.ReadAsStringAsync();
         return json;
@@ -84,7 +86,7 @@ public partial class MainViewViewModel : ViewModelBase
 
     private static async Task<string> GetItemJson(int id, HttpClient client)
     {
-        var requestUri = $"https://hacker-news.firebaseio.com/v0/item/{id}.json?print=pretty";
+        var requestUri = $"{UriPrefix}/item/{id}.json?print=pretty";
         var response = await client.GetAsync(requestUri);
         var json = await response.Content.ReadAsStringAsync();
         return json;
@@ -92,7 +94,7 @@ public partial class MainViewViewModel : ViewModelBase
 
     private static async Task<string> GetUserJson(string username, HttpClient client)
     {
-        var requestUri = $"https://hacker-news.firebaseio.com/v0/user/{username}.json?print=pretty";
+        var requestUri = $"{UriPrefix}/user/{username}.json?print=pretty";
         var response = await client.GetAsync(requestUri);
         var json = await response.Content.ReadAsStringAsync();
         return json;
