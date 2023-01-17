@@ -35,19 +35,20 @@ public class ItemsListBox : ListBox, IStyleable
         {
             if (listBoxItem.DataContext is ItemViewModel itemViewModel)
             {
-                Console.WriteLine($"Load: {itemViewModel.Index}");
                 if (!itemViewModel.IsLoaded())
                 {
+                    //Console.WriteLine($"Load: {itemViewModel.Index}");
                     Task.Run(async () =>
                     {
                         await itemViewModel.Load();
                         itemViewModel.Update();
-                        Console.WriteLine($"Loaded: {itemViewModel.Index}");
+                        //Console.WriteLine($"Loaded: {itemViewModel.Index}");
                     });
                 }
                 else
                 {
                     // TODO: Check if we need to update.
+                    //Console.WriteLine($"Update: {itemViewModel.Index}");
                     itemViewModel.Update();
                 }
             }
