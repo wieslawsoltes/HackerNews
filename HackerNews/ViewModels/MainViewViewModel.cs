@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
@@ -10,13 +9,13 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace HackerNews.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainViewViewModel : ViewModelBase
 {
     private List<int>? _topStoriesIds;
 
     [ObservableProperty] private ObservableCollection<ItemViewModel> _items;
 
-    public MainWindowViewModel()
+    public MainViewViewModel()
     {
         _items = new ObservableCollection<ItemViewModel>();
         LoadItemsCommand = new AsyncRelayCommand(LoadItems);
@@ -35,7 +34,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _topStoriesIds = JsonSerializer.Deserialize<List<int>>(json);
 
         var storiesIds = _topStoriesIds.Take(20);
-        var index = 0;
+        var index = 1;
 
         foreach (var id in storiesIds) 
         {
