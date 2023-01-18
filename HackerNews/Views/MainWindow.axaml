@@ -10,5 +10,11 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="HackerNews"
         x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
+
+  <Design.DataContext>
+    <vm:MainViewViewModel />
+  </Design.DataContext>
+
   <views:MainView />
+
 </Window>
