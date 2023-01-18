@@ -26,7 +26,6 @@
             Margin="0,0,0,0"
             Width="80" 
             Background="{DynamicResource ItemIndexBackground}">
-
       <StackPanel Spacing="6" 
                   HorizontalAlignment="Center" 
                   VerticalAlignment="Center">
