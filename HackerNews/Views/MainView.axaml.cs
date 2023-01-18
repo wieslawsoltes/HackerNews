@@ -47,6 +47,7 @@ public partial class MainView : UserControl
 
     private async void TopLevelOnBackRequested(object? sender, RoutedEvent e)
     {
+        //Console.WriteLine("TopLevelOnBackRequested");
         if (DataContext is ILazyLoadable lazyLoadable)
         {
             await lazyLoadable.BackAsync();
