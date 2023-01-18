@@ -17,7 +17,7 @@
 
   <DockPanel MinHeight="100">
                
-    <Rectangle Fill="{DynamicResource SeparatorBackground}"
+    <Rectangle Fill="{DynamicResource ItemSeparatorBackground}"
                Height="1.5"
                HorizontalAlignment="Stretch"
                DockPanel.Dock="Bottom" />
@@ -25,30 +25,30 @@
     <Border DockPanel.Dock="Left"
             Margin="0,0,0,0"
             Width="80" 
-            Background="{DynamicResource IndexBackground}">
+            Background="{DynamicResource ItemIndexBackground}">
 
       <StackPanel Spacing="6" 
                   HorizontalAlignment="Center" 
                   VerticalAlignment="Center">
         <TextBlock Text="{Binding Index}"
                    HorizontalAlignment="Center"
-                   Foreground="{DynamicResource IndexForeground}"
-                   FontSize="{DynamicResource IndexFontSize}"
+                   Foreground="{DynamicResource ItemIndexForeground}"
+                   FontSize="{DynamicResource ItemIndexFontSize}"
                    FontWeight="Regular" />
         <TextBlock Text="{Binding Score, StringFormat={}{0}p}"
                    HorizontalAlignment="Center"
-                   Foreground="{DynamicResource ScoreForeground}"
-                   FontSize="{DynamicResource ScoreFontSize}"
+                   Foreground="{DynamicResource ItemScoreForeground}"
+                   FontSize="{DynamicResource ItemScoreFontSize}"
                    FontWeight="Normal" />
       </StackPanel>
     </Border>
 
-    <DockPanel Background="{DynamicResource TitleBackground}"
+    <DockPanel Background="{DynamicResource ItemTitleBackground}"
                Margin="0,0.5,0,0.5">
       <TextBlock Text="{Binding Title}"
                  TextWrapping="Wrap"
-                 Foreground="{DynamicResource TitleForeground}"
-                 FontSize="{DynamicResource TitleFontSize}"
+                 Foreground="{DynamicResource ItemTitleForeground}"
+                 FontSize="{DynamicResource ItemTitleFontSize}"
                  FontWeight="Regular"
                  Margin="12"/>
     </DockPanel>
