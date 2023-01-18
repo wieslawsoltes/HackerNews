@@ -1,5 +1,6 @@
-﻿using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using System;
+using Avalonia.Controls;
+using HackerNews.ViewModels;
 
 namespace HackerNews.Views;
 
@@ -10,9 +11,17 @@ public partial class MainView : UserControl
         InitializeComponent();
     }
 
-    private void InitializeComponent()
+    private async void Refresh_OnRefreshRequested(object? sender, RefreshRequestedEventArgs e)
     {
-        AvaloniaXamlLoader.Load(this);
+        Console.WriteLine("Refresh_OnRefreshRequested");
+        var deferral = e.GetDeferral();
+
+        if (DataContext is MainViewViewModel mainViewViewModel)
+        {
+            await mainViewViewModel.LoadItems();
+        }
+
+        deferral.Complete();
     }
 }
 

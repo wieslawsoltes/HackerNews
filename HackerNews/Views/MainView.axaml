@@ -51,24 +51,30 @@
 
     </DockPanel>
 
-    <controls:ItemsListBox Items="{Binding Items}"
-                           Background="Transparent">
+    <RefreshContainer Name="Refresh"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      PullDirection="TopToBottom"
+                      RefreshRequested="Refresh_OnRefreshRequested">
+      <controls:ItemsListBox Items="{Binding Items}"
+                             HorizontalAlignment="Stretch">
 
-      <controls:ItemsListBox.Styles>
-        <Style Selector="ListBoxItem">
-          <Setter Property="Background" Value="Transparent" />
-          <Setter Property="Margin" Value="0" />
-          <Setter Property="Padding" Value="0" />
-        </Style>
-      </controls:ItemsListBox.Styles>
+        <controls:ItemsListBox.Styles>
+          <Style Selector="ListBoxItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+          </Style>
+        </controls:ItemsListBox.Styles>
 
-      <controls:ItemsListBox.ItemTemplate>
-        <DataTemplate DataType="vm:ItemViewModel">
-          <views:ItemView />
-        </DataTemplate>
-      </controls:ItemsListBox.ItemTemplate>
+        <controls:ItemsListBox.ItemTemplate>
+          <DataTemplate DataType="vm:ItemViewModel">
+            <views:ItemView />
+          </DataTemplate>
+        </controls:ItemsListBox.ItemTemplate>
 
-    </controls:ItemsListBox>
+      </controls:ItemsListBox>
+    </RefreshContainer>
 
   </DockPanel>
 
