@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text.Json;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using HackerNews.Model;
@@ -10,7 +8,7 @@ namespace HackerNews.ViewModels;
 
 public partial class ItemViewModel : ViewModelBase
 {
-    private readonly HackerNewsApiV0 _api;
+    private readonly HackerNewsApiV0? _api;
     private Item? _item;
     [ObservableProperty] private int _index;
     [ObservableProperty] private int _id;
@@ -29,6 +27,11 @@ public partial class ItemViewModel : ViewModelBase
     [ObservableProperty] private List<int> _parts;
     [ObservableProperty] private int? _descendants;
 
+    public ItemViewModel()
+    {
+        _id = -1;
+    }
+
     public ItemViewModel(HackerNewsApiV0 api, int index, int id)
     {
         _api = api;
@@ -43,7 +46,7 @@ public partial class ItemViewModel : ViewModelBase
 
     public async Task Load()
     {
-        if (_item is null)
+        if (_api is { } && _item is null && _id >= 0)
         {
             var json = await _api.GetItemJson(_id);
             _item = await _api.DeserializeAsync<Item>(json);
@@ -52,14 +55,10 @@ public partial class ItemViewModel : ViewModelBase
 
     public async Task LoadUser()
     {
-        if (_item?.By is { })
+        if (_api is { } && _item?.By is { })
         {
-            var json = await _api.GetUserJson(_item.By);
-            var user = await _api.DeserializeAsync<User>(json);
-            if (user is { })
-            {
-                By = new UserViewModel(_api, user);
-            }
+            _by = new UserViewModel(_api, _item.By);
+            await _by.Load();
         }
     }
 
