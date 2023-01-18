@@ -14,44 +14,8 @@
   </Design.DataContext>
 
   <DockPanel>
-
-    <DockPanel DockPanel.Dock="Top" 
-               Background="{DynamicResource TitleBackground}"
-               Height="80">
-
-      <StackPanel Width="80"
-                  Spacing="5"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  DockPanel.Dock="Left">
-        <Rectangle Fill="{DynamicResource HamburgerBackground}"
-                   Width="26"
-                   Height="3"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-        <Rectangle Fill="{DynamicResource HamburgerBackground}"
-                   Width="26"
-                   Height="3"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-        <Rectangle Fill="{DynamicResource HamburgerBackground}"
-                   Width="26"
-                   Height="3"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-      </StackPanel>
-
-      <Button Content="Load"
-              HorizontalAlignment="Right" 
-              HorizontalContentAlignment="Center"
-              VerticalAlignment="Center"
-              Margin="12"
-              Command="{Binding LoadCommand}" />
-
-    </DockPanel>
-
+    <views:HeaderView DockPanel.Dock="Top" />
     <views:ItemsView DataContext="{Binding ItemsView}" />
-
   </DockPanel>
 
 </UserControl>
