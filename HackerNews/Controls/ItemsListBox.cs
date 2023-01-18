@@ -35,21 +35,21 @@ public class ItemsListBox : ListBox, IStyleable
         {
             if (!lazyLoadable.IsLoaded())
             {
-                //Console.WriteLine($"Load: {lazyLoadable}");
+                //Console.WriteLine($"LoadAsync: {lazyLoadable}");
                 Task.Run(async () =>
                 {
-                    await lazyLoadable.Load();
-                    await lazyLoadable.Update();
+                    await lazyLoadable.LoadAsync();
+                    await lazyLoadable.UpdateAsync();
                     //Console.WriteLine($"Loaded: {lazyLoadable}");
                 });
             }
             else
             {
                 // TODO: Check if we need to update.
-                //Console.WriteLine($"Update: {lazyLoadable}");
+                //Console.WriteLine($"UpdateAsync: {lazyLoadable}");
                 Task.Run(async () =>
                 {
-                    await lazyLoadable.Update();
+                    await lazyLoadable.UpdateAsync();
                 });
             }
         }
