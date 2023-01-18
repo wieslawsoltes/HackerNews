@@ -11,6 +11,18 @@ public class HackerNewsApiV0
     private HttpClient _client;
     private JsonSerializerOptions _options;
 
+    public const string TopStories = "topstories";
+
+    public const string NewsStories = "newstories";
+
+    public const string BestStories = "beststories";
+
+    public const string AskStories = "askstories";
+
+    public const string ShowStories = "showstories";
+
+    public const string JobStories = "jobstories";
+    
     public HackerNewsApiV0()
     {
         _client = new HttpClient();
@@ -26,9 +38,9 @@ public class HackerNewsApiV0
         return await JsonSerializer.DeserializeAsync<T>(stream, _options);
     }
 
-    public async Task<Stream> GetTopStoriesJson()
+    public async Task<Stream> GetStoriesJson(string storiesFeed)
     {
-        var requestUri = $"{UriPrefix}/topstories.json?print=pretty";
+        var requestUri = $"{UriPrefix}/{storiesFeed}.json?print=pretty";
         var response = await _client.GetAsync(requestUri);
         var json = await response.Content.ReadAsStreamAsync();
         return json;

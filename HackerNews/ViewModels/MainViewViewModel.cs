@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
@@ -11,19 +9,17 @@ namespace HackerNews.ViewModels;
 public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly HackerNewsApiV0 _api;
-    private List<int> _topStoriesIds;
-    [ObservableProperty] private ObservableCollection<ItemViewModel> _items;
+    [ObservableProperty] private ItemsViewModel? _itemsView;
 
     public MainViewViewModel()
     {
         _api = new HackerNewsApiV0();
-        _topStoriesIds = new List<int>();
-        _items = new ObservableCollection<ItemViewModel>();
+        _itemsView = new ItemsViewModel(_api, HackerNewsApiV0.TopStories, "Top Stories");
 
-        LoadItemsCommand = new AsyncRelayCommand(LoadAsync);
+        LoadCommand = new AsyncRelayCommand(LoadAsync);
     }
 
-    public IAsyncRelayCommand LoadItemsCommand { get; }
+    public IAsyncRelayCommand LoadCommand { get; }
 
     public bool IsLoaded()
     {
@@ -33,34 +29,25 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        _topStoriesIds.Clear();
-        _items.Clear();
-
-        var json = await _api.GetTopStoriesJson();
-        _topStoriesIds = await _api.DeserializeAsync<List<int>>(json);
-        if (_topStoriesIds is null)
+        if (_itemsView is { })
         {
-            return;
-        }
-
-        var index = 1;
-
-        foreach (var id in _topStoriesIds)
-        {
-            var itemViewModel = new ItemViewModel(_api, index++, id);
-            _items.Add(itemViewModel);
+            await _itemsView.LoadAsync();
         }
     }
 
     public async Task UpdateAsync()
     {
-        // TODO:
-        await Task.Yield();
+        if (_itemsView is { })
+        {
+            await _itemsView.UpdateAsync();
+        }
     }
 
     public async Task BackAsync()
     {
-        // TODO:
-        await Task.Yield();
+        if (_itemsView is { })
+        {
+            await _itemsView.BackAsync();
+        }
     }
 }

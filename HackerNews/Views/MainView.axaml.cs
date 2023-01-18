@@ -12,19 +12,6 @@ public partial class MainView : UserControl
         InitializeComponent();
     }
 
-    private async void Refresh_OnRefreshRequested(object? sender, RefreshRequestedEventArgs e)
-    {
-        //Console.WriteLine("Refresh_OnRefreshRequested");
-        var deferral = e.GetDeferral();
-
-        if (DataContext is ILazyLoadable lazyLoadable)
-        {
-            await lazyLoadable.LoadAsync();
-        }
-
-        deferral.Complete();
-    }
-
     protected override void OnLoaded()
     {
         base.OnLoaded();
