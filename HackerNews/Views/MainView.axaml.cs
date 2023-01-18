@@ -14,7 +14,7 @@ public partial class MainView : UserControl
 
     private async void Refresh_OnRefreshRequested(object? sender, RefreshRequestedEventArgs e)
     {
-        Console.WriteLine("Refresh_OnRefreshRequested");
+        //Console.WriteLine("Refresh_OnRefreshRequested");
         var deferral = e.GetDeferral();
 
         if (DataContext is ILazyLoadable lazyLoadable)
@@ -29,9 +29,19 @@ public partial class MainView : UserControl
     {
         base.OnLoaded();
 
-        if (this.VisualRoot is TopLevel topLevel)
+        if (VisualRoot is TopLevel topLevel)
         {
             topLevel.BackRequested += TopLevelOnBackRequested;
+        }
+    }
+
+    protected override void OnUnloaded()
+    {
+        base.OnUnloaded();
+
+        if (VisualRoot is TopLevel topLevel)
+        {
+            topLevel.BackRequested -= TopLevelOnBackRequested;
         }
     }
 
