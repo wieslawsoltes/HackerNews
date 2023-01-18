@@ -6,7 +6,7 @@ using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
-public partial class UserViewModel : ViewModelBase
+public partial class UserViewModel : ViewModelBase, ILazyLoadable
 {
     private HackerNewsApiV0? _api;
     private User? _user;
@@ -24,6 +24,11 @@ public partial class UserViewModel : ViewModelBase
     {
         _api = api;
         _id = id;
+    }
+
+    public bool IsLoaded()
+    {
+        return _user is { };
     }
 
     public async Task Load()
@@ -44,5 +49,11 @@ public partial class UserViewModel : ViewModelBase
             About = _user.About;
             // TODO:
         }
+    }
+
+    public async Task Back()
+    {
+        // TODO:
+        await Task.Yield();
     }
 }

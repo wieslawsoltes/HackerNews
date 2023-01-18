@@ -3,11 +3,12 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using HackerNews.Model;
 using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
-public partial class MainViewViewModel : ViewModelBase
+public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly HackerNewsApiV0 _api;
     private List<int> _topStoriesIds;
@@ -19,12 +20,18 @@ public partial class MainViewViewModel : ViewModelBase
         _topStoriesIds = new List<int>();
         _items = new ObservableCollection<ItemViewModel>();
 
-        LoadItemsCommand = new AsyncRelayCommand(LoadItems);
+        LoadItemsCommand = new AsyncRelayCommand(Load);
     }
 
     public IAsyncRelayCommand LoadItemsCommand { get; }
 
-    public async Task LoadItems()
+    public bool IsLoaded()
+    {
+        // TODO:
+        return true;
+    }
+
+    public async Task Load()
     {
         _topStoriesIds.Clear();
         _items.Clear();
@@ -43,5 +50,16 @@ public partial class MainViewViewModel : ViewModelBase
             var itemViewModel = new ItemViewModel(_api, index++, id);
             _items.Add(itemViewModel);
         }
+    }
+
+    public void Update()
+    {
+        
+    }
+
+    public async Task Back()
+    {
+        // TODO:
+        await Task.Yield();
     }
 }

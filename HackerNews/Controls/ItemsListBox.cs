@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Styling;
-using HackerNews.ViewModels;
+using HackerNews.Model;
 
 namespace HackerNews.Controls;
 
@@ -31,26 +31,23 @@ public class ItemsListBox : ListBox, IStyleable
 
     private void Load(Control element)
     {
-        if (element is ListBoxItem listBoxItem)
+        if (element is ListBoxItem { DataContext: ILazyLoadable lazyLoadable })
         {
-            if (listBoxItem.DataContext is ItemViewModel itemViewModel)
+            if (!lazyLoadable.IsLoaded())
             {
-                if (!itemViewModel.IsLoaded())
+                //Console.WriteLine($"Load: {lazyLoadable}");
+                Task.Run(async () =>
                 {
-                    //Console.WriteLine($"Load: {itemViewModel.Index}");
-                    Task.Run(async () =>
-                    {
-                        await itemViewModel.Load();
-                        itemViewModel.Update();
-                        //Console.WriteLine($"Loaded: {itemViewModel.Index}");
-                    });
-                }
-                else
-                {
-                    // TODO: Check if we need to update.
-                    //Console.WriteLine($"Update: {itemViewModel.Index}");
-                    itemViewModel.Update();
-                }
+                    await lazyLoadable.Load();
+                    lazyLoadable.Update();
+                    //Console.WriteLine($"Loaded: {lazyLoadable}");
+                });
+            }
+            else
+            {
+                // TODO: Check if we need to update.
+                //Console.WriteLine($"Update: {lazyLoadable}");
+                lazyLoadable.Update();
             }
         }
     }

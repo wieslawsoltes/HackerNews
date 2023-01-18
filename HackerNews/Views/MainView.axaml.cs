@@ -1,6 +1,7 @@
 ﻿using System;
 using Avalonia.Controls;
-using HackerNews.ViewModels;
+using Avalonia.Interactivity;
+using HackerNews.Model;
 
 namespace HackerNews.Views;
 
@@ -16,12 +17,30 @@ public partial class MainView : UserControl
         Console.WriteLine("Refresh_OnRefreshRequested");
         var deferral = e.GetDeferral();
 
-        if (DataContext is MainViewViewModel mainViewViewModel)
+        if (DataContext is ILazyLoadable lazyLoadable)
         {
-            await mainViewViewModel.LoadItems();
+            await lazyLoadable.Load();
         }
 
         deferral.Complete();
+    }
+
+    protected override void OnLoaded()
+    {
+        base.OnLoaded();
+
+        if (this.VisualRoot is TopLevel topLevel)
+        {
+            topLevel.BackRequested += TopLevelOnBackRequested;
+        }
+    }
+
+    private async void TopLevelOnBackRequested(object? sender, RoutedEvent e)
+    {
+        if (DataContext is ILazyLoadable lazyLoadable)
+        {
+            await lazyLoadable.Back();
+        }
     }
 }
 

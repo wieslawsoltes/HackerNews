@@ -6,7 +6,7 @@ using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
-public partial class ItemViewModel : ViewModelBase
+public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly HackerNewsApiV0? _api;
     private Item? _item;
@@ -70,5 +70,17 @@ public partial class ItemViewModel : ViewModelBase
             Title = _item.Title;
             // TODO:
         }
+    }
+
+    public async Task Back()
+    {
+        // TODO:
+        await Task.Yield();
+    }
+
+    public override string ToString()
+    {
+        //return base.ToString();
+        return $"{Index}";
     }
 }
