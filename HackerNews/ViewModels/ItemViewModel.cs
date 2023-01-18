@@ -44,7 +44,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         return _item is { };
     }
 
-    public async Task Load()
+    public async Task LoadAsync()
     {
         if (_api is { } && _item is null && _id >= 0)
         {
@@ -58,11 +58,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         if (_api is { } && _item?.By is { })
         {
             _by = new UserViewModel(_api, _item.By);
-            await _by.Load();
+            await _by.LoadAsync();
         }
     }
 
-    public async Task Update()
+    public async Task UpdateAsync()
     {
         if (_item is { })
         {
@@ -75,7 +75,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         await Task.Yield();
     }
 
-    public async Task Back()
+    public async Task BackAsync()
     {
         // TODO:
         await Task.Yield();

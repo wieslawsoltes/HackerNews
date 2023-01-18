@@ -5,7 +5,7 @@ namespace HackerNews.Model;
 public interface ILazyLoadable
 {
     bool IsLoaded();
-    Task Load();
-    Task Update();
-    Task Back();
+    Task LoadAsync();
+    Task UpdateAsync();
+    Task BackAsync();
 }

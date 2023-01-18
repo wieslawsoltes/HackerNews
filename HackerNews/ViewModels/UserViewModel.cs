@@ -31,7 +31,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
         return _user is { };
     }
 
-    public async Task Load()
+    public async Task LoadAsync()
     {
         if (_api is { } && _id is { })
         {
@@ -40,7 +40,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public async Task Update()
+    public async Task UpdateAsync()
     {
         if (_user is { })
         {
@@ -54,7 +54,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
         await Task.Yield();
     }
 
-    public async Task Back()
+    public async Task BackAsync()
     {
         // TODO:
         await Task.Yield();

@@ -20,7 +20,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         _topStoriesIds = new List<int>();
         _items = new ObservableCollection<ItemViewModel>();
 
-        LoadItemsCommand = new AsyncRelayCommand(Load);
+        LoadItemsCommand = new AsyncRelayCommand(LoadAsync);
     }
 
     public IAsyncRelayCommand LoadItemsCommand { get; }
@@ -31,7 +31,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         return true;
     }
 
-    public async Task Load()
+    public async Task LoadAsync()
     {
         _topStoriesIds.Clear();
         _items.Clear();
@@ -52,13 +52,13 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public async Task Update()
+    public async Task UpdateAsync()
     {
         // TODO:
         await Task.Yield();
     }
 
-    public async Task Back()
+    public async Task BackAsync()
     {
         // TODO:
         await Task.Yield();

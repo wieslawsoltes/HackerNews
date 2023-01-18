@@ -19,7 +19,7 @@ public partial class MainView : UserControl
 
         if (DataContext is ILazyLoadable lazyLoadable)
         {
-            await lazyLoadable.Load();
+            await lazyLoadable.LoadAsync();
         }
 
         deferral.Complete();
@@ -49,7 +49,7 @@ public partial class MainView : UserControl
     {
         if (DataContext is ILazyLoadable lazyLoadable)
         {
-            await lazyLoadable.Back();
+            await lazyLoadable.BackAsync();
         }
     }
 }
