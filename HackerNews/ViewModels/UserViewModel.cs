@@ -40,7 +40,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public void Update()
+    public async Task Update()
     {
         if (_user is { })
         {
@@ -49,6 +49,9 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
             About = _user.About;
             // TODO:
         }
+
+        // TODO:
+        await Task.Yield();
     }
 
     public async Task Back()

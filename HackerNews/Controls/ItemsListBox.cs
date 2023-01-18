@@ -39,7 +39,7 @@ public class ItemsListBox : ListBox, IStyleable
                 Task.Run(async () =>
                 {
                     await lazyLoadable.Load();
-                    lazyLoadable.Update();
+                    await lazyLoadable.Update();
                     //Console.WriteLine($"Loaded: {lazyLoadable}");
                 });
             }
@@ -47,7 +47,10 @@ public class ItemsListBox : ListBox, IStyleable
             {
                 // TODO: Check if we need to update.
                 //Console.WriteLine($"Update: {lazyLoadable}");
-                lazyLoadable.Update();
+                Task.Run(async () =>
+                {
+                    await lazyLoadable.Update();
+                });
             }
         }
     }

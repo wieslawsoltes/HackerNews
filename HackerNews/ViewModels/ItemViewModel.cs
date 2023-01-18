@@ -62,7 +62,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public void Update()
+    public async Task Update()
     {
         if (_item is { })
         {
@@ -70,6 +70,9 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             Title = _item.Title;
             // TODO:
         }
+
+        // TODO:
+        await Task.Yield();
     }
 
     public async Task Back()

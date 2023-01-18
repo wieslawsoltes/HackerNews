@@ -6,6 +6,6 @@ public interface ILazyLoadable
 {
     bool IsLoaded();
     Task Load();
-    void Update();
+    Task Update();
     Task Back();
 }

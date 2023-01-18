@@ -52,9 +52,10 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public void Update()
+    public async Task Update()
     {
         // TODO:
+        await Task.Yield();
     }
 
     public async Task Back()
