@@ -1,20 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using HackerNews.Model;
 using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase
 {
-    private HackerNewsApiV0 _api;
+    private readonly HackerNewsApiV0 _api;
     private List<int> _topStoriesIds;
     [ObservableProperty] private ObservableCollection<ItemViewModel> _items;
 
@@ -29,7 +24,7 @@ public partial class MainViewViewModel : ViewModelBase
 
     public IAsyncRelayCommand LoadItemsCommand { get; }
 
-    private async Task LoadItems()
+    public async Task LoadItems()
     {
         _topStoriesIds.Clear();
         _items.Clear();
