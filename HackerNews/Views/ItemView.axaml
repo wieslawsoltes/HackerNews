@@ -11,9 +11,9 @@
   <Design.DataContext>
     <vm:ItemViewModel>
       <vm:ItemViewModel.Index>4</vm:ItemViewModel.Index>
-      <vm:ItemViewModel.Time>
+      <!--<vm:ItemViewModel.Time>
         <system:DateTimeOffset>0</system:DateTimeOffset>
-      </vm:ItemViewModel.Time>
+      </vm:ItemViewModel.Time>-->
       <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
       <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
       <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
