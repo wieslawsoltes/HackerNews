@@ -10,17 +10,29 @@
   <Design.DataContext>
     <vm:ItemViewModel>
       <vm:ItemViewModel.Index>4</vm:ItemViewModel.Index>
+      <vm:ItemViewModel.Time>0</vm:ItemViewModel.Time>
+      <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
       <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
       <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
+      <vm:ItemViewModel.Url>https://www.itemurl.com/</vm:ItemViewModel.Url>
+      <vm:ItemViewModel.By>
+        <vm:UserViewModel>
+          <vm:UserViewModel.Id>user</vm:UserViewModel.Id>
+        </vm:UserViewModel>
+      </vm:ItemViewModel.By>
     </vm:ItemViewModel>
   </Design.DataContext>
 
   <DockPanel MinHeight="100">
-               
+
+    <!-- Bottom Separator -->
+
     <Rectangle Fill="{DynamicResource ItemSeparatorBackground}"
                Height="1.5"
                HorizontalAlignment="Stretch"
                DockPanel.Dock="Bottom" />
+
+    <!-- Left Side -->
 
     <Border DockPanel.Dock="Left"
             Margin="0,0,0,0"
@@ -28,12 +40,15 @@
             Background="{DynamicResource ItemIndexBackground}">
       <StackPanel Spacing="6" 
                   HorizontalAlignment="Center" 
-                  VerticalAlignment="Center">
+                  VerticalAlignment="Top"
+                  Margin="0,12,0,0">
+        <!-- Item Index -->
         <TextBlock Text="{Binding Index}"
                    HorizontalAlignment="Center"
                    Foreground="{DynamicResource ItemIndexForeground}"
                    FontSize="{DynamicResource ItemIndexFontSize}"
                    FontWeight="Regular" />
+        <!-- Item Score -->
         <TextBlock Text="{Binding Score, StringFormat={}{0}p}"
                    HorizontalAlignment="Center"
                    Foreground="{DynamicResource ItemScoreForeground}"
@@ -42,15 +57,61 @@
       </StackPanel>
     </Border>
 
-    <DockPanel Background="{DynamicResource ItemTitleBackground}"
-               Margin="0,0.5,0,0.5">
+    <!-- Right Side -->
+
+    <StackPanel Background="{DynamicResource ItemTitleBackground}"
+                Spacing="6"
+                Margin="0,0.5,0,0.5">
+
+      <!-- Item Title -->
       <TextBlock Text="{Binding Title}"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource ItemTitleForeground}"
                  FontSize="{DynamicResource ItemTitleFontSize}"
                  FontWeight="Regular"
-                 Margin="12"/>
-    </DockPanel>
+                 Margin="12,12,12,0" />
+
+      <!-- Item Details -->
+      <DockPanel>
+
+        <StackPanel>
+          <!-- Item Url -->
+          <TextBlock Text="{Binding Url.DnsSafeHost}"
+                     TextWrapping="Wrap"
+                     Foreground="{DynamicResource ItemScoreForeground}"
+                     FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                     FontWeight="Regular"
+                     Margin="12,0,0,0" />
+          <StackPanel Orientation="Horizontal"
+                      Margin="12,6,12,0">
+            <!-- Item Time -->
+            <TextBlock Text="{Binding TimeAgo}"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource ItemScoreForeground}"
+                       FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                       FontWeight="Regular"
+                       Margin="0,0,0,0" />
+            <!-- Separator -->
+            <TextBlock Text="-"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource ItemScoreForeground}"
+                       FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                       FontWeight="Regular"
+                       Margin="6,0,6,0" />
+            <!-- Item Author -->
+            <TextBlock Text="{Binding By.Id}"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource ItemScoreForeground}"
+                       FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                       FontWeight="Regular"
+                       Margin="0,0,0,0" />
+          </StackPanel>
+
+        </StackPanel>
+        
+      </DockPanel>
+
+    </StackPanel>
 
   </DockPanel>
 
