@@ -81,6 +81,31 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         await Task.Yield();
     }
 
+    private string ToTimeAgoString(DateTimeOffset dto)
+    {
+        var ts = DateTimeOffset.Now - dto;
+        if (ts.Days > 0)
+        {
+            return $"{ts.Days}d";
+        }
+        else if (ts.Hours > 0)
+        {
+            return $"{ts.Hours}h";
+        }
+        else if (ts.Minutes > 0)
+        {
+            return $"{ts.Minutes}m";
+        }
+        else if (ts.Seconds > 0)
+        {
+            return $"{ts.Seconds}s";
+        }
+        else
+        {
+            return $"{ts.Milliseconds}ms";
+        }
+    }
+
     public override string ToString()
     {
         //return base.ToString();
