@@ -7,12 +7,12 @@
   </Application.DataTemplates>
   <Application.Styles>
     <FluentTheme Mode="Dark" />
-    <StyleInclude Source="/Theme.axaml" />
+    <StyleInclude Source="/Themes/Theme.axaml" />
   </Application.Styles>
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <MergeResourceInclude Source="/ListBoxItem.axaml" />
+        <MergeResourceInclude Source="/Themes/ListBoxItem.axaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>
