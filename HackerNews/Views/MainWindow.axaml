@@ -15,6 +15,14 @@
     <vm:MainViewViewModel />
   </Design.DataContext>
 
-  <views:MainView />
-
+  <!--<views:MainView />-->
+  <!--
+  <RefreshContainer Name="Refresh"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    PullDirection="TopToBottom">
+    <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="400"/>
+  </RefreshContainer>
+  -->
+  <views:GesturesView/>
 </Window>
