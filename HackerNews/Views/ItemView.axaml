@@ -78,8 +78,8 @@
           <!-- Item Url -->
           <TextBlock Text="{Binding Url.DnsSafeHost}"
                      TextWrapping="Wrap"
-                     Foreground="{DynamicResource ItemScoreForeground}"
-                     FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                     Foreground="{DynamicResource ItemDetailsForeground}"
+                     FontSize="{DynamicResource ItemDetailsFontSize}"
                      FontWeight="Regular"
                      Margin="12,0,0,0" />
           <StackPanel Orientation="Horizontal"
@@ -87,22 +87,22 @@
             <!-- Item Time -->
             <TextBlock Text="{Binding TimeAgo}"
                        TextWrapping="Wrap"
-                       Foreground="{DynamicResource ItemScoreForeground}"
-                       FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                       Foreground="{DynamicResource ItemDetailsForeground}"
+                       FontSize="{DynamicResource ItemDetailsFontSize}"
                        FontWeight="Regular"
                        Margin="0,0,0,0" />
             <!-- Separator -->
             <TextBlock Text="-"
                        TextWrapping="Wrap"
-                       Foreground="{DynamicResource ItemScoreForeground}"
-                       FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                       Foreground="{DynamicResource ItemDetailsForeground}"
+                       FontSize="{DynamicResource ItemDetailsFontSize}"
                        FontWeight="Regular"
                        Margin="6,0,6,0" />
             <!-- Item Author -->
             <TextBlock Text="{Binding By.Id}"
                        TextWrapping="Wrap"
-                       Foreground="{DynamicResource ItemScoreForeground}"
-                       FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
+                       Foreground="{DynamicResource ItemDetailsForeground}"
+                       FontSize="{DynamicResource ItemDetailsFontSize}"
                        FontWeight="Regular"
                        Margin="0,0,0,0" />
           </StackPanel>
