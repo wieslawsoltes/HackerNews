@@ -14,8 +14,8 @@
   </Design.DataContext>
 
   <UserControl.GestureRecognizers>
-    <PullGestureRecognizer PullDirection="TopToBottom"/>
-    <PullGestureRecognizer PullDirection="BottomToTop"/>
+    <!--<PullGestureRecognizer PullDirection="TopToBottom"/>-->
+    <!--<PullGestureRecognizer PullDirection="BottomToTop"/>-->
     <PullGestureRecognizer PullDirection="RightToLeft"/>
     <PullGestureRecognizer PullDirection="LeftToRight"/>
   </UserControl.GestureRecognizers>
