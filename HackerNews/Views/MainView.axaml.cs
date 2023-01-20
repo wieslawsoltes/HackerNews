@@ -41,12 +41,22 @@ public partial class MainView : UserControl
 
     private void OnPullGesture(object? sender, PullGestureEventArgs e)
     {
-        Console.WriteLine($"PullGesture {e.Id} {e.PullDirection} {e.Delta}");
+        //Console.WriteLine($"PullGesture {e.Id} {e.PullDirection} {e.Delta}");
+        switch (e.PullDirection)
+        {
+            case PullDirection.LeftToRight:
+                // TODO: Show hamburger menu.
+                break;
+            case PullDirection.RightToLeft:
+                // TODO: Show hamburger menu.
+                break;
+        }
     }
 
     private void PullGestureEnded(object? sender, PullGestureEndedEventArgs e)
     {
-        Console.WriteLine($"PullGestureEnded {e.Id} {e.PullDirection}");
+        //Console.WriteLine($"PullGestureEnded {e.Id} {e.PullDirection}");
+        // TODO: Handle hamburger menu show/hide state.
     }
 
     private async void TopLevelOnBackRequested(object? sender, RoutedEventArgs e)
