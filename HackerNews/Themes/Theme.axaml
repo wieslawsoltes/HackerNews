@@ -22,6 +22,9 @@
     <SolidColorBrush x:Key="ItemScoreForeground">#A2A2A2</SolidColorBrush>
     <x:Double x:Key="ItemScoreFontSize">16</x:Double>
 
+    <SolidColorBrush x:Key="ItemDetailsForeground">#A2A2A2</SolidColorBrush>
+    <x:Double x:Key="ItemDetailsFontSize">16</x:Double>
+
     <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
     
   </Styles.Resources>
