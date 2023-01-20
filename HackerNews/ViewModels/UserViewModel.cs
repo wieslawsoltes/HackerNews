@@ -59,4 +59,9 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
         // TODO:
         await Task.Yield();
     }
+
+    public override string? ToString()
+    {
+        return _id;
+    }
 }
