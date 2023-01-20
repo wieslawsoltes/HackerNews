@@ -89,10 +89,13 @@
                   VerticalContentAlignment="Stretch"
                   Background="Transparent">
             <Button.Styles>
+              <Style Selector="PopupRoot">
+                <Setter Property="Background" Value="{DynamicResource ItemTitleBackground}" />
+              </Style>
               <Style Selector="MenuFlyoutPresenter">
                 <Setter Property="CornerRadius" Value="0" />
                 <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderThickness" Value="1" />
               </Style>
             </Button.Styles>
             <Button.Flyout>
