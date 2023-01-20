@@ -13,6 +13,13 @@
     <vm:MainViewViewModel />
   </Design.DataContext>
 
+  <UserControl.GestureRecognizers>
+    <PullGestureRecognizer PullDirection="TopToBottom"/>
+    <PullGestureRecognizer PullDirection="BottomToTop"/>
+    <PullGestureRecognizer PullDirection="RightToLeft"/>
+    <PullGestureRecognizer PullDirection="LeftToRight"/>
+  </UserControl.GestureRecognizers>
+  
   <DockPanel>
     <views:HeaderView DockPanel.Dock="Top" />
     <views:ItemsView DataContext="{Binding ItemsView}" />
