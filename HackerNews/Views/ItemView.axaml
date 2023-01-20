@@ -67,6 +67,7 @@
                 Margin="0,0.5,0,0.5">
 
       <!-- Item Title -->
+
       <TextBlock Text="{Binding Title}"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource ItemTitleForeground}"
@@ -74,8 +75,57 @@
                  FontWeight="Regular"
                  Margin="12,12,12,0" />
 
-      <!-- Item Details -->
       <DockPanel>
+
+        <StackPanel Orientation="Horizontal" 
+                    DockPanel.Dock="Right">
+          <!-- Item Comments -->
+          <!-- TODO: -->
+          <!-- Item Menu -->
+          <Button Width="40"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  Background="Transparent">
+            <Button.Styles>
+              <Style Selector="MenuFlyoutPresenter">
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+              </Style>
+            </Button.Styles>
+            <Button.Flyout>
+              <MenuFlyout Placement="LeftEdgeAlignedTop">
+                <MenuItem Header="Refresh" />
+                <MenuItem Header="Add comment" />
+                <MenuItem Header="View user" />
+                <MenuItem Header="Share" />
+              </MenuFlyout>
+            </Button.Flyout>
+            <StackPanel Spacing="4"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+              <Ellipse Fill="{DynamicResource ItemDetailsForeground}"
+                       Width="4"
+                       Height="4"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+              <Ellipse Fill="{DynamicResource ItemDetailsForeground}"
+                       Width="4"
+                       Height="4"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+              <Ellipse Fill="{DynamicResource ItemDetailsForeground}"
+                       Width="4"
+                       Height="4"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            </StackPanel>
+          </Button>
+        </StackPanel>
+
+        <!-- Item Details -->
 
         <StackPanel>
           <!-- Item Url -->
@@ -111,7 +161,7 @@
           </StackPanel>
 
         </StackPanel>
-        
+
       </DockPanel>
 
     </StackPanel>
