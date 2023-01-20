@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using HackerNews.Model;
@@ -15,13 +16,14 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _deleted;
     [ObservableProperty] private string _type;
     [ObservableProperty] private UserViewModel? _by;
-    [ObservableProperty] private int _time;
+    [ObservableProperty] private DateTimeOffset _time;
+    [ObservableProperty] private string _timeAgo;
     [ObservableProperty] private string _text;
     [ObservableProperty] private bool _dead;
     [ObservableProperty] private int? _parent;
     [ObservableProperty] private int? _poll;
     [ObservableProperty] private List<int> _kids;
-    [ObservableProperty] private string _url;
+    [ObservableProperty] private Uri _url;
     [ObservableProperty] private int _score;
     [ObservableProperty] private string _title;
     [ObservableProperty] private List<int> _parts;
@@ -50,6 +52,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             var json = await _api.GetItemJson(_id);
             _item = await _api.DeserializeAsync<Item>(json);
+            await LoadUser();
         }
     }
 
@@ -69,6 +72,9 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             Score = _item.Score;
             Title = _item.Title;
             // TODO:
+            Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
+            TimeAgo = ToTimeAgoString(Time);
+            Url = new Uri(_item.Url);
         }
 
         // TODO:
