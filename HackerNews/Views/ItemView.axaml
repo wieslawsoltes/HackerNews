@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="170"
              x:Class="HackerNews.Views.ItemView"
              x:CompileBindings="True" x:DataType="vm:ItemViewModel">
@@ -17,6 +18,13 @@
       <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
       <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
       <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
+      <vm:ItemViewModel.Kids>
+        <generic:List x:TypeArguments="system:Int32">
+          <system:Int32>0</system:Int32>
+          <system:Int32>1</system:Int32>
+          <system:Int32>2</system:Int32>
+        </generic:List>
+      </vm:ItemViewModel.Kids>
       <vm:ItemViewModel.Url>https://www.itemurl.com/</vm:ItemViewModel.Url>
       <vm:ItemViewModel.By>
         <vm:UserViewModel>
