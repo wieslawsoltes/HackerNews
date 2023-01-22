@@ -12,6 +12,7 @@
   <Application.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="/Themes/Icons.axaml" />
         <MergeResourceInclude Source="/Themes/ListBoxItem.axaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
