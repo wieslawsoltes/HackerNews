@@ -74,6 +74,8 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             // TODO:
             Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
             TimeAgo = ToTimeAgoString(Time);
+            // TODO: Load Kids as comment view models (Item based).
+            Kids = new List<int>(_item.Kids);
             Url = new Uri(_item.Url);
         }
 
