@@ -59,6 +59,19 @@
                  VerticalAlignment="Center" />
       </StackPanel>
     </Button>
+    
+    <Button Width="40"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            Background="Transparent"
+            Command="{Binding SearchCommand}"
+            DockPanel.Dock="Right">
+      <PathIcon Data="{DynamicResource SearchIcon}" 
+                Height="24"
+                Width="24" />
+    </Button>
 
     <!-- Header Text -->
 
