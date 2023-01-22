@@ -80,7 +80,30 @@
         <StackPanel Orientation="Horizontal" 
                     DockPanel.Dock="Right">
           <!-- Item Comments -->
-          <!-- TODO: -->
+          <Button HorizontalAlignment="Right"
+                  VerticalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  Background="Transparent"
+                  Margin="0,0,24,0">
+            <StackPanel Spacing="4"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+              <PathIcon Data="{DynamicResource CommentIcon}" 
+                        Height="24"
+                        Width="24" 
+                        Foreground="{DynamicResource ItemDetailsForeground}"/>
+              <!-- TODO: Comment count binding to Text property. -->
+              <TextBlock Text="0"
+                         TextWrapping="Wrap"
+                         Foreground="{DynamicResource ItemDetailsForeground}"
+                         FontSize="{DynamicResource ItemDetailsFontSize}"
+                         FontWeight="Regular"
+                         Margin="6,0,0,0"
+                         VerticalAlignment="Center"/>
+            </StackPanel>
+          </Button>
           <!-- Item Menu -->
           <Button Width="40"
                   HorizontalAlignment="Right"
