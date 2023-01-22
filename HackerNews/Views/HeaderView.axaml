@@ -23,26 +23,9 @@
             VerticalContentAlignment="Stretch"
             Background="Transparent"
             DockPanel.Dock="Left">
-      <StackPanel Spacing="4"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  DockPanel.Dock="Left">
-        <Rectangle Fill="{DynamicResource HamburgerBackground}"
-                   Width="26"
-                   Height="2.5"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-        <Rectangle Fill="{DynamicResource HamburgerBackground}"
-                   Width="26"
-                   Height="2.5"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-        <Rectangle Fill="{DynamicResource HamburgerBackground}"
-                   Width="26"
-                   Height="2.5"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-      </StackPanel>
+      <PathIcon Data="{DynamicResource NavigationIcon}" 
+                Height="24"
+                Width="24" />
     </Button>
 
     <!-- Settings Menu -->
