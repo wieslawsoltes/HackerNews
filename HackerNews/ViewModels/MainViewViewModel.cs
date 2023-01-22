@@ -17,9 +17,13 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         _itemsView = new ItemsViewModel(_api, HackerNewsApiV0.TopStories, "Top Stories");
 
         LoadCommand = new AsyncRelayCommand(LoadAsync);
+
+        SearchCommand = new AsyncRelayCommand(SearchAsync);
     }
 
     public IAsyncRelayCommand LoadCommand { get; }
+
+    public IAsyncRelayCommand SearchCommand { get; }
 
     public bool IsLoaded()
     {
@@ -49,5 +53,11 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         {
             await _itemsView.BackAsync();
         }
+    }
+
+    public async Task SearchAsync()
+    {
+        // TODO:
+        await Task.Yield();
     }
 }
