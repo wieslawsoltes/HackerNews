@@ -60,6 +60,8 @@
       </StackPanel>
     </Button>
     
+    <!-- Search -->
+    
     <Button Width="40"
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
@@ -67,6 +69,7 @@
             VerticalContentAlignment="Stretch"
             Background="Transparent"
             Command="{Binding SearchCommand}"
+            Margin="0,0,24,0"
             DockPanel.Dock="Right">
       <PathIcon Data="{DynamicResource SearchIcon}" 
                 Height="24"
