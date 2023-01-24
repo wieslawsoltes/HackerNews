@@ -9,12 +9,12 @@ namespace HackerNews.ViewModels;
 public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly HackerNewsApiV0 _api;
-    [ObservableProperty] private ItemsViewModel? _itemsView;
+    [ObservableProperty] private ItemsViewModel? _currentItems;
 
     public MainViewViewModel()
     {
         _api = new HackerNewsApiV0();
-        _itemsView = new ItemsViewModel(_api, HackerNewsApiV0.TopStories, "Top Stories");
+        _currentItems = new ItemsViewModel(_api, HackerNewsApiV0.TopStories, "Top Stories");
 
         LoadCommand = new AsyncRelayCommand(LoadAsync);
 
@@ -33,25 +33,25 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_itemsView is { })
+        if (_currentItems is { })
         {
-            await _itemsView.LoadAsync();
+            await _currentItems.LoadAsync();
         }
     }
 
     public async Task UpdateAsync()
     {
-        if (_itemsView is { })
+        if (_currentItems is { })
         {
-            await _itemsView.UpdateAsync();
+            await _currentItems.UpdateAsync();
         }
     }
 
     public async Task BackAsync()
     {
-        if (_itemsView is { })
+        if (_currentItems is { })
         {
-            await _itemsView.BackAsync();
+            await _currentItems.BackAsync();
         }
     }
 

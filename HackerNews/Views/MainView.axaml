@@ -22,7 +22,7 @@
   
   <DockPanel>
     <views:HeaderView DockPanel.Dock="Top" />
-    <views:ItemsView DataContext="{Binding ItemsView}" />
+    <views:ItemsView DataContext="{Binding CurrentItems}" />
   </DockPanel>
 
 </UserControl>

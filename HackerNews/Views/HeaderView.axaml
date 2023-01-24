@@ -80,7 +80,7 @@
 
     <StackPanel Spacing="12">
       <!-- Title -->
-      <TextBlock Text="{Binding ItemsView.Title, FallbackValue=Title}"
+      <TextBlock Text="{Binding CurrentItems.Title, FallbackValue=Title}"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource HeaderTitleForeground}"
                  FontSize="{DynamicResource HeaderTitleFontSize}"
