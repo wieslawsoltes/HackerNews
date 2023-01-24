@@ -105,7 +105,13 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         await Task.Yield();
     }
 
-    private string ToTimeAgoString(DateTimeOffset dto)
+    public override string ToString()
+    {
+        //return base.ToString();
+        return $"{Index}";
+    }
+
+    public static string ToTimeAgoString(DateTimeOffset dto)
     {
         var ts = DateTimeOffset.Now - dto;
         if (ts.Days > 0)
@@ -130,7 +136,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    private ItemType ItemTypeFromString(string type)
+    public static ItemType ItemTypeFromString(string type)
     {
         switch (type)
         {
@@ -142,11 +148,5 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
 
         throw new Exception("Invalid item type.");
-    }
-
-    public override string ToString()
-    {
-        //return base.ToString();
-        return $"{Index}";
     }
 }
