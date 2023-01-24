@@ -15,7 +15,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private int _index;
     [ObservableProperty] private int _id;
     [ObservableProperty] private bool _deleted;
-    [ObservableProperty] private string _type;
+    [ObservableProperty] private ItemType _type;
     [ObservableProperty] private UserViewModel? _by;
     [ObservableProperty] private DateTimeOffset _time;
     [ObservableProperty] private string _timeAgo;
@@ -54,7 +54,14 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             var json = await _api.GetItemJson(_id);
             _item = await _api.DeserializeAsync<Item>(json);
+
             await LoadUser();
+
+            // TODO: Load Kids as comment view models (Item based).
+            // Kids = new List<int>(_item.Kids);
+
+            // TODO: Load Parts as poll options view models (Item based).
+            // Kids = new List<int>(_item.Kids);
         }
     }
 
@@ -71,14 +78,21 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     {
         if (_item is { })
         {
-            Score = _item.Score;
-            Title = _item.Title;
-            // TODO:
+            Deleted = _item.Deleted;
+            Type = ItemTypeFromString(_item.Type);
+            // TODO: By
             Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
             TimeAgo = ToTimeAgoString(Time);
-            // TODO: Load Kids as comment view models (Item based).
-            Kids = new List<int>(_item.Kids);
+            Text = _item.Text;
+            Dead = _item.Dead;
+            Parent = _item.Parent;
+            Poll = _item.Poll;
+            // TODO: Kids
             Url = new Uri(_item.Url);
+            Score = _item.Score;
+            Title = _item.Title;
+            // TODO: Parts
+            Descendants = _item.Descendants;
         }
 
         // TODO:
@@ -114,6 +128,20 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             return $"{ts.Milliseconds}ms";
         }
+    }
+
+    private ItemType ItemTypeFromString(string type)
+    {
+        switch (type)
+        {
+            case "job": return ItemType.Job;
+            case "story": return ItemType.Story;
+            case "comment": return ItemType.Comment;
+            case "poll": return ItemType.Poll;
+            case "pollopt": return ItemType.PollOpt;
+        }
+
+        throw new Exception("Invalid item type.");
     }
 
     public override string ToString()
