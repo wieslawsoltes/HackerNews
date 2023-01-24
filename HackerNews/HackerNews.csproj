@@ -9,7 +9,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-    <AvaloniaVersion>11.0.999-cibuild0028846-beta</AvaloniaVersion>
+    <AvaloniaVersion>11.0.999-cibuild0029023-beta</AvaloniaVersion>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
