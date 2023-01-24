@@ -26,7 +26,7 @@ public class ItemsListBox : ListBox, IStyleable
     {
         base.ClearContainerForItemOverride(element);
 
-        Load(element);
+        // TODO:
     }
 
     private void Load(Control element)
