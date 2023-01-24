@@ -4,22 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
-             x:Class="HackerNews.Views.UserView"
-             x:CompileBindings="True" x:DataType="vm:UserViewModel">
+             x:Class="HackerNews.Views.SubmittedView"
+             x:CompileBindings="True" x:DataType="vm:SubmittedViewModel">
 
   <Design.DataContext>
-    <vm:UserViewModel>
-      <vm:UserViewModel.Id>id</vm:UserViewModel.Id>
-      <vm:UserViewModel.Created>-1</vm:UserViewModel.Created>
-      <vm:UserViewModel.Karma>-1</vm:UserViewModel.Karma>
-      <vm:UserViewModel.About>about</vm:UserViewModel.About>
-    </vm:UserViewModel>
+    <vm:SubmittedViewModel>
+      <!-- TODO: -->
+    </vm:SubmittedViewModel>
   </Design.DataContext>
 
   <Panel Background="{DynamicResource MainBackground}">
     
     <!-- TODO: -->
-    <TextBlock Text="User"
+    <TextBlock Text="Submitted"
                HorizontalAlignment="Center"
                VerticalAlignment="Center" />
 

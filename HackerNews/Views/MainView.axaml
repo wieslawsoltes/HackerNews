@@ -21,8 +21,20 @@
   </UserControl.GestureRecognizers>
   
   <DockPanel>
+
     <views:HeaderView DockPanel.Dock="Top" />
-    <views:ItemsView DataContext="{Binding CurrentItems}" />
+
+    <ItemsControl Items="{Binding Items}"
+                  DataContext="{Binding Navigation}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Panel />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
+
+    <!--<views:ItemsView DataContext="{Binding CurrentItems}" />-->
+
   </DockPanel>
 
 </UserControl>

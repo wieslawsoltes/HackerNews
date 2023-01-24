@@ -28,7 +28,10 @@
     <x:Double x:Key="ItemDetailsFontSize">16</x:Double>
 
     <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
-    
+
+    <SolidColorBrush x:Key="CommentForeground">#FFFFFF</SolidColorBrush>
+    <x:Double x:Key="CommentFontSize">16</x:Double>
+
   </Styles.Resources>
 </Styles>
 

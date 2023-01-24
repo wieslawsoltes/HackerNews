@@ -10,22 +10,24 @@ namespace HackerNews.ViewModels;
 public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly HackerNewsApiV0? _api;
+    private readonly INavigation? _navigation;
+
     private readonly string? _storiesFeed;
     private List<int>? _ids;
+
     [ObservableProperty] private string? _title;
-    [ObservableProperty] private ObservableCollection<ItemViewModel> _items;
+    [ObservableProperty] private ObservableCollection<ItemViewModel>? _items;
 
     public ItemsViewModel()
     {
     }
 
-    public ItemsViewModel(HackerNewsApiV0 api, string storiesFeed, string title)
+    public ItemsViewModel(HackerNewsApiV0 api, INavigation navigation, string storiesFeed, string title)
     {
         _api = api;
+        _navigation = navigation;
         _storiesFeed = storiesFeed;
         _title = title;
-        _ids = new List<int>();
-        _items = new ObservableCollection<ItemViewModel>();
     }
 
     public bool IsLoaded()
@@ -36,11 +38,13 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_api is { } && _storiesFeed is { })
+        if (_api is { } && _navigation is { } && _storiesFeed is { })
         {
             _ids ??= new List<int>();
             _ids.Clear();
-            _items.Clear();
+
+            Items ??= new ObservableCollection<ItemViewModel>();
+            Items.Clear();
 
             var json = await _api.GetStoriesJson(_storiesFeed);
             _ids = await _api.DeserializeAsync<List<int>>(json);
@@ -53,8 +57,8 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 
             foreach (var id in _ids)
             {
-                var itemViewModel = new ItemViewModel(_api, id, index++);
-                _items.Add(itemViewModel);
+                var itemViewModel = new ItemViewModel(_api, _navigation, id, index++);
+                Items.Add(itemViewModel);
             }
         }
     }

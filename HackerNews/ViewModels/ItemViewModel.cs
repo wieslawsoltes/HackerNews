@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
 using HackerNews.Services;
 
@@ -10,6 +12,7 @@ namespace HackerNews.ViewModels;
 public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly HackerNewsApiV0? _api;
+    private readonly INavigation? _navigation;
     private Item? _item;
 
     [ObservableProperty] private int _index;
@@ -17,17 +20,18 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _deleted;
     [ObservableProperty] private ItemType _type;
     [ObservableProperty] private UserViewModel? _by;
+    [ObservableProperty] private string? _byId;
     [ObservableProperty] private DateTimeOffset _time;
-    [ObservableProperty] private string _timeAgo;
-    [ObservableProperty] private string _text;
+    [ObservableProperty] private string? _timeAgo;
+    [ObservableProperty] private string? _text;
     [ObservableProperty] private bool _dead;
     [ObservableProperty] private int? _parent;
     [ObservableProperty] private int? _poll;
-    [ObservableProperty] private List<int> _kids;
-    [ObservableProperty] private Uri _url;
+    [ObservableProperty] private ObservableCollection<ItemViewModel>? _kids;
+    [ObservableProperty] private Uri? _url;
     [ObservableProperty] private int _score;
-    [ObservableProperty] private string _title;
-    [ObservableProperty] private List<int> _parts;
+    [ObservableProperty] private string? _title;
+    [ObservableProperty] private ObservableCollection<ItemViewModel>? _parts;
     [ObservableProperty] private int? _descendants;
 
     public ItemViewModel()
@@ -36,12 +40,58 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         _index = -1;
     }
 
-    public ItemViewModel(HackerNewsApiV0 api, int id, int index = -1)
+    public ItemViewModel(HackerNewsApiV0 api, INavigation navigation, int id, int index = -1)
     {
         _api = api;
+        _navigation = navigation;
         _id = id;
         _index = index;
+
+        LoadUserCommand = new AsyncRelayCommand(async () =>
+        {
+            if (_navigation is { })
+            {
+                if (_by is null)
+                {
+                    if (_api is { } && _item?.By is { })
+                    {
+                        By = new UserViewModel(_api, _navigation, _item.By);
+                    }
+                }
+
+                if (_by is { })
+                {
+                    await _navigation.NavigateAsync(_by);
+                }
+            }
+        });
+
+        LoadKidsCommand = new AsyncRelayCommand(async () =>
+        {
+            if (_navigation is { })
+            {
+                var commentsViewModel = new CommentsViewModel(_api, _navigation, this);
+
+                await _navigation.NavigateAsync(commentsViewModel);
+            }
+        });
+
+        LoadPartsCommand = new AsyncRelayCommand(async () =>
+        {
+            if (_navigation is { })
+            {
+                var pollViewModel = new PollViewModel(_api, _navigation, this);
+
+                await _navigation.NavigateAsync(pollViewModel);
+            }
+        });
     }
+
+    public IAsyncRelayCommand LoadUserCommand { get; }
+
+    public IAsyncRelayCommand LoadKidsCommand { get; }
+
+    public IAsyncRelayCommand LoadPartsCommand { get; }
 
     public bool IsLoaded()
     {
@@ -54,23 +104,6 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             var json = await _api.GetItemJson(_id);
             _item = await _api.DeserializeAsync<Item>(json);
-
-            await LoadUser();
-
-            // TODO: Load Kids as comment view models (Item based).
-            // Kids = new List<int>(_item.Kids);
-
-            // TODO: Load Parts as poll options view models (Item based).
-            // Kids = new List<int>(_item.Kids);
-        }
-    }
-
-    public async Task LoadUser()
-    {
-        if (_api is { } && _item?.By is { })
-        {
-            By = new UserViewModel(_api, _item.By);
-            await By.LoadAsync();
         }
     }
 
@@ -79,19 +112,29 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         if (_item is { })
         {
             Deleted = _item.Deleted;
-            Type = ItemTypeFromString(_item.Type);
-            // TODO: By
+
+            if (_item.Type is { })
+            {
+                Type = ItemTypeFromString(_item.Type);
+            }
+
+            ById = _item.By;
+
             Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
             TimeAgo = ToTimeAgoString(Time);
             Text = _item.Text;
             Dead = _item.Dead;
             Parent = _item.Parent;
             Poll = _item.Poll;
-            // TODO: Kids
-            Url = new Uri(_item.Url);
+
+            if (_item.Url is { })
+            {
+                Url = new Uri(_item.Url);
+            }
+
             Score = _item.Score;
             Title = _item.Title;
-            // TODO: Parts
+
             Descendants = _item.Descendants;
         }
 
@@ -104,11 +147,51 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         // TODO:
         await Task.Yield();
     }
+    
+    public async Task LoadKidsAsync()
+    {
+        if (_api is { } && _navigation is { } && _item is { } && _item.Kids is { })
+        {
+            Kids ??= new ObservableCollection<ItemViewModel>();
+            Kids.Clear();
+
+            await LoadItemsAsync(Kids, _item.Kids, _api, _navigation);
+        }
+    }
+
+    public async Task LoadKPartsAsync()
+    {
+        if (_api is { } && _navigation is { } && _item is { } && _item.Parts is { })
+        {
+            Parts ??= new ObservableCollection<ItemViewModel>();
+            Parts.Clear();
+
+            await LoadItemsAsync(Parts, _item.Parts, _api, _navigation);
+        }
+    }
 
     public override string ToString()
     {
         //return base.ToString();
         return $"{Index}";
+    }
+
+    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids, HackerNewsApiV0 api, INavigation navigation)
+    {
+        var index = 1;
+
+        foreach (var id in ids)
+        {
+            var itemViewModel = new ItemViewModel(api, navigation, id, index++);
+
+            items.Add(itemViewModel);
+        }
+
+        foreach (var kid in items)
+        {
+            await kid.LoadAsync();
+            await kid.LoadKidsAsync();
+        }
     }
 
     public static string ToTimeAgoString(DateTimeOffset dto)

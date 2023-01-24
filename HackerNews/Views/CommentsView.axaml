@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,21 +6,24 @@
              xmlns:views="clr-namespace:HackerNews.Views"
              xmlns:controls="clr-namespace:HackerNews.Controls"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
-             x:Class="HackerNews.Views.ItemsView"
-             x:CompileBindings="True" x:DataType="vm:ItemsViewModel">
+             x:Class="HackerNews.Views.CommentsView"
+             x:CompileBindings="True" x:DataType="vm:CommentsViewModel">
 
   <Design.DataContext>
-    <vm:ItemsViewModel />
+    <vm:CommentsViewModel>
+      <!-- TODO: -->
+    </vm:CommentsViewModel>
   </Design.DataContext>
 
-  <Panel Background="{DynamicResource MainBackground}">
+  <Panel Background="{DynamicResource MainBackground}"
+         DataContext="{Binding ItemViewModel}">
 
     <RefreshContainer Name="Refresh"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       PullDirection="TopToBottom"
                       RefreshRequested="Refresh_OnRefreshRequested">
-      <controls:ItemsListBox Items="{Binding Items}"
+      <controls:ItemsListBox Items="{Binding Kids}"
                              HorizontalAlignment="Stretch">
 
         <controls:ItemsListBox.Styles>
@@ -33,7 +36,7 @@
 
         <controls:ItemsListBox.ItemTemplate>
           <DataTemplate DataType="vm:ItemViewModel">
-            <views:ItemView />
+            <views:CommentView />
           </DataTemplate>
         </controls:ItemsListBox.ItemTemplate>
 

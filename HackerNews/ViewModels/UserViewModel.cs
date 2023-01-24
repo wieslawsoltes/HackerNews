@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
 using HackerNews.Services;
 
@@ -9,22 +10,37 @@ namespace HackerNews.ViewModels;
 public partial class UserViewModel : ViewModelBase, ILazyLoadable
 {
     private HackerNewsApiV0? _api;
+    private readonly INavigation? _navigation;
     private User? _user;
+
     [ObservableProperty] private string? _id;
     [ObservableProperty] private int _created;
     [ObservableProperty] private int _karma;
-    [ObservableProperty] private string _about;
-    [ObservableProperty] private List<int> _submitted;
+    [ObservableProperty] private string? _about;
+    [ObservableProperty] private ObservableCollection<ItemViewModel>? _submitted;
 
     public UserViewModel()
     {
     }
 
-    public UserViewModel(HackerNewsApiV0 api, string id)
+    public UserViewModel(HackerNewsApiV0 api, INavigation navigation, string id)
     {
         _api = api;
         _id = id;
+        _navigation = navigation;
+
+        LoadSubmittedCommand = new AsyncRelayCommand(async () =>
+        {
+            if (_navigation is { })
+            {
+                var submittedViewModel = new SubmittedViewModel(_api, _navigation, this);
+
+                await _navigation.NavigateAsync(submittedViewModel);
+            }
+        });
     }
+
+    public IAsyncRelayCommand LoadSubmittedCommand { get; }
 
     public bool IsLoaded()
     {
@@ -48,7 +64,6 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
             Created = _user.Created;
             Karma = _user.Karma;
             About = _user.About;
-            // TODO:
         }
 
         // TODO:
@@ -59,6 +74,17 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     {
         // TODO:
         await Task.Yield();
+    }
+
+    public async Task LoadSubmittedAsync()
+    {
+        if (_api is { } && _navigation is { } && _user is { } && _user?.Submitted is { })
+        {
+            Submitted ??= new ObservableCollection<ItemViewModel>();
+            Submitted.Clear();
+
+            await ItemViewModel.LoadItemsAsync(Submitted, _user.Submitted, _api, _navigation);
+        }
     }
 
     public override string? ToString()
