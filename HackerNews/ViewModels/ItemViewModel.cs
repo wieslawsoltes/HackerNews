@@ -11,6 +11,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly HackerNewsApiV0? _api;
     private Item? _item;
+
     [ObservableProperty] private int _index;
     [ObservableProperty] private int _id;
     [ObservableProperty] private bool _deleted;
