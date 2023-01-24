@@ -34,11 +34,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         _id = -1;
     }
 
-    public ItemViewModel(HackerNewsApiV0 api, int index, int id)
+    public ItemViewModel(HackerNewsApiV0 api, int id, int index = -1)
     {
         _api = api;
-        _index = index;
         _id = id;
+        _index = index;
     }
 
     public bool IsLoaded()

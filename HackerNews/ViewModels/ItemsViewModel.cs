@@ -53,7 +53,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 
             foreach (var id in _ids)
             {
-                var itemViewModel = new ItemViewModel(_api, index++, id);
+                var itemViewModel = new ItemViewModel(_api, id, index++);
                 _items.Add(itemViewModel);
             }
         }
