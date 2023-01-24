@@ -103,7 +103,7 @@
                         Width="24" 
                         Foreground="{DynamicResource ItemDetailsForeground}"/>
               <!-- TODO: Comment count binding to Text property. -->
-              <TextBlock Text="{Binding Kids.Count}"
+              <TextBlock Text="{Binding Descendants}"
                          TextWrapping="Wrap"
                          Foreground="{DynamicResource ItemDetailsForeground}"
                          FontSize="{DynamicResource ItemDetailsFontSize}"
