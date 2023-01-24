@@ -44,6 +44,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     {
         if (_user is { })
         {
+            Id = _user.Id;
             Created = _user.Created;
             Karma = _user.Karma;
             About = _user.About;
