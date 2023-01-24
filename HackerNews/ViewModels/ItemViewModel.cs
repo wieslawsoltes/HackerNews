@@ -60,8 +60,8 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     {
         if (_api is { } && _item?.By is { })
         {
-            _by = new UserViewModel(_api, _item.By);
-            await _by.LoadAsync();
+            By = new UserViewModel(_api, _item.By);
+            await By.LoadAsync();
         }
     }
 
