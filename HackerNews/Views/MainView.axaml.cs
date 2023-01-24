@@ -46,9 +46,7 @@ public partial class MainView : UserControl
         {
             case PullDirection.LeftToRight:
                 // TODO: Show hamburger menu.
-                break;
-            case PullDirection.RightToLeft:
-                // TODO: Show hamburger menu.
+                e.Handled = true;
                 break;
         }
     }
