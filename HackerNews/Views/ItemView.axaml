@@ -19,6 +19,7 @@
           <vm:UserViewModel.Id>user</vm:UserViewModel.Id>
         </vm:UserViewModel>
       </vm:ItemViewModel.By>
+      <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
     </vm:ItemViewModel>
   </Design.DataContext>
 
@@ -178,7 +179,7 @@
                        FontWeight="Regular"
                        Margin="6,0,6,0" />
             <!-- Item Author -->
-            <TextBlock Text="{Binding By.Id}"
+            <TextBlock Text="{Binding ById}"
                        TextWrapping="Wrap"
                        Foreground="{DynamicResource ItemDetailsForeground}"
                        FontSize="{DynamicResource ItemDetailsFontSize}"
