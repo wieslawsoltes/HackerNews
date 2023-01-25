@@ -5,13 +5,30 @@
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:views="clr-namespace:HackerNews.Views"
              xmlns:controls="clr-namespace:HackerNews.Controls"
+             xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.CommentsView"
              x:CompileBindings="True" x:DataType="vm:CommentsViewModel">
 
   <Design.DataContext>
     <vm:CommentsViewModel>
-      <!-- TODO: -->
+      <vm:CommentsViewModel.ItemViewModel>
+        <vm:ItemViewModel>
+          <vm:ItemViewModel.Kids>
+            <objectModel:ObservableCollection x:TypeArguments="vm:ItemViewModel">
+              <vm:ItemViewModel>
+                <vm:ItemViewModel.Text>Comment 1</vm:ItemViewModel.Text>
+              </vm:ItemViewModel>
+              <vm:ItemViewModel>
+                <vm:ItemViewModel.Text>Comment 2</vm:ItemViewModel.Text>
+              </vm:ItemViewModel>
+              <vm:ItemViewModel>
+                <vm:ItemViewModel.Text>Comment 3</vm:ItemViewModel.Text>
+              </vm:ItemViewModel>
+            </objectModel:ObservableCollection>
+          </vm:ItemViewModel.Kids>
+        </vm:ItemViewModel>
+      </vm:CommentsViewModel.ItemViewModel>
     </vm:CommentsViewModel>
   </Design.DataContext>
 
