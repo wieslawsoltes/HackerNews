@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
@@ -122,7 +123,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
             Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
             TimeAgo = ToTimeAgoString(Time);
-            Text = _item.Text;
+            Text = ParseHtmlString(_item.Text);
             Dead = _item.Dead;
             Parent = _item.Parent;
             Poll = _item.Poll;
@@ -172,8 +173,21 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public override string ToString()
     {
-        //return base.ToString();
         return $"{Index}";
+    }
+
+    public static string? ParseHtmlString(string? text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return text;
+        }
+
+        var decoded = HttpUtility.HtmlDecode(text);
+
+        var breaks = decoded.Replace("<p>", $"{Environment.NewLine}{Environment.NewLine}");
+
+        return breaks;
     }
 
     public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids, HackerNewsApiV0 api, INavigation navigation)
