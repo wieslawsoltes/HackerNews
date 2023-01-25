@@ -24,9 +24,19 @@
             VerticalContentAlignment="Stretch"
             Background="Transparent"
             DockPanel.Dock="Left">
-      <PathIcon Data="{DynamicResource NavigationIcon}" 
-                Height="24"
-                Width="24" />
+      <Panel Width="24" 
+             Height="24" 
+             ClipToBounds="False"
+             DataContext="{Binding Navigation}">
+        <PathIcon Data="{DynamicResource NavigationIcon}" 
+                  Height="24"
+                  Width="24"
+                  IsVisible="{Binding !CanGoBack}" />
+        <PathIcon Data="{DynamicResource ArrowLeftIcon}" 
+                  Height="24"
+                  Width="24"
+                  IsVisible="{Binding CanGoBack}" />
+      </Panel>
     </Button>
 
     <!-- Settings Menu -->
