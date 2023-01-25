@@ -17,9 +17,9 @@ public class ItemsListBox : ListBox, IStyleable
 
     protected override void PrepareContainerForItemOverride(Control element, object? item, int index)
     {
-        Load(item);
-
         base.PrepareContainerForItemOverride(element, item, index);
+
+        Load(element);
     }
 
     protected override void ClearContainerForItemOverride(Control element)
@@ -29,9 +29,9 @@ public class ItemsListBox : ListBox, IStyleable
         // TODO:
     }
 
-    private void Load(object? item)
+    private void Load(Control element)
     {
-        if (item is ILazyLoadable lazyLoadable)
+        if (element is ListBoxItem { DataContext: ILazyLoadable lazyLoadable })
         {
             if (!lazyLoadable.IsLoaded())
             {
