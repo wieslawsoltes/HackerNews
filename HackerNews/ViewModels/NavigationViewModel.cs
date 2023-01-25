@@ -26,7 +26,7 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
 
     public async Task BackAsync()
     {
-        if (_items.Count > 0)
+        if (_items.Count > 1)
         {
             var lazyLoadable = _items[_items.Count - 1];
 
