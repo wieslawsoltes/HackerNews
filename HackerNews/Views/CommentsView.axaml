@@ -35,11 +35,11 @@
   <Panel Background="{DynamicResource MainBackground}"
          DataContext="{Binding ItemViewModel}">
 
-    <RefreshContainer Name="Refresh"
+    <!--<RefreshContainer Name="Refresh"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       PullDirection="TopToBottom"
-                      RefreshRequested="Refresh_OnRefreshRequested">
+                      RefreshRequested="Refresh_OnRefreshRequested">-->
       <controls:ItemsListBox Items="{Binding Kids}"
                              HorizontalAlignment="Stretch">
 
@@ -58,7 +58,7 @@
         </controls:ItemsListBox.ItemTemplate>
 
       </controls:ItemsListBox>
-    </RefreshContainer>
+    <!--</RefreshContainer>-->
 
   </Panel>
 
