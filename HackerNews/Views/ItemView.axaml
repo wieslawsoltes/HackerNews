@@ -130,7 +130,7 @@
                 <MenuItem Header="Share" />
               </MenuFlyout>
             </Button.Flyout>
-            <StackPanel Spacing="4"
+            <StackPanel Spacing="3"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
               <Ellipse Fill="{DynamicResource ItemDetailsForeground}"
