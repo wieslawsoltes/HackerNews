@@ -6,6 +6,8 @@
 
     <SolidColorBrush x:Key="HamburgerBackground">#FFFFFF</SolidColorBrush>
 
+    <!-- Header -->
+    
     <SolidColorBrush x:Key="HeaderTitleBackground">#212121</SolidColorBrush>
     <SolidColorBrush x:Key="HeaderTitleForeground">#FFFFFF</SolidColorBrush>
     <x:Double x:Key="HeaderTitleFontSize">20</x:Double>
@@ -13,6 +15,8 @@
     <SolidColorBrush x:Key="HeaderLastUpdatedForeground">#FFFFFF</SolidColorBrush>
     <x:Double x:Key="HeaderLastUpdatedFontSize">16</x:Double>
 
+    <!-- Item -->
+    
     <SolidColorBrush x:Key="ItemTitleBackground">#212121</SolidColorBrush>
     <x:Double x:Key="ItemTitleFontSize">16</x:Double>
     <SolidColorBrush x:Key="ItemTitleForeground">#FFFFFF</SolidColorBrush>
@@ -29,6 +33,8 @@
 
     <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
 
+    <!-- Comment -->
+    
     <SolidColorBrush x:Key="CommentForeground">#FFFFFF</SolidColorBrush>
     <x:Double x:Key="CommentFontSize">16</x:Double>
 
