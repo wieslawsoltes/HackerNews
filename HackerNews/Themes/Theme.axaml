@@ -35,8 +35,12 @@
 
     <!-- Comment -->
     
+    <SolidColorBrush x:Key="CommentBackground">#212121</SolidColorBrush>
     <SolidColorBrush x:Key="CommentForeground">#FFFFFF</SolidColorBrush>
     <x:Double x:Key="CommentFontSize">16</x:Double>
+    
+    <SolidColorBrush x:Key="CommentDetailsForeground">#A2A2A2</SolidColorBrush>
+    <x:Double x:Key="CommentDetailsFontSize">16</x:Double>
 
   </Styles.Resources>
 </Styles>
