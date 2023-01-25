@@ -88,11 +88,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         });
     }
 
-    public IAsyncRelayCommand LoadUserCommand { get; }
+    public IAsyncRelayCommand? LoadUserCommand { get; }
 
-    public IAsyncRelayCommand LoadKidsCommand { get; }
+    public IAsyncRelayCommand? LoadKidsCommand { get; }
 
-    public IAsyncRelayCommand LoadPartsCommand { get; }
+    public IAsyncRelayCommand? LoadPartsCommand { get; }
 
     public bool IsLoaded()
     {
