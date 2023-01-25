@@ -2,6 +2,19 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews", "HackerNews\HackerNews.csproj", "{47804C84-5481-4F86-A355-1BAD2500EB9E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{0EB2B6D6-4B01-4358-B6B1-946F4BFD3817}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AA3A955F-6192-4AAC-B519-0DAC097974FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Desktop", "HackerNews.Desktop\HackerNews.Desktop.csproj", "{0CCDA92D-4C12-4E3F-9CE3-203DC52F767A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Android", "HackerNews.Android\HackerNews.Android.csproj", "{5F44CC0B-F68B-4637-A2AB-C8DCB791DB12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +25,18 @@ Global
 		{47804C84-5481-4F86-A355-1BAD2500EB9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47804C84-5481-4F86-A355-1BAD2500EB9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47804C84-5481-4F86-A355-1BAD2500EB9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CCDA92D-4C12-4E3F-9CE3-203DC52F767A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CCDA92D-4C12-4E3F-9CE3-203DC52F767A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CCDA92D-4C12-4E3F-9CE3-203DC52F767A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CCDA92D-4C12-4E3F-9CE3-203DC52F767A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F44CC0B-F68B-4637-A2AB-C8DCB791DB12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F44CC0B-F68B-4637-A2AB-C8DCB791DB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F44CC0B-F68B-4637-A2AB-C8DCB791DB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F44CC0B-F68B-4637-A2AB-C8DCB791DB12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{47804C84-5481-4F86-A355-1BAD2500EB9E} = {AA3A955F-6192-4AAC-B519-0DAC097974FA}
+		{0CCDA92D-4C12-4E3F-9CE3-203DC52F767A} = {AA3A955F-6192-4AAC-B519-0DAC097974FA}
+		{5F44CC0B-F68B-4637-A2AB-C8DCB791DB12} = {AA3A955F-6192-4AAC-B519-0DAC097974FA}
 	EndGlobalSection
 EndGlobal
