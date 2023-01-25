@@ -9,20 +9,121 @@
 
   <Design.DataContext>
     <vm:ItemViewModel>
+      <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
       <vm:ItemViewModel.Text>Comment</vm:ItemViewModel.Text>
+      <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
     </vm:ItemViewModel>
   </Design.DataContext>
 
   <!-- TODO: -->
 
- <TextBlock Text="{Binding Text}"
-            TextWrapping="Wrap"
-            Foreground="{DynamicResource CommentForeground}"
-            FontSize="{DynamicResource CommentFontSize}"
-            FontWeight="Regular"
-            Margin="12,12,12,12"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center" />
+  <Border Background="{DynamicResource CommentBackground}"
+          CornerRadius="2"
+          Margin="6,3,6,2"
+          ClipToBounds="True">
+    <DockPanel>
+
+      <!-- TODO: Background based on indent level. -->
+      <Border Background="Red"
+              Width="3"
+              CornerRadius="2"
+              HorizontalAlignment="Stretch"
+              DockPanel.Dock="Left" />
+
+      <DockPanel DockPanel.Dock="Top">
+
+        <!-- Comment Details -->
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="12,6,12,0"
+                    DockPanel.Dock="Left">
+          <!-- Comment Time -->
+          <TextBlock Text="{Binding TimeAgo}"
+                     TextWrapping="Wrap"
+                     Foreground="{DynamicResource CommentDetailsForeground}"
+                     FontSize="{DynamicResource CommentDetailsFontSize}"
+                     FontWeight="Regular"
+                     Margin="0,0,0,0" />
+          <!-- Separator -->
+          <TextBlock Text="-"
+                     TextWrapping="Wrap"
+                     Foreground="{DynamicResource CommentDetailsForeground}"
+                     FontSize="{DynamicResource CommentDetailsFontSize}"
+                     FontWeight="Regular"
+                     Margin="6,0,6,0" />
+          <!-- Comment Author -->
+          <!-- TODO: Foreground based on indent level. -->
+          <TextBlock Text="{Binding ById}"
+                     TextWrapping="Wrap"
+                     Foreground="Red"
+                     FontSize="{DynamicResource CommentDetailsFontSize}"
+                     FontWeight="Regular"
+                     Margin="0,0,0,0" />
+        </StackPanel>
+
+        <!-- Comment Menu -->
+
+        <Button Width="40"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Background="Transparent" 
+                DockPanel.Dock="Right">
+          <Button.Styles>
+            <Style Selector="PopupRoot">
+              <Setter Property="Background" Value="{DynamicResource CommentBackground}" />
+            </Style>
+            <Style Selector="MenuFlyoutPresenter">
+              <Setter Property="CornerRadius" Value="0" />
+              <Setter Property="BorderBrush" Value="Transparent" />
+              <Setter Property="BorderThickness" Value="1" />
+            </Style>
+          </Button.Styles>
+          <Button.Flyout>
+            <MenuFlyout Placement="LeftEdgeAlignedTop">
+              <!-- TODO: Vote up Command binding. -->
+              <MenuItem Header="Vote up" />
+              <!-- TODO: Add comment Command binding. -->
+              <MenuItem Header="Add comment" />
+              <!-- TODO: Share Command binding. -->
+              <MenuItem Header="Share" />
+            </MenuFlyout>
+          </Button.Flyout>
+          <StackPanel Spacing="3"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+            <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
+                     Width="4"
+                     Height="4"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" />
+            <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
+                     Width="4"
+                     Height="4"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" />
+            <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
+                     Width="4"
+                     Height="4"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" />
+          </StackPanel>
+        </Button>
+
+      </DockPanel>
+
+      <SelectableTextBlock Text="{Binding Text}"
+                           TextWrapping="Wrap"
+                           Foreground="{DynamicResource CommentForeground}"
+                           FontSize="{DynamicResource CommentFontSize}"
+                           FontWeight="Regular"
+                           Margin="12,12,12,12"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top" /> 
+
+    </DockPanel>
+  </Border>
 
 </UserControl>
 
