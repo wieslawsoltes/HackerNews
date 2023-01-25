@@ -127,7 +127,7 @@
                            TextWrapping="Wrap"
                            Foreground="{DynamicResource CommentForeground}"
                            FontSize="{DynamicResource CommentFontSize}"
-                           FontWeight="SemiLight"
+                           FontWeight="Normal"
                            Margin="12,12,12,12"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
