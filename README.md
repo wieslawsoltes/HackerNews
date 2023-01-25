@@ -2,8 +2,10 @@
 
 - [Hacker News Website](https://news.ycombinator.com/news)
 - [Hacker News API](https://github.com/HackerNews/API)
+- [Hacker News FAQ](https://news.ycombinator.com/newsfaq.html)
+- [Formatting Options](https://news.ycombinator.com/formatdoc)
 
-# New Avalonia API
+# Avalonia API
 
 ### PRs
 
