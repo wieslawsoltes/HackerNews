@@ -130,7 +130,8 @@
                            FontWeight="Regular"
                            Margin="12,12,12,12"
                            HorizontalAlignment="Left"
-                           VerticalAlignment="Top" /> 
+                           VerticalAlignment="Top"
+                           IsEnabled="False" /> 
 
     </DockPanel>
   </Border>
