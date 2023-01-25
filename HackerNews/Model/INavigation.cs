@@ -5,5 +5,5 @@ namespace HackerNews.Model;
 public interface INavigation
 {
     Task NavigateAsync(ILazyLoadable lazyLoadable);
-    Task BackAsync();
+    Task<bool> BackAsync();
 }

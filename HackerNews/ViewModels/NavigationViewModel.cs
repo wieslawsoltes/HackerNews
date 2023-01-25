@@ -24,7 +24,7 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
         await lazyLoadable.LoadAsync();
     }
 
-    public async Task BackAsync()
+    public async Task<bool> BackAsync()
     {
         if (_items.Count > 1)
         {
@@ -33,8 +33,13 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
             _items.Remove(lazyLoadable);
 
             CanGoBack = _items.Count > 1;
-
+            
+            // TODO: Handle result.
             await lazyLoadable.BackAsync();
+
+            return true;
         }
+
+        return false;
     }
 }

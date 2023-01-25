@@ -7,5 +7,5 @@ public interface ILazyLoadable
     bool IsLoaded();
     Task LoadAsync();
     Task UpdateAsync();
-    Task BackAsync();
+    Task<bool> BackAsync();
 }

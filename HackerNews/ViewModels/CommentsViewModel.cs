@@ -47,9 +47,9 @@ public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public async Task BackAsync()
+    public async Task<bool> BackAsync()
     {
         // TODO:
-        await Task.Yield();
+        return await Task.FromResult(false);
     }
 }

@@ -62,7 +62,9 @@ public partial class MainView : UserControl
         //Console.WriteLine("TopLevelOnBackRequested");
         if (DataContext is ILazyLoadable lazyLoadable)
         {
-            await lazyLoadable.BackAsync();
+            var handled = await lazyLoadable.BackAsync();
+
+            e.Handled = handled;
         }
     }
 }

@@ -60,12 +60,15 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public async Task BackAsync()
+    public async Task<bool> BackAsync()
     {
         if (_navigation is { })
         {
-            await _navigation.BackAsync();
+            return await _navigation.BackAsync();
         }
+
+        // TODO:
+        return await Task.FromResult(false);
     }
 
     public async Task SearchAsync()

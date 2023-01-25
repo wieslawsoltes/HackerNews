@@ -143,10 +143,10 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         await Task.Yield();
     }
 
-    public async Task BackAsync()
+    public async Task<bool> BackAsync()
     {
         // TODO:
-        await Task.Yield();
+        return await Task.FromResult(false);
     }
     
     public async Task LoadKidsAsync()
