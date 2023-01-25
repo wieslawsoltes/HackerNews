@@ -40,7 +40,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
         });
     }
 
-    public IAsyncRelayCommand LoadSubmittedCommand { get; }
+    public IAsyncRelayCommand? LoadSubmittedCommand { get; }
 
     public bool IsLoaded()
     {
