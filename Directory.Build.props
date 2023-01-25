@@ -1,0 +1,7 @@
+﻿<Project>
+  <PropertyGroup>
+    <AvaloniaVersion>11.0.999-cibuild0029023-beta</AvaloniaVersion>
+    <XamlNameReferenceGeneratorVersion>1.5.1</XamlNameReferenceGeneratorVersion>
+    <CommunityToolkitMvvmVersion>8.0.0</CommunityToolkitMvvmVersion>
+  </PropertyGroup>
+</Project>
