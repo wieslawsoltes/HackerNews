@@ -33,7 +33,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     public bool IsLoaded()
     {
         // TODO:
-        return true;
+        return false;
     }
 
     public async Task LoadAsync()
