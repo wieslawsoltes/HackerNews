@@ -24,11 +24,6 @@ public partial class MainView : UserControl
         {
             topLevel.BackRequested += TopLevelOnBackRequested;
         }
-        
-        if (DataContext is ILazyLoadable lazyLoadable)
-        {
-            await lazyLoadable.LoadAsync();
-        }
     }
 
     protected override void OnUnloaded()
