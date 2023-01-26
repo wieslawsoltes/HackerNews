@@ -12,7 +12,7 @@
   </Design.DataContext>
 
   <DockPanel Background="{DynamicResource HeaderTitleBackground}"
-             Height="80">
+             Height="64">
 
     <!-- Hamburger Menu -->
 
@@ -42,7 +42,7 @@
     <!-- Settings Menu -->
 
     <Button Command="{Binding LoadCommand}"
-            Width="40"
+            Width="52"
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
@@ -74,7 +74,7 @@
     <!-- Search -->
     
     <Button Command="{Binding SearchCommand}"
-            Width="40"
+            Width="52"
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
@@ -89,14 +89,14 @@
 
     <!-- Header Text -->
 
-    <StackPanel Spacing="12">
+    <StackPanel Spacing="6">
       <!-- Title -->
       <TextBlock Text="{Binding CurrentItems.Title, FallbackValue=Title}"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource HeaderTitleForeground}"
                  FontSize="{DynamicResource HeaderTitleFontSize}"
                  FontWeight="Regular"
-                 Margin="12,12,12,0" />
+                 Margin="12,6,12,0" />
       <!-- Last updated -->
       <TextBlock Text="Last updated 0 min ago"
                  TextWrapping="Wrap"
