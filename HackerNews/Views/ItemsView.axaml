@@ -53,24 +53,24 @@
                       VerticalAlignment="Stretch"
                       PullDirection="TopToBottom"
                       RefreshRequested="Refresh_OnRefreshRequested">
-      <controls:LazyLoadableListBox Items="{Binding Items}"
-                                    HorizontalAlignment="Stretch">
+      <ListBox Items="{Binding Items}"
+               HorizontalAlignment="Stretch">
 
-        <controls:LazyLoadableListBox.Styles>
+        <ListBox.Styles>
           <Style Selector="ListBoxItem">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0" />
           </Style>
-        </controls:LazyLoadableListBox.Styles>
+        </ListBox.Styles>
 
-        <controls:LazyLoadableListBox.ItemTemplate>
+        <ListBox.ItemTemplate>
           <DataTemplate DataType="vm:ItemViewModel">
             <views:ItemView />
           </DataTemplate>
-        </controls:LazyLoadableListBox.ItemTemplate>
+        </ListBox.ItemTemplate>
 
-      </controls:LazyLoadableListBox>
+      </ListBox>
     </RefreshContainer>
 
   </Panel>
