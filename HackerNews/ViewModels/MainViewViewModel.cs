@@ -56,6 +56,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
             if (_navigation is { })
             {
+                await _navigation.Clear();
                 await _navigation.NavigateAsync(_currentItems);
             }
         }

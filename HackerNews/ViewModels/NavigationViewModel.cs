@@ -24,6 +24,15 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
         await lazyLoadable.LoadAsync();
     }
 
+    public async Task Clear()
+    {
+        _items.Clear();
+
+        CanGoBack = false;
+
+        await Task.Yield();
+    }
+
     public async Task<bool> BackAsync()
     {
         if (_items.Count > 1)
