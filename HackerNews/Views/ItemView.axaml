@@ -20,7 +20,7 @@
         </vm:UserViewModel>
       </vm:ItemViewModel.By>
       <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
-      <vm:ItemViewModel.Descendants><x:Int32>30</x:Int32></vm:ItemViewModel.Descendants>
+      <vm:ItemViewModel.Descendants><x:Int32>3000</x:Int32></vm:ItemViewModel.Descendants>
     </vm:ItemViewModel>
   </Design.DataContext>
 
@@ -75,16 +75,20 @@
 
       <DockPanel>
 
-        <StackPanel Orientation="Horizontal" 
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
                     DockPanel.Dock="Right">
+
           <!-- Item Comments -->
+
           <Button Command="{Binding LoadKidsCommand}"
-                  HorizontalAlignment="Right"
+                  HorizontalAlignment="Left"
                   VerticalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
                   Background="Transparent"
-                  Margin="0,0,24,0">
+                  Margin="0,0,24,0"
+                  Width="96">
             <StackPanel Spacing="4"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -103,13 +107,15 @@
                          VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
+
           <!-- Item Menu -->
-          <Button Width="40"
-                  HorizontalAlignment="Right"
+
+          <Button HorizontalAlignment="Left"
                   VerticalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
-                  Background="Transparent">
+                  Background="Transparent"
+                  Width="52">
             <Button.Styles>
               <Style Selector="PopupRoot">
                 <Setter Property="Background" Value="{DynamicResource ItemTitleBackground}" />
@@ -151,11 +157,13 @@
                        VerticalAlignment="Center" />
             </StackPanel>
           </Button>
+
         </StackPanel>
 
         <!-- Item Details -->
 
         <StackPanel>
+
           <!-- Item Url -->
           <TextBlock Text="{Binding Url.DnsSafeHost}"
                      TextWrapping="Wrap"
@@ -163,6 +171,7 @@
                      FontSize="{DynamicResource ItemDetailsFontSize}"
                      FontWeight="Regular"
                      Margin="12,0,0,0" />
+
           <StackPanel Orientation="Horizontal"
                       Margin="12,6,12,0">
             <!-- Item Time -->
