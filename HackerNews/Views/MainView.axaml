@@ -23,15 +23,8 @@
   <DockPanel>
 
     <views:HeaderView DockPanel.Dock="Top" />
-
-    <ItemsControl Items="{Binding Items}"
-                  DataContext="{Binding Navigation}">
-      <ItemsControl.ItemsPanel>
-        <ItemsPanelTemplate>
-          <Panel />
-        </ItemsPanelTemplate>
-      </ItemsControl.ItemsPanel>
-    </ItemsControl>
+    
+    <views:NavigationView  DataContext="{Binding Navigation}" />
 
     <!--<views:ItemsView DataContext="{Binding CurrentItems}" />-->
 
