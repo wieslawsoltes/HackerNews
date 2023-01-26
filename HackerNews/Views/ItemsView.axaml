@@ -48,11 +48,11 @@
 
   <Panel Background="{DynamicResource MainBackground}">
 
-    <!--<RefreshContainer Name="Refresh"
+    <RefreshContainer Name="Refresh"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       PullDirection="TopToBottom"
-                      RefreshRequested="Refresh_OnRefreshRequested">-->
+                      RefreshRequested="Refresh_OnRefreshRequested">
       <controls:ItemsListBox Items="{Binding Items}"
                              HorizontalAlignment="Stretch">
 
@@ -71,7 +71,7 @@
         </controls:ItemsListBox.ItemTemplate>
 
       </controls:ItemsListBox>
-    <!--</RefreshContainer>-->
+    </RefreshContainer>
 
   </Panel>
 
