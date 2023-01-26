@@ -17,13 +17,19 @@
           <vm:ItemViewModel.Kids>
             <objectModel:ObservableCollection x:TypeArguments="vm:ItemViewModel">
               <vm:ItemViewModel>
+                <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
                 <vm:ItemViewModel.Text>Comment 1</vm:ItemViewModel.Text>
+                <vm:ItemViewModel.ById>user1</vm:ItemViewModel.ById>
               </vm:ItemViewModel>
               <vm:ItemViewModel>
+                <vm:ItemViewModel.TimeAgo>25m</vm:ItemViewModel.TimeAgo>
                 <vm:ItemViewModel.Text>Comment 2</vm:ItemViewModel.Text>
+                <vm:ItemViewModel.ById>user2</vm:ItemViewModel.ById>
               </vm:ItemViewModel>
               <vm:ItemViewModel>
+                <vm:ItemViewModel.TimeAgo>100d</vm:ItemViewModel.TimeAgo>
                 <vm:ItemViewModel.Text>Comment 3</vm:ItemViewModel.Text>
+                <vm:ItemViewModel.ById>user3</vm:ItemViewModel.ById>
               </vm:ItemViewModel>
             </objectModel:ObservableCollection>
           </vm:ItemViewModel.Kids>
