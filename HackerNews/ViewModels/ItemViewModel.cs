@@ -201,12 +201,15 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             items.Add(itemViewModel);
         }
 
-        // TODO:
-        // foreach (var kid in items)
-        // {
-        //     await kid.LoadAsync();
-        //     await kid.LoadKidsAsync();
-        // }
+        // TODO: Await the Task
+        var _ = Task.Run(async () =>
+        {
+            foreach (var kid in items)
+            {
+                await kid.LoadAsync();
+                await kid.LoadKidsAsync();
+            }
+        });
         await Task.Yield();
     }
 
