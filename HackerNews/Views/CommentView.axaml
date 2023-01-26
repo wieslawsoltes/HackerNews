@@ -146,6 +146,45 @@
 
       </DockPanel>
 
+      <!-- Kids Expander -->
+
+      <Button HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              HorizontalContentAlignment="Stretch"
+              VerticalContentAlignment="Stretch"
+              Background="Transparent"
+              Margin="18,0,18,6"
+              IsVisible="{Binding !!Kids}"
+              DockPanel.Dock="Bottom">
+        <StackPanel Spacing="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+          <TextBlock Text="{Binding Kids.Count, StringFormat={}Comments {0}, FallbackValue=0}"
+                     TextWrapping="Wrap"
+                     Foreground="{DynamicResource ItemDetailsForeground}"
+                     FontSize="{DynamicResource ItemDetailsFontSize}"
+                     FontWeight="Regular"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"/>
+          <Panel>
+            <!-- TODO: Handle IsVisible for chevron based on expanded state for Kids -->
+            <PathIcon Data="{DynamicResource ChevronUpIcon}" 
+                      Height="16"
+                      Width="16" 
+                      Foreground="{DynamicResource ItemDetailsForeground}"
+                      IsVisible="False"/>
+            <PathIcon Data="{DynamicResource ChevronDownIcon}" 
+                      Height="16"
+                      Width="16" 
+                      Foreground="{DynamicResource ItemDetailsForeground}"
+                      IsVisible="True"/>
+          </Panel>
+        </StackPanel>
+      </Button>
+
+      <!-- Text -->
+
       <SelectableTextBlock Text="{Binding Text}"
                            TextWrapping="Wrap"
                            Foreground="{DynamicResource CommentForeground}"
