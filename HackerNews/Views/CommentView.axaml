@@ -30,7 +30,8 @@
               HorizontalAlignment="Stretch"
               DockPanel.Dock="Left" />
 
-      <DockPanel DockPanel.Dock="Top">
+      <DockPanel Margin="6,6,6,6"
+                 DockPanel.Dock="Top">
 
         <!-- Comment Details -->
 
@@ -128,7 +129,7 @@
                            Foreground="{DynamicResource CommentForeground}"
                            FontSize="{DynamicResource CommentFontSize}"
                            FontWeight="Normal"
-                           Margin="12,12,12,12"
+                           Margin="18,12,18,12"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            IsEnabled="False" /> 
