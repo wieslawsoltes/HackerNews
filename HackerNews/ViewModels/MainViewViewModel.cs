@@ -21,7 +21,6 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     {
         _api = new HackerNewsApiV0();
         _navigation = new NavigationViewModel();
-
         _currentItems = new ItemsViewModel(_api, _navigation, HackerNewsApiV0.TopStories, "Top Stories");
 
         NavigationCommand = new AsyncRelayCommand(BackAsync);
@@ -30,12 +29,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
         SearchCommand = new AsyncRelayCommand(SearchAsync);
 
-        DispatcherTimer.Run(() =>
-            {
-                UpdateLastUpdatedAgo();
-                return true;
-            },
-            TimeSpan.FromMinutes(1));
+        RunUpdateTimer();
     }
 
     public IAsyncRelayCommand LoadCommand { get; }
@@ -90,6 +84,17 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     {
         // TODO:
         await Task.Yield();
+    }
+
+    private void RunUpdateTimer()
+    {
+        DispatcherTimer.Run(
+            () =>
+            {
+                UpdateLastUpdatedAgo();
+                return true;
+            },
+            TimeSpan.FromMinutes(1));
     }
 
     private void UpdateLastUpdatedAgo()
