@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
@@ -12,6 +13,8 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     [ObservableProperty] private NavigationViewModel? _navigation;
     [ObservableProperty] private ItemsViewModel? _currentItems;
+    [ObservableProperty] private DateTimeOffset _lastUpdated;
+    [ObservableProperty] private string? _lastUpdatedAgo;
 
     public MainViewViewModel()
     {
@@ -43,6 +46,10 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     {
         if (_currentItems is { })
         {
+            LastUpdated = DateTimeOffset.Now;
+
+            UpdateLastUpdatedAgo();
+
             await _currentItems.LoadAsync();
 
             if (_navigation is { })
@@ -75,5 +82,10 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     {
         // TODO:
         await Task.Yield();
+    }
+
+    private void UpdateLastUpdatedAgo()
+    {
+        LastUpdatedAgo = $"Last updated {ItemViewModel.ToTimeAgoString(LastUpdated)} ago";
     }
 }
