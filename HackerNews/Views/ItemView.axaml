@@ -89,7 +89,7 @@
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
                   Background="Transparent"
-                  Margin="0,0,24,0"
+                  Margin="0,0,0,0"
                   Width="96">
             <StackPanel Spacing="4"
                         Orientation="Horizontal"
