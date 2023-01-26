@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
@@ -28,6 +29,13 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         LoadCommand = new AsyncRelayCommand(LoadAsync);
 
         SearchCommand = new AsyncRelayCommand(SearchAsync);
+
+        DispatcherTimer.Run(() =>
+            {
+                UpdateLastUpdatedAgo();
+                return true;
+            },
+            TimeSpan.FromMinutes(1));
     }
 
     public IAsyncRelayCommand LoadCommand { get; }
