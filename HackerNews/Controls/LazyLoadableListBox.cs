@@ -6,7 +6,7 @@ using HackerNews.Model;
 
 namespace HackerNews.Controls;
 
-public class ItemsListBox : ListBox, IStyleable
+public class LazyLoadableListBox : ListBox, IStyleable
 {
     Type IStyleable.StyleKey => typeof(ListBox);
 
@@ -31,7 +31,7 @@ public class ItemsListBox : ListBox, IStyleable
 
     private void Load(Control element)
     {
-        if (element is ListBoxItem { DataContext: ILazyLoadable lazyLoadable })
+        if (element.DataContext is ILazyLoadable lazyLoadable)
         {
             if (!lazyLoadable.IsLoaded())
             {
@@ -50,6 +50,7 @@ public class ItemsListBox : ListBox, IStyleable
                 Task.Run(async () =>
                 {
                     await lazyLoadable.UpdateAsync();
+                    //Console.WriteLine($"Updated: {lazyLoadable}");
                 });
             }
         }
