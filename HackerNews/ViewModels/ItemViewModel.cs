@@ -207,6 +207,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         //     await kid.LoadAsync();
         //     await kid.LoadKidsAsync();
         // }
+        await Task.Yield();
     }
 
     public static string ToTimeAgoString(DateTimeOffset dto)
