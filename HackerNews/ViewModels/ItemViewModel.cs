@@ -201,11 +201,12 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             items.Add(itemViewModel);
         }
 
-        foreach (var kid in items)
-        {
-            await kid.LoadAsync();
-            await kid.LoadKidsAsync();
-        }
+        // TODO:
+        // foreach (var kid in items)
+        // {
+        //     await kid.LoadAsync();
+        //     await kid.LoadKidsAsync();
+        // }
     }
 
     public static string ToTimeAgoString(DateTimeOffset dto)
