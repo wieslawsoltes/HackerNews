@@ -41,7 +41,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     public bool IsLoaded()
     {
         // TODO:
-        return true;
+        return false;
     }
 
     public async Task LoadAsync()
