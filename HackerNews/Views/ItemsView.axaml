@@ -18,25 +18,28 @@
             <vm:ItemViewModel.Index>1</vm:ItemViewModel.Index>
             <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
             <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
-            <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
+            <vm:ItemViewModel.Title>Item 1 title</vm:ItemViewModel.Title>
             <vm:ItemViewModel.Url>https://www.item1url.com/</vm:ItemViewModel.Url>
             <vm:ItemViewModel.ById>user1</vm:ItemViewModel.ById>
+            <vm:ItemViewModel.Descendants><x:Int32>22</x:Int32></vm:ItemViewModel.Descendants>
           </vm:ItemViewModel>
           <vm:ItemViewModel>
             <vm:ItemViewModel.Index>2</vm:ItemViewModel.Index>
             <vm:ItemViewModel.TimeAgo>1m</vm:ItemViewModel.TimeAgo>
             <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
-            <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
+            <vm:ItemViewModel.Title>Item 2 title</vm:ItemViewModel.Title>
             <vm:ItemViewModel.Url>https://www.item2url.com/</vm:ItemViewModel.Url>
             <vm:ItemViewModel.ById>user2</vm:ItemViewModel.ById>
+            <vm:ItemViewModel.Descendants><x:Int32>1</x:Int32></vm:ItemViewModel.Descendants>
           </vm:ItemViewModel>
           <vm:ItemViewModel>
             <vm:ItemViewModel.Index>3</vm:ItemViewModel.Index>
             <vm:ItemViewModel.TimeAgo>10m</vm:ItemViewModel.TimeAgo>
             <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
-            <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
+            <vm:ItemViewModel.Title>Item 3 title</vm:ItemViewModel.Title>
             <vm:ItemViewModel.Url>https://www.item3url.com/</vm:ItemViewModel.Url>
             <vm:ItemViewModel.ById>user3</vm:ItemViewModel.ById>
+            <vm:ItemViewModel.Descendants><x:Int32>200</x:Int32></vm:ItemViewModel.Descendants>
           </vm:ItemViewModel>
         </objectModel:ObservableCollection>
       </vm:ItemsViewModel.Items>
