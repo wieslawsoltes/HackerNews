@@ -63,10 +63,6 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
                 if (_by is { })
                 {
                     await _navigation.NavigateAsync(_by);
-
-                    // TODO: Load and update in user view.
-                    await _by.LoadAsync();
-                    await _by.UpdateAsync();
                 }
             }
         });
