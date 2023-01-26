@@ -13,7 +13,7 @@ public partial class MainView : UserControl
         InitializeComponent();
     }
 
-    protected override void OnLoaded()
+    protected override async void OnLoaded()
     {
         base.OnLoaded();
 
@@ -23,6 +23,11 @@ public partial class MainView : UserControl
         if (VisualRoot is TopLevel topLevel)
         {
             topLevel.BackRequested += TopLevelOnBackRequested;
+        }
+        
+        if (DataContext is ILazyLoadable lazyLoadable)
+        {
+            await lazyLoadable.LoadAsync();
         }
     }
 
