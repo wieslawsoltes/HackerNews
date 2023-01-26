@@ -22,9 +22,9 @@ public partial class App : Application
                 DataContext = new MainViewViewModel(),
             };
         }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime signle)
+        else if (ApplicationLifetime is ISingleViewApplicationLifetime single)
         {
-            signle.MainView = new MainView()
+            single.MainView = new MainView
             {
                 DataContext = new MainViewViewModel(),
             };
