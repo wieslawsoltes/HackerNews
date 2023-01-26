@@ -20,6 +20,7 @@
         </vm:UserViewModel>
       </vm:ItemViewModel.By>
       <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
+      <vm:ItemViewModel.Descendants><x:Int32>30</x:Int32></vm:ItemViewModel.Descendants>
     </vm:ItemViewModel>
   </Design.DataContext>
 
