@@ -13,7 +13,7 @@ public partial class MainView : UserControl
         InitializeComponent();
     }
 
-    protected override async void OnLoaded()
+    protected override void OnLoaded()
     {
         base.OnLoaded();
 
