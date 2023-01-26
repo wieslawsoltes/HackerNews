@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -14,8 +15,8 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     private User? _user;
 
     [ObservableProperty] private string? _id;
-    [ObservableProperty] private int _created;
-    [ObservableProperty] private int _karma;
+    [ObservableProperty] private DateTimeOffset? _created;
+    [ObservableProperty] private int? _karma;
     [ObservableProperty] private string? _about;
     [ObservableProperty] private ObservableCollection<ItemViewModel>? _submitted;
 
@@ -61,7 +62,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
         if (_user is { })
         {
             Id = _user.Id;
-            Created = _user.Created;
+            Created = DateTimeOffset.FromUnixTimeSeconds(_user.Created);
             Karma = _user.Karma;
             About = _user.About;
         }
