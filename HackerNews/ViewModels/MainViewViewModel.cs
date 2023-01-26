@@ -44,7 +44,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         if (_currentItems is { })
         {
             await _currentItems.LoadAsync();
-            
+
             if (_navigation is { })
             {
                 await _navigation.NavigateAsync(_currentItems);
