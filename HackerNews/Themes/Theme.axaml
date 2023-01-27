@@ -2,6 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Styles.Resources>
 
+    <Color x:Key="ItemBackground">#000000</Color>
+
     <Color x:Key="MainBackground">#212121</Color>
 
     <SolidColorBrush x:Key="HamburgerBackground">#FFFFFF</SolidColorBrush>
