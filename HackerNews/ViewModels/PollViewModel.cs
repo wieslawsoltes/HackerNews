@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
@@ -42,7 +43,12 @@ public partial class PollViewModel : ViewModelBase, ILazyLoadable
 
     public async Task<bool> BackAsync()
     {
-        // TODO:
+        var navigation = Ioc.Default.GetService<INavigation>();
+        if (navigation is { })
+        {
+            return await navigation.BackAsync();
+        }
+
         return await Task.FromResult(false);
     }
 }
