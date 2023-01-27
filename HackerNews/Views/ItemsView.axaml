@@ -48,8 +48,7 @@
 
   <Panel Background="{DynamicResource MainBackground}">
 
-    <RefreshContainer Name="Refresh"
-                      HorizontalAlignment="Stretch"
+    <RefreshContainer HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       PullDirection="TopToBottom"
                       RefreshRequested="Refresh_OnRefreshRequested">
