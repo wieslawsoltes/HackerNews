@@ -185,6 +185,7 @@
                      Foreground="{DynamicResource ItemDetailsForeground}"
                      FontSize="{DynamicResource ItemDetailsFontSize}"
                      FontWeight="Regular"
+                     FontStyle="Italic"
                      Margin="12,0,0,0" />
 
           <StackPanel Orientation="Horizontal"
