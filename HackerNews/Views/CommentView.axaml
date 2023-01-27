@@ -41,14 +41,14 @@
 
   <Border Background="{DynamicResource CommentBackground}"
           CornerRadius="2"
-          Margin="6,3,6,2"
+          Margin="9,3,9,4"
           ClipToBounds="True">
     <DockPanel>
 
       <!-- TODO: Background based on indent level. -->
       <Border Background="Red"
-              Width="3"
-              CornerRadius="2"
+              Width="5"
+              CornerRadius="2.5"
               HorizontalAlignment="Stretch"
               DockPanel.Dock="Left" />
 
