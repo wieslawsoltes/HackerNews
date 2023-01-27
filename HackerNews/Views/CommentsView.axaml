@@ -14,6 +14,19 @@
     <vm:CommentsViewModel>
       <vm:CommentsViewModel.ItemViewModel>
         <vm:ItemViewModel>
+          <vm:ItemViewModel.Index>4</vm:ItemViewModel.Index>
+          <vm:ItemViewModel.IsViewed>false</vm:ItemViewModel.IsViewed>
+          <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
+          <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
+          <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
+          <vm:ItemViewModel.Url>https://www.itemurl.com/</vm:ItemViewModel.Url>
+          <vm:ItemViewModel.By>
+            <vm:UserViewModel>
+              <vm:UserViewModel.Id>user</vm:UserViewModel.Id>
+            </vm:UserViewModel>
+          </vm:ItemViewModel.By>
+          <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
+          <vm:ItemViewModel.Descendants><x:Int32>300</x:Int32></vm:ItemViewModel.Descendants>
           <vm:ItemViewModel.Kids>
             <objectModel:ObservableCollection x:TypeArguments="vm:ItemViewModel">
               <vm:ItemViewModel>
