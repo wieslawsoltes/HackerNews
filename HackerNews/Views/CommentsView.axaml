@@ -51,33 +51,170 @@
     </vm:CommentsViewModel>
   </Design.DataContext>
 
-  <Panel Background="{DynamicResource MainBackground}"
-         DataContext="{Binding ItemViewModel}">
+  <DockPanel>
 
-    <RefreshContainer Name="Refresh"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"
-                      PullDirection="TopToBottom"
-                      RefreshRequested="Refresh_OnRefreshRequested">
-      <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                    VerticalScrollBarVisibility="Auto">
-        <ItemsControl Items="{Binding Kids}"
-                      HorizontalAlignment="Stretch">
-          <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="vm:ItemViewModel">
-              <views:CommentView />
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-          <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-              <VirtualizingStackPanel />
-            </ItemsPanelTemplate>
-          </ItemsControl.ItemsPanel>
-        </ItemsControl>
-      </ScrollViewer>
-    </RefreshContainer>
+    <DockPanel Background="{DynamicResource MainBackground}"
+               DockPanel.Dock="Top">
 
-  </Panel>
+      <!-- Back -->
+
+      <Button Command="{Binding BackAsync}"
+              Width="80"
+              Height="64"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Stretch"
+              HorizontalContentAlignment="Stretch"
+              VerticalContentAlignment="Stretch"
+              Background="Transparent"
+              DockPanel.Dock="Top">
+        <Panel Width="24" 
+               Height="24" 
+               ClipToBounds="False">
+          <PathIcon Data="{DynamicResource ArrowLeftIcon}" 
+                    Height="24"
+                    Width="24" />
+        </Panel>
+      </Button>
+
+    <StackPanel Background="{DynamicResource ItemTitleBackground}"
+                Spacing="6"
+                Margin="12,0,12,24"
+                DataContext="{Binding ItemViewModel}">
+
+      <!-- Item Title -->
+
+      <TextBlock Text="{Binding Title}"
+                 TextWrapping="Wrap"
+                 Foreground="{DynamicResource ItemTitleForeground}"
+                 FontSize="{DynamicResource HeaderTitleFontSize}"
+                 FontWeight="Regular"
+                 Margin="12,12,12,6"
+                 Classes.viewed="{Binding IsViewed}" />
+
+      <DockPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Right">
+
+          <!-- Item Vote -->
+
+          <Button HorizontalAlignment="Left"
+                  VerticalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  Background="Transparent"
+                  Margin="0,0,0,0"
+                  Padding="0,0,0,0"
+                  Width="52">
+            <!-- TODO: Change foreground color if voted up. -->
+            <PathIcon Data="{DynamicResource ThumbLikeFilledIcon}" 
+                      Height="24"
+                      Width="24" />
+          </Button>
+
+          <!-- Item Save -->
+
+          <Button HorizontalAlignment="Left"
+                  VerticalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  Background="Transparent"
+                  Margin="0,0,0,0"
+                  Padding="0,0,0,0"
+                  Width="52">
+            <!-- TODO: Switch to BookmarkFilledIcon if saved. -->
+            <PathIcon Data="{DynamicResource BookmarkIcon}" 
+                      Height="24"
+                      Width="24" />
+          </Button>
+
+        </StackPanel>
+
+        <!-- Item Details -->
+
+        <StackPanel>
+
+          <!-- Item Url -->
+          <TextBlock Text="{Binding Url.DnsSafeHost}"
+                     TextWrapping="Wrap"
+                     Foreground="{DynamicResource ItemTitleForeground}"
+                     FontSize="{DynamicResource ItemDetailsFontSize}"
+                     FontWeight="Regular"
+                     FontStyle="Italic"
+                     Margin="12,0,0,0" />
+
+          <StackPanel Orientation="Horizontal"
+                      Margin="12,6,12,0">
+            <!-- Item Time -->
+            <TextBlock Text="{Binding TimeAgo}"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource ItemTitleForeground}"
+                       FontSize="{DynamicResource ItemDetailsFontSize}"
+                       FontWeight="Regular"
+                       Margin="0,0,0,0" />
+            <!-- Separator -->
+            <TextBlock Text="-"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource ItemTitleForeground}"
+                       FontSize="{DynamicResource ItemDetailsFontSize}"
+                       FontWeight="Regular"
+                       Margin="6,0,6,0" />
+            <!-- Item Author -->
+            <Button Command="{Binding LoadUserCommand}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Background="Transparent"
+                    Margin="0,0,0,0"
+                    Padding="0,0,0,0">
+              <!-- TODO: Foreground based on indent level. -->
+              <TextBlock Text="{Binding ById}"
+                         TextWrapping="Wrap"
+                         Foreground="Red"
+                         FontSize="{DynamicResource ItemDetailsFontSize}"
+                         FontWeight="Regular"
+                         Margin="0,0,0,0" />
+            </Button>
+          </StackPanel>
+
+        </StackPanel>
+
+      </DockPanel>
+
+    </StackPanel>
+ 
+    </DockPanel>
+
+    <Panel>
+
+      <RefreshContainer HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        PullDirection="TopToBottom"
+                        RefreshRequested="Refresh_OnRefreshRequested"
+                        DataContext="{Binding ItemViewModel}">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+          <ItemsControl Items="{Binding Kids}"
+                        HorizontalAlignment="Stretch">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate DataType="vm:ItemViewModel">
+                <views:CommentView />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <VirtualizingStackPanel />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+          </ItemsControl>
+        </ScrollViewer>
+      </RefreshContainer>
+
+    </Panel>
+
+  </DockPanel>
 
 </UserControl>
 
