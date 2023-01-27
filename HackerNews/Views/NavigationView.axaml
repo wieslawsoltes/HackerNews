@@ -11,7 +11,14 @@
     <vm:NavigationViewModel />
   </Design.DataContext>
 
-  <ItemsControl Items="{Binding Items}">
+  <UserControl.Styles>
+    <Style Selector="ItemsControl.navigation > ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource ItemBackground}" />
+    </Style>
+  </UserControl.Styles>
+
+  <ItemsControl Items="{Binding Items}"
+                Classes="navigation">
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
         <Panel />
