@@ -65,10 +65,11 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
             await CurrentFeed.LoadAsync();
 
-            if (Navigation is { })
+            var navigation = Ioc.Default.GetService<INavigation>();
+            if (navigation is { })
             {
-                await Navigation.Clear();
-                await Navigation.NavigateAsync(CurrentFeed);
+                await navigation.Clear();
+                await navigation.NavigateAsync(CurrentFeed);
             }
         }
     }
@@ -83,12 +84,12 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public async Task<bool> BackAsync()
     {
-        if (Navigation is { })
+        var navigation = Ioc.Default.GetService<INavigation>();
+        if (navigation is { })
         {
-            return await Navigation.BackAsync();
+            return await navigation.BackAsync();
         }
 
-        // TODO:
         return await Task.FromResult(false);
     }
 
