@@ -12,6 +12,7 @@
   <Design.DataContext>
     <vm:ItemViewModel>
       <vm:ItemViewModel.Index>4</vm:ItemViewModel.Index>
+      <vm:ItemViewModel.IsViewed>false</vm:ItemViewModel.IsViewed>
       <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
       <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
       <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
