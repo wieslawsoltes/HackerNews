@@ -20,6 +20,7 @@
     <SolidColorBrush x:Key="ItemTitleBackground">#212121</SolidColorBrush>
     <x:Double x:Key="ItemTitleFontSize">16</x:Double>
     <SolidColorBrush x:Key="ItemTitleForeground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="ItemTitleViewedForeground">#A2A2A2</SolidColorBrush>
 
     <SolidColorBrush x:Key="ItemIndexForeground">#FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="ItemIndexBackground">#424242</SolidColorBrush>

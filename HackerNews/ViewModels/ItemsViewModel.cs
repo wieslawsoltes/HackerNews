@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
-using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
@@ -22,10 +22,10 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public ItemsViewModel(IHackerNewsApi api, INavigation navigation, string storiesFeed, string title)
+    public ItemsViewModel(string storiesFeed, string title)
     {
-        _api = api;
-        _navigation = navigation;
+        _api = Ioc.Default.GetService<IHackerNewsApi>();
+        _navigation = Ioc.Default.GetService<INavigation>();
         _storiesFeed = storiesFeed;
         _title = title;
     }
@@ -57,7 +57,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 
             foreach (var id in _ids)
             {
-                var itemViewModel = new ItemViewModel(_api, _navigation, id, index++);
+                var itemViewModel = new ItemViewModel(id, index++);
                 Items.Add(itemViewModel);
             }
         }

@@ -2,6 +2,7 @@
   <PropertyGroup>
     <AvaloniaVersion>11.0.999-cibuild0029138-beta</AvaloniaVersion>
     <XamlNameReferenceGeneratorVersion>1.5.1</XamlNameReferenceGeneratorVersion>
-    <CommunityToolkitMvvmVersion>8.0.0</CommunityToolkitMvvmVersion>
+    <CommunityToolkitMvvmVersion>8.1.0</CommunityToolkitMvvmVersion>
+    <MicrosoftExtensionsDependencyInjectionVersion>7.0.0</MicrosoftExtensionsDependencyInjectionVersion>
   </PropertyGroup>
 </Project>

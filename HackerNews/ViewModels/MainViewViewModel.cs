@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
-using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
@@ -14,7 +14,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly IHackerNewsApi? _api;
 
-    [ObservableProperty] private NavigationViewModel? _navigation;
+    [ObservableProperty] private INavigation? _navigation;
     [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;
     [ObservableProperty] private DateTimeOffset _lastUpdated;
@@ -22,17 +22,17 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public MainViewViewModel()
     {
-        _api = new HackerNewsApiV0();
-        _navigation = new NavigationViewModel();
+        _api = Ioc.Default.GetService<IHackerNewsApi>();
+        _navigation = Ioc.Default.GetService<INavigation>();
 
         _feeds = new ObservableCollection<ItemsViewModel>
         {
-            new (_api, _navigation, "topstories", "Top Stories"),
-            new (_api, _navigation, "newstories", "New Stories"),
-            new (_api, _navigation, "beststories", "Best Stories"),
-            new (_api, _navigation, "askstories", "Ask HN"),
-            new (_api, _navigation, "showstories", "Show HN"),
-            new (_api, _navigation, "jobstories", "Jobs"),
+            new ("topstories", "Top Stories"),
+            new ("newstories", "New Stories"),
+            new ("beststories", "Best Stories"),
+            new ("askstories", "Ask HN"),
+            new ("showstories", "Show HN"),
+            new ("jobstories", "Jobs"),
         };
 
         _currentFeed = _feeds.FirstOrDefault();
@@ -60,35 +60,35 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_currentFeed is { })
+        if (CurrentFeed is { })
         {
             LastUpdated = DateTimeOffset.Now;
 
             UpdateLastUpdatedAgo();
 
-            await _currentFeed.LoadAsync();
+            await CurrentFeed.LoadAsync();
 
-            if (_navigation is { })
+            if (Navigation is { })
             {
-                await _navigation.Clear();
-                await _navigation.NavigateAsync(_currentFeed);
+                await Navigation.Clear();
+                await Navigation.NavigateAsync(CurrentFeed);
             }
         }
     }
 
     public async Task UpdateAsync()
     {
-        if (_currentFeed is { })
+        if (CurrentFeed is { })
         {
-            await _currentFeed.UpdateAsync();
+            await CurrentFeed.UpdateAsync();
         }
     }
 
     public async Task<bool> BackAsync()
     {
-        if (_navigation is { })
+        if (Navigation is { })
         {
-            return await _navigation.BackAsync();
+            return await Navigation.BackAsync();
         }
 
         // TODO:

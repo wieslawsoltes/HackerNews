@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
-using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
@@ -8,37 +9,38 @@ public partial class SubmittedViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly IHackerNewsApi? _api;
     private readonly INavigation? _navigation;
-    private readonly UserViewModel? _userViewModel;
+
+    [ObservableProperty] private UserViewModel? _user;
 
     public SubmittedViewModel()
     {
     }
 
-    public SubmittedViewModel(IHackerNewsApi api, INavigation navigation, UserViewModel userViewModel)
+    public SubmittedViewModel(UserViewModel userViewModel)
     {
-        _api = api;
-        _navigation = navigation;
-        _userViewModel = userViewModel;
+        _api = Ioc.Default.GetService<IHackerNewsApi>();
+        _navigation = Ioc.Default.GetService<INavigation>();
+        _user = userViewModel;
     }
 
     public bool IsLoaded()
     {
-        return _userViewModel?.Submitted is { };
+        return User?.Submitted is { };
     }
 
     public async Task LoadAsync()
     {
-        if (_userViewModel is { })
+        if (User is { })
         {
-            await _userViewModel.LoadSubmittedAsync();
+            await User.LoadSubmittedAsync();
         }
     }
 
     public async Task UpdateAsync()
     {
-        if (_userViewModel?.Submitted is { })
+        if (User?.Submitted is { })
         {
-            foreach (var kid in _userViewModel.Submitted)
+            foreach (var kid in User.Submitted)
             {
                 await kid.UpdateAsync();
             }

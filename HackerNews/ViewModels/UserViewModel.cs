@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
-using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
@@ -24,17 +24,17 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public UserViewModel(IHackerNewsApi api, INavigation navigation, string id)
+    public UserViewModel(string id)
     {
-        _api = api;
+        _api = Ioc.Default.GetService<IHackerNewsApi>();
+        _navigation = Ioc.Default.GetService<INavigation>();
         _id = id;
-        _navigation = navigation;
 
         LoadSubmittedCommand = new AsyncRelayCommand(async () =>
         {
             if (_navigation is { })
             {
-                var submittedViewModel = new SubmittedViewModel(_api, _navigation, this);
+                var submittedViewModel = new SubmittedViewModel(this);
 
                 await _navigation.NavigateAsync(submittedViewModel);
             }
@@ -50,9 +50,9 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_api is { } && _id is { })
+        if (_api is { } && Id is { })
         {
-            var json = await _api.GetUserJson(_id);
+            var json = await _api.GetUserJson(Id);
             _user = await _api.DeserializeAsync<User>(json);
         }
     }
@@ -84,12 +84,12 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
             Submitted ??= new ObservableCollection<ItemViewModel>();
             Submitted.Clear();
 
-            await ItemViewModel.LoadItemsAsync(Submitted, _user.Submitted, _api, _navigation);
+            await ItemViewModel.LoadItemsAsync(Submitted, _user.Submitted);
         }
     }
 
     public override string? ToString()
     {
-        return _id;
+        return Id;
     }
 }

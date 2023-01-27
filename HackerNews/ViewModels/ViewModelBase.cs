@@ -2,7 +2,6 @@
 
 namespace HackerNews.ViewModels;
 
-[ObservableObject]
-public partial class ViewModelBase
+public partial class ViewModelBase : ObservableObject
 {
 }

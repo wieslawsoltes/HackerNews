@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
-using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
@@ -16,31 +16,31 @@ public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public CommentsViewModel(IHackerNewsApi api, INavigation navigation, ItemViewModel itemViewModel)
+    public CommentsViewModel(ItemViewModel itemViewModel)
     {
-        _api = api;
-        _navigation = navigation;
+        _api = Ioc.Default.GetService<IHackerNewsApi>();
+        _navigation = Ioc.Default.GetService<INavigation>();
         _itemViewModel = itemViewModel;
     }
 
     public bool IsLoaded()
     {
-        return _itemViewModel?.Kids is { };
+        return ItemViewModel?.Kids is { };
     }
 
     public async Task LoadAsync()
     {
-        if (_itemViewModel is { })
+        if (ItemViewModel is { })
         {
-            await _itemViewModel.LoadKidsAsync();
+            await ItemViewModel.LoadKidsAsync();
         }
     }
 
     public async Task UpdateAsync()
     {
-        if (_itemViewModel?.Kids is { })
+        if (ItemViewModel?.Kids is { })
         {
-            foreach (var kid in _itemViewModel.Kids)
+            foreach (var kid in ItemViewModel.Kids)
             {
                 await kid.UpdateAsync();
             }

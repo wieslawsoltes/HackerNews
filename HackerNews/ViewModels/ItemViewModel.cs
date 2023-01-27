@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
-using HackerNews.Services;
 
 namespace HackerNews.ViewModels;
 
@@ -41,10 +41,10 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         _index = -1;
     }
 
-    public ItemViewModel(IHackerNewsApi api, INavigation navigation, int id, int index = -1)
+    public ItemViewModel(int id, int index = -1)
     {
-        _api = api;
-        _navigation = navigation;
+        _api = Ioc.Default.GetService<IHackerNewsApi>();
+        _navigation = Ioc.Default.GetService<INavigation>();
         _id = id;
         _index = index;
 
@@ -56,7 +56,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
                 {
                     if (_api is { } && _item?.By is { })
                     {
-                        By = new UserViewModel(_api, _navigation, _item.By);
+                        By = new UserViewModel(_item.By);
                     }
                 }
 
@@ -71,7 +71,9 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             if (_navigation is { })
             {
-                var commentsViewModel = new CommentsViewModel(_api, _navigation, this);
+                IsViewed = true;
+                
+                var commentsViewModel = new CommentsViewModel(this);
 
                 await _navigation.NavigateAsync(commentsViewModel);
             }
@@ -81,7 +83,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             if (_navigation is { })
             {
-                var pollViewModel = new PollViewModel(_api, _navigation, this);
+                var pollViewModel = new PollViewModel(this);
 
                 await _navigation.NavigateAsync(pollViewModel);
             }
@@ -101,9 +103,9 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_api is { } && _item is null && _id >= 0)
+        if (_api is { } && _item is null && Id >= 0)
         {
-            var json = await _api.GetItemJson(_id);
+            var json = await _api.GetItemJson(Id);
             _item = await _api.DeserializeAsync<Item>(json);
         }
     }
@@ -156,7 +158,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             Kids ??= new ObservableCollection<ItemViewModel>();
             Kids.Clear();
 
-            await LoadItemsAsync(Kids, _item.Kids, _api, _navigation);
+            await LoadItemsAsync(Kids, _item.Kids);
         }
     }
 
@@ -167,7 +169,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             Parts ??= new ObservableCollection<ItemViewModel>();
             Parts.Clear();
 
-            await LoadItemsAsync(Parts, _item.Parts, _api, _navigation);
+            await LoadItemsAsync(Parts, _item.Parts);
         }
     }
 
@@ -190,13 +192,13 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         return breaks;
     }
 
-    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids, IHackerNewsApi api, INavigation navigation)
+    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids)
     {
         var index = 1;
 
         foreach (var id in ids)
         {
-            var itemViewModel = new ItemViewModel(api, navigation, id, index++);
+            var itemViewModel = new ItemViewModel(id, index++);
 
             items.Add(itemViewModel);
         }
