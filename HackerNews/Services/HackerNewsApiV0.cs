@@ -2,10 +2,11 @@ using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using HackerNews.Model;
 
 namespace HackerNews.Services;
 
-public class HackerNewsApiV0
+public class HackerNewsApiV0 : IHackerNewsApi
 {
     private const string UriPrefix = "https://hacker-news.firebaseio.com/v0/";
     private HttpClient _client;

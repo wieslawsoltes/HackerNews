@@ -6,7 +6,7 @@ namespace HackerNews.ViewModels;
 
 public partial class PollViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly HackerNewsApiV0? _api;
+    private readonly IHackerNewsApi? _api;
     private readonly INavigation? _navigation;
     private readonly ItemViewModel? _itemViewModel;
 
@@ -14,7 +14,7 @@ public partial class PollViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public PollViewModel(HackerNewsApiV0 api, INavigation navigation, ItemViewModel itemViewModel)
+    public PollViewModel(IHackerNewsApi api, INavigation navigation, ItemViewModel itemViewModel)
     {
         _api = api;
         _navigation = navigation;

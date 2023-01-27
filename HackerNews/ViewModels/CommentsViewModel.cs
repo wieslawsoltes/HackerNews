@@ -7,7 +7,7 @@ namespace HackerNews.ViewModels;
 
 public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly HackerNewsApiV0? _api;
+    private readonly IHackerNewsApi? _api;
     private readonly INavigation? _navigation;
     
     [ObservableProperty] private ItemViewModel? _itemViewModel;
@@ -16,7 +16,7 @@ public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public CommentsViewModel(HackerNewsApiV0 api, INavigation navigation, ItemViewModel itemViewModel)
+    public CommentsViewModel(IHackerNewsApi api, INavigation navigation, ItemViewModel itemViewModel)
     {
         _api = api;
         _navigation = navigation;

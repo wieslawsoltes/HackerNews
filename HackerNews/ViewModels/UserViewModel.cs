@@ -10,7 +10,7 @@ namespace HackerNews.ViewModels;
 
 public partial class UserViewModel : ViewModelBase, ILazyLoadable
 {
-    private HackerNewsApiV0? _api;
+    private IHackerNewsApi? _api;
     private readonly INavigation? _navigation;
     private User? _user;
 
@@ -24,7 +24,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public UserViewModel(HackerNewsApiV0 api, INavigation navigation, string id)
+    public UserViewModel(IHackerNewsApi api, INavigation navigation, string id)
     {
         _api = api;
         _id = id;

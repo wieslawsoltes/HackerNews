@@ -90,7 +90,7 @@
 
     <StackPanel Spacing="6">
       <!-- Title -->
-      <TextBlock Text="{Binding CurrentItems.Title, FallbackValue=Title}"
+      <TextBlock Text="{Binding CurrentFeed.Title, FallbackValue=Title}"
                  TextWrapping="Wrap"
                  Foreground="{DynamicResource HeaderTitleForeground}"
                  FontSize="{DynamicResource HeaderTitleFontSize}"

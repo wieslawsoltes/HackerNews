@@ -9,7 +9,7 @@ namespace HackerNews.ViewModels;
 
 public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly HackerNewsApiV0? _api;
+    private readonly IHackerNewsApi? _api;
     private readonly INavigation? _navigation;
 
     private readonly string? _storiesFeed;
@@ -22,7 +22,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public ItemsViewModel(HackerNewsApiV0 api, INavigation navigation, string storiesFeed, string title)
+    public ItemsViewModel(IHackerNewsApi api, INavigation navigation, string storiesFeed, string title)
     {
         _api = api;
         _navigation = navigation;

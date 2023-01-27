@@ -12,7 +12,7 @@ namespace HackerNews.ViewModels;
 
 public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly HackerNewsApiV0? _api;
+    private readonly IHackerNewsApi? _api;
     private readonly INavigation? _navigation;
     private Item? _item;
 
@@ -41,7 +41,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         _index = -1;
     }
 
-    public ItemViewModel(HackerNewsApiV0 api, INavigation navigation, int id, int index = -1)
+    public ItemViewModel(IHackerNewsApi api, INavigation navigation, int id, int index = -1)
     {
         _api = api;
         _navigation = navigation;
@@ -190,7 +190,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         return breaks;
     }
 
-    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids, HackerNewsApiV0 api, INavigation navigation)
+    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids, IHackerNewsApi api, INavigation navigation)
     {
         var index = 1;
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -10,10 +12,11 @@ namespace HackerNews.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly HackerNewsApiV0? _api;
+    private readonly IHackerNewsApi? _api;
 
     [ObservableProperty] private NavigationViewModel? _navigation;
-    [ObservableProperty] private ItemsViewModel? _currentItems;
+    [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
+    [ObservableProperty] private ItemsViewModel? _currentFeed;
     [ObservableProperty] private DateTimeOffset _lastUpdated;
     [ObservableProperty] private string? _lastUpdatedAgo;
 
@@ -21,7 +24,18 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     {
         _api = new HackerNewsApiV0();
         _navigation = new NavigationViewModel();
-        _currentItems = new ItemsViewModel(_api, _navigation, HackerNewsApiV0.TopStories, "Top Stories");
+
+        _feeds = new ObservableCollection<ItemsViewModel>
+        {
+            new (_api, _navigation, "topstories", "Top Stories"),
+            new (_api, _navigation, "newstories", "New Stories"),
+            new (_api, _navigation, "beststories", "Best Stories"),
+            new (_api, _navigation, "askstories", "Ask HN"),
+            new (_api, _navigation, "showstories", "Show HN"),
+            new (_api, _navigation, "jobstories", "Jobs"),
+        };
+
+        _currentFeed = _feeds.FirstOrDefault();
 
         NavigationCommand = new AsyncRelayCommand(BackAsync);
 
@@ -46,27 +60,27 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_currentItems is { })
+        if (_currentFeed is { })
         {
             LastUpdated = DateTimeOffset.Now;
 
             UpdateLastUpdatedAgo();
 
-            await _currentItems.LoadAsync();
+            await _currentFeed.LoadAsync();
 
             if (_navigation is { })
             {
                 await _navigation.Clear();
-                await _navigation.NavigateAsync(_currentItems);
+                await _navigation.NavigateAsync(_currentFeed);
             }
         }
     }
 
     public async Task UpdateAsync()
     {
-        if (_currentItems is { })
+        if (_currentFeed is { })
         {
-            await _currentItems.UpdateAsync();
+            await _currentFeed.UpdateAsync();
         }
     }
 

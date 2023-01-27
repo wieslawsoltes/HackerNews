@@ -6,7 +6,7 @@ namespace HackerNews.ViewModels;
 
 public partial class SubmittedViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly HackerNewsApiV0? _api;
+    private readonly IHackerNewsApi? _api;
     private readonly INavigation? _navigation;
     private readonly UserViewModel? _userViewModel;
 
@@ -14,7 +14,7 @@ public partial class SubmittedViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public SubmittedViewModel(HackerNewsApiV0 api, INavigation navigation, UserViewModel userViewModel)
+    public SubmittedViewModel(IHackerNewsApi api, INavigation navigation, UserViewModel userViewModel)
     {
         _api = api;
         _navigation = navigation;
