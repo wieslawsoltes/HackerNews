@@ -31,11 +31,33 @@
     </vm:UserViewModel>
   </Design.DataContext>
 
-  <Panel Background="{DynamicResource MainBackground}">
+  <DockPanel Background="{DynamicResource MainBackground}">
 
+    <!-- Back -->
+
+    <Button Command="{Binding BackAsync}"
+            Width="80"
+            Height="64"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            Background="Transparent"
+            DockPanel.Dock="Top">
+      <Panel Width="24" 
+             Height="24" 
+             ClipToBounds="False">
+        <PathIcon Data="{DynamicResource ArrowLeftIcon}" 
+                  Height="24"
+                  Width="24" />
+      </Panel>
+    </Button>
+    
     <!-- TODO: -->
 
-    <StackPanel Spacing="6">
+    <StackPanel Spacing="6"
+                Margin="12,0,12,12">
+
       <StackPanel Orientation="Horizontal" Spacing="6">
         <!-- Id -->
         <TextBlock Text="{Binding Id, FallbackValue=-}"
@@ -52,6 +74,7 @@
                    FontWeight="Light"
                    Margin="0,6,12,0" />
       </StackPanel>
+
       <!-- Created -->
       <TextBlock Text="{Binding Created, StringFormat={}Created: {0:d}, FallbackValue=-}"
                  TextWrapping="Wrap"
@@ -59,11 +82,12 @@
                  FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
                  FontWeight="Regular"
                  Margin="12,0,12,6" />
+
     </StackPanel>
 
     <!-- TODO: Submitted -->
 
-  </Panel>
+  </DockPanel>
 
 </UserControl>
 
