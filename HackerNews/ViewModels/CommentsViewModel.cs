@@ -1,15 +1,11 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
 
 public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly IHackerNewsApi? _api;
-    private readonly INavigation? _navigation;
-    
     [ObservableProperty] private ItemViewModel? _itemViewModel;
 
     public CommentsViewModel()
@@ -18,8 +14,6 @@ public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
 
     public CommentsViewModel(ItemViewModel itemViewModel)
     {
-        _api = Ioc.Default.GetService<IHackerNewsApi>();
-        _navigation = Ioc.Default.GetService<INavigation>();
         _itemViewModel = itemViewModel;
     }
 

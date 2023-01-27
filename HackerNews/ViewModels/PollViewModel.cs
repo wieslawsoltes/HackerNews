@@ -1,13 +1,10 @@
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
 
 public partial class PollViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly IHackerNewsApi? _api;
-    private readonly INavigation? _navigation;
     private readonly ItemViewModel? _itemViewModel;
 
     public PollViewModel()
@@ -16,8 +13,6 @@ public partial class PollViewModel : ViewModelBase, ILazyLoadable
 
     public PollViewModel(ItemViewModel itemViewModel)
     {
-        _api = Ioc.Default.GetService<IHackerNewsApi>();
-        _navigation = Ioc.Default.GetService<INavigation>();
         _itemViewModel = itemViewModel;
     }
 

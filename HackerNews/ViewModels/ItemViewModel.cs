@@ -12,8 +12,6 @@ namespace HackerNews.ViewModels;
 
 public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly IHackerNewsApi? _api;
-    private readonly INavigation? _navigation;
     private Item? _item;
 
     [ObservableProperty] private int _index;
@@ -45,18 +43,19 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public ItemViewModel(int id, int index = -1)
     {
-        _api = Ioc.Default.GetService<IHackerNewsApi>();
-        _navigation = Ioc.Default.GetService<INavigation>();
         _id = id;
         _index = index;
 
         LoadUserCommand = new AsyncRelayCommand(async () =>
         {
-            if (_navigation is { })
+            var api = Ioc.Default.GetService<IHackerNewsApi>();
+            var navigation = Ioc.Default.GetService<INavigation>();
+
+            if (navigation is { })
             {
                 if (_by is null)
                 {
-                    if (_api is { } && _item?.By is { })
+                    if (api is { } && _item?.By is { })
                     {
                         By = new UserViewModel(_item.By);
                     }
@@ -64,30 +63,32 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
                 if (_by is { })
                 {
-                    await _navigation.NavigateAsync(_by);
+                    await navigation.NavigateAsync(_by);
                 }
             }
         });
 
         LoadKidsCommand = new AsyncRelayCommand(async () =>
         {
-            if (_navigation is { })
+            var navigation = Ioc.Default.GetService<INavigation>();
+            if (navigation is { })
             {
                 IsViewed = true;
                 
                 var commentsViewModel = new CommentsViewModel(this);
 
-                await _navigation.NavigateAsync(commentsViewModel);
+                await navigation.NavigateAsync(commentsViewModel);
             }
         });
 
         LoadPartsCommand = new AsyncRelayCommand(async () =>
         {
-            if (_navigation is { })
+            var navigation = Ioc.Default.GetService<INavigation>();
+            if (navigation is { })
             {
                 var pollViewModel = new PollViewModel(this);
 
-                await _navigation.NavigateAsync(pollViewModel);
+                await navigation.NavigateAsync(pollViewModel);
             }
         });
     }
@@ -105,10 +106,12 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_api is { } && _item is null && Id >= 0)
+        var api = Ioc.Default.GetService<IHackerNewsApi>();
+
+        if (api is { } && _item is null && Id >= 0)
         {
-            var json = await _api.GetItemJson(Id);
-            _item = await _api.DeserializeAsync<Item>(json);
+            var json = await api.GetItemJson(Id);
+            _item = await api.DeserializeAsync<Item>(json);
         }
     }
 
@@ -155,7 +158,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     
     public async Task LoadKidsAsync()
     {
-        if (_api is { } && _navigation is { } && _item is { } && _item.Kids is { })
+        if (_item is { } && _item.Kids is { })
         {
             Kids ??= new ObservableCollection<ItemViewModel>();
             Kids.Clear();
@@ -166,7 +169,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadKPartsAsync()
     {
-        if (_api is { } && _navigation is { } && _item is { } && _item.Parts is { })
+        if (_item is { } && _item.Parts is { })
         {
             Parts ??= new ObservableCollection<ItemViewModel>();
             Parts.Clear();

@@ -12,8 +12,6 @@ namespace HackerNews.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly IHackerNewsApi? _api;
-
     [ObservableProperty] private INavigation? _navigation;
     [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;
@@ -22,7 +20,6 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public MainViewViewModel()
     {
-        _api = Ioc.Default.GetService<IHackerNewsApi>();
         _navigation = Ioc.Default.GetService<INavigation>();
 
         _feeds = new ObservableCollection<ItemsViewModel>

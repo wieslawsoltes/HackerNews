@@ -1,15 +1,11 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
 
 public partial class SubmittedViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly IHackerNewsApi? _api;
-    private readonly INavigation? _navigation;
-
     [ObservableProperty] private UserViewModel? _user;
 
     public SubmittedViewModel()
@@ -18,8 +14,6 @@ public partial class SubmittedViewModel : ViewModelBase, ILazyLoadable
 
     public SubmittedViewModel(UserViewModel userViewModel)
     {
-        _api = Ioc.Default.GetService<IHackerNewsApi>();
-        _navigation = Ioc.Default.GetService<INavigation>();
         _user = userViewModel;
     }
 

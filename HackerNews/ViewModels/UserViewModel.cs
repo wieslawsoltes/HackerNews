@@ -10,8 +10,6 @@ namespace HackerNews.ViewModels;
 
 public partial class UserViewModel : ViewModelBase, ILazyLoadable
 {
-    private IHackerNewsApi? _api;
-    private readonly INavigation? _navigation;
     private User? _user;
 
     [ObservableProperty] private string? _id;
@@ -26,17 +24,17 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
     public UserViewModel(string id)
     {
-        _api = Ioc.Default.GetService<IHackerNewsApi>();
-        _navigation = Ioc.Default.GetService<INavigation>();
         _id = id;
 
         LoadSubmittedCommand = new AsyncRelayCommand(async () =>
         {
-            if (_navigation is { })
+            var navigation = Ioc.Default.GetService<INavigation>();
+
+            if (navigation is { })
             {
                 var submittedViewModel = new SubmittedViewModel(this);
 
-                await _navigation.NavigateAsync(submittedViewModel);
+                await navigation.NavigateAsync(submittedViewModel);
             }
         });
     }
@@ -50,10 +48,12 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        if (_api is { } && Id is { })
+        var api = Ioc.Default.GetService<IHackerNewsApi>();
+
+        if (api is { } && Id is { })
         {
-            var json = await _api.GetUserJson(Id);
-            _user = await _api.DeserializeAsync<User>(json);
+            var json = await api.GetUserJson(Id);
+            _user = await api.DeserializeAsync<User>(json);
         }
     }
 
@@ -79,7 +79,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadSubmittedAsync()
     {
-        if (_api is { } && _navigation is { } && _user is { } && _user?.Submitted is { })
+        if (_user is { } && _user?.Submitted is { })
         {
             Submitted ??= new ObservableCollection<ItemViewModel>();
             Submitted.Clear();
