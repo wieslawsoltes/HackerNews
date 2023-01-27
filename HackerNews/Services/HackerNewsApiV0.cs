@@ -9,21 +9,9 @@ namespace HackerNews.Services;
 public class HackerNewsApiV0 : IHackerNewsApi
 {
     private const string UriPrefix = "https://hacker-news.firebaseio.com/v0/";
-    private HttpClient _client;
-    private JsonSerializerOptions _options;
+    private readonly HttpClient _client;
+    private readonly JsonSerializerOptions _options;
 
-    public const string TopStories = "topstories";
-
-    public const string NewsStories = "newstories";
-
-    public const string BestStories = "beststories";
-
-    public const string AskStories = "askstories";
-
-    public const string ShowStories = "showstories";
-
-    public const string JobStories = "jobstories";
-    
     public HackerNewsApiV0()
     {
         _client = new HttpClient();
