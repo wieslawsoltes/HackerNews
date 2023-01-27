@@ -53,24 +53,22 @@
                       VerticalAlignment="Stretch"
                       PullDirection="TopToBottom"
                       RefreshRequested="Refresh_OnRefreshRequested">
-      <ListBox Items="{Binding Items}"
-               HorizontalAlignment="Stretch">
-
-        <ListBox.Styles>
-          <Style Selector="ListBoxItem">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="0" />
-          </Style>
-        </ListBox.Styles>
-
-        <ListBox.ItemTemplate>
-          <DataTemplate DataType="vm:ItemViewModel">
-            <views:ItemView />
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-
-      </ListBox>
+      <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto">
+        <ItemsControl Items="{Binding Items}"
+                      HorizontalAlignment="Stretch">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="vm:ItemViewModel">
+              <views:ItemView />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <VirtualizingStackPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+        </ItemsControl>
+      </ScrollViewer>
     </RefreshContainer>
 
   </Panel>
