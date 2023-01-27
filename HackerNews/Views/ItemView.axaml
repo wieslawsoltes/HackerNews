@@ -70,10 +70,19 @@
 
       <TextBlock Text="{Binding Title}"
                  TextWrapping="Wrap"
-                 Foreground="{DynamicResource ItemTitleForeground}"
                  FontSize="{DynamicResource ItemTitleFontSize}"
                  FontWeight="Regular"
-                 Margin="12,12,12,0" />
+                 Margin="12,12,12,0"
+                 Classes.viewed="{Binding IsViewed}">
+        <TextBlock.Styles>
+          <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource ItemTitleForeground}" />
+          </Style>
+          <Style Selector="TextBlock.viewed">
+            <Setter Property="Foreground" Value="{DynamicResource ItemTitleViewedForeground}" />
+          </Style>
+        </TextBlock.Styles>
+      </TextBlock>
 
       <DockPanel>
 
