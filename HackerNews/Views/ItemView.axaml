@@ -22,7 +22,7 @@
         </vm:UserViewModel>
       </vm:ItemViewModel.By>
       <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
-      <vm:ItemViewModel.Descendants><x:Int32>3000</x:Int32></vm:ItemViewModel.Descendants>
+      <vm:ItemViewModel.Descendants><x:Int32>300</x:Int32></vm:ItemViewModel.Descendants>
     </vm:ItemViewModel>
   </Design.DataContext>
 
@@ -86,10 +86,11 @@
           <Button Command="{Binding LoadKidsCommand}"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Stretch"
-                  HorizontalContentAlignment="Stretch"
+                  HorizontalContentAlignment="Left"
                   VerticalContentAlignment="Stretch"
                   Background="Transparent"
                   Margin="0,0,0,0"
+                  Padding="12,0,0,0"
                   MinWidth="96">
             <StackPanel Spacing="4"
                         Orientation="Horizontal"
@@ -117,6 +118,8 @@
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
                   Background="Transparent"
+                  Margin="0,0,0,0"
+                  Padding="0,0,0,0"
                   Width="52">
             <Button.Styles>
               <Style Selector="PopupRoot">
