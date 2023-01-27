@@ -2,6 +2,9 @@
 
 namespace HackerNews.ViewModels;
 
-public partial class ViewModelBase : ObservableObject
+[ObservableObject]
+#pragma warning disable MVVMTK0033
+public partial class ViewModelBase
+#pragma warning restore MVVMTK0033
 {
 }
