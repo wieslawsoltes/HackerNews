@@ -42,13 +42,10 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
             Items.Remove(lazyLoadable);
 
             CanGoBack = Items.Count > 1;
-            
-            // TODO: Handle result.
-            await lazyLoadable.BackAsync();
 
-            return true;
+            return await Task.FromResult(true);
         }
 
-        return false;
+        return await Task.FromResult(false);
     }
 }
