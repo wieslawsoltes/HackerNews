@@ -43,8 +43,15 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public ItemViewModel(int id, int index = -1)
     {
+        var stateManager = Ioc.Default.GetService<IStateManager>();
+
         _id = id;
         _index = index;
+  
+        if (stateManager is { })
+        {
+            _isViewed = stateManager.GetIsViewed(id);
+        }
 
         LoadUserCommand = new AsyncRelayCommand(async () =>
         {
@@ -74,6 +81,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             if (navigation is { })
             {
                 IsViewed = true;
+
+                if (stateManager is { })
+                {
+                    stateManager.SetIsViewed(Id);
+                }
                 
                 var commentsViewModel = new CommentsViewModel(this);
 
