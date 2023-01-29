@@ -99,14 +99,15 @@
 
           <!-- Item Vote -->
 
-          <Button HorizontalAlignment="Left"
+          <Button Command="{Binding VoteCommand}"
+                  HorizontalAlignment="Left"
                   VerticalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
                   Background="Transparent"
                   Margin="0,0,0,0"
                   Padding="0,0,0,0"
-                  Width="52">
+                  Width="68">
             <!-- TODO: Change foreground color if voted up. -->
             <PathIcon Data="{DynamicResource ThumbLikeFilledIcon}" 
                       Height="24"
@@ -115,14 +116,15 @@
 
           <!-- Item Save -->
 
-          <Button HorizontalAlignment="Left"
+          <Button Command="{Binding SaveCommand}"
+                  HorizontalAlignment="Left"
                   VerticalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
                   Background="Transparent"
                   Margin="0,0,0,0"
                   Padding="0,0,0,0"
-                  Width="52">
+                  Width="68">
             <!-- TODO: Switch to BookmarkFilledIcon if saved. -->
             <PathIcon Data="{DynamicResource BookmarkIcon}" 
                       Height="24"
@@ -136,7 +138,7 @@
         <StackPanel>
 
           <!-- Item Url -->
-          <TextBlock Text="{Binding Url.DnsSafeHost}"
+          <TextBlock Text="{Binding Url.DnsSafeHost, FallbackValue=''}"
                      TextWrapping="Wrap"
                      Foreground="{DynamicResource ItemTitleForeground}"
                      FontSize="{DynamicResource ItemDetailsFontSize}"
@@ -182,6 +184,34 @@
         </StackPanel>
 
       </DockPanel>
+
+      <!-- Item Url -->
+
+      <Button Command="{Binding OpenUrlCommand}"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Stretch"
+              HorizontalContentAlignment="Center"
+              VerticalContentAlignment="Stretch"
+              Background="Transparent"
+              Margin="0,0,0,0"
+              Padding="0,6,0,6"
+              Width="136">
+        <StackPanel Spacing="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+          <TextBlock Text="ARTICLE"
+                     TextWrapping="Wrap"
+                     Foreground="{DynamicResource ItemTitleForeground}"
+                     FontSize="{DynamicResource ItemDetailsFontSize}"
+                     FontWeight="Regular"
+                     VerticalAlignment="Center"/>
+          <PathIcon Data="{DynamicResource OpenIcon}" 
+                    Height="16"
+                    Width="16" 
+                    Margin="6,0,0,0"/>
+        </StackPanel>
+      </Button>
 
     </StackPanel>
  
