@@ -17,7 +17,14 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
 
     public async Task NavigateAsync(ILazyLoadable lazyLoadable)
     {
+        if (Items.Count >= 1)
+        {
+            var currentLazyLoadable = Items[Items.Count - 1];
+            currentLazyLoadable.IsVisible = false;
+        }
+
         Items.Add(lazyLoadable);
+        lazyLoadable.IsVisible = true;
 
         CanGoBack = Items.Count > 1;
 
@@ -37,9 +44,15 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
     {
         if (Items.Count > 1)
         {
-            var lazyLoadable = Items[Items.Count - 1];
+            var currentLazyLoadable = Items[Items.Count - 1];
+            currentLazyLoadable.IsVisible = false;
+            Items.Remove(currentLazyLoadable);
 
-            Items.Remove(lazyLoadable);
+            if (Items.Count >= 1)
+            {
+                var nextLazyLoadable = Items[Items.Count - 1];
+                nextLazyLoadable.IsVisible = true;
+            }
 
             CanGoBack = Items.Count > 1;
 

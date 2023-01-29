@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using HackerNews.Model;
 
@@ -7,6 +8,8 @@ namespace HackerNews.ViewModels;
 public partial class PollViewModel : ViewModelBase, ILazyLoadable
 {
     private readonly ItemViewModel? _itemViewModel;
+
+    [ObservableProperty] private bool _isVisible;
 
     public PollViewModel()
     {

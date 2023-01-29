@@ -12,6 +12,7 @@ namespace HackerNews.ViewModels;
 
 public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
+    [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private INavigation? _navigation;
     [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;

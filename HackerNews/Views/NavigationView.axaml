@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
+             xmlns:m="clr-namespace:HackerNews.Model"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HackerNews.Views.NavigationView"
              x:CompileBindings="True" x:DataType="vm:NavigationViewModel">
@@ -12,8 +13,9 @@
   </Design.DataContext>
 
   <UserControl.Styles>
-    <Style Selector="ItemsControl.navigation > ContentPresenter">
+    <Style Selector="ItemsControl.navigation > ContentPresenter" x:DataType="m:ILazyLoadable">
       <Setter Property="Background" Value="{DynamicResource ItemBackground}" />
+      <Setter Property="IsVisible" Value="{Binding IsVisible}" />
     </Style>
   </UserControl.Styles>
 

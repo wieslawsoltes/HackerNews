@@ -12,6 +12,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 {
     private User? _user;
 
+    [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private string? _id;
     [ObservableProperty] private DateTimeOffset? _created;
     [ObservableProperty] private int? _karma;

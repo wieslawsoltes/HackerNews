@@ -16,6 +16,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 {
     private Item? _item;
 
+    [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private int _index;
     [ObservableProperty] private bool _isViewed;
 

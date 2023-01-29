@@ -12,6 +12,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     private readonly string? _storiesFeed;
     private List<int>? _ids;
 
+    [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private string? _title;
     [ObservableProperty] private ObservableCollection<ItemViewModel>? _items;
 
