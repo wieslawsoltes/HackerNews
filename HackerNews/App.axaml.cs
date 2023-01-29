@@ -1,4 +1,4 @@
-using System;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -53,7 +53,7 @@ public partial class App : Application, IBrowserService
                 .AddSingleton<IHackerNewsService, HackerNewsServiceV0>()
                 .AddSingleton<INavigationService, NavigationViewModel>()
                 .AddSingleton<IStateStorageService, StateStorageViewModel>()
-                .AddSingleton<IBrowserService, App>(x => this)
+                .AddSingleton<IBrowserService, App>(_ => this)
                 // ViewModels
                 .AddTransient<ItemViewModel>()
                 .AddTransient<ItemsViewModel>()
@@ -65,8 +65,11 @@ public partial class App : Application, IBrowserService
                 .BuildServiceProvider());
     }
 
-    public void OpenUrl(Uri url)
+    public async Task OpenBrowserAsync(System.Uri uri, bool external = false)
     {
-        BrowserService?.OpenUrl(url);
+        if (BrowserService is { })
+        {
+            await BrowserService.OpenBrowserAsync(uri, external);
+        }
     }
 }

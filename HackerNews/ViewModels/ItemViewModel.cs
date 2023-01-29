@@ -121,14 +121,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             if (Url is { })
             {
-                await Task.Run(() =>
+                var browser = Ioc.Default.GetService<IBrowserService>();
+                if (browser is { })
                 {
-                    var browser = Ioc.Default.GetService<IBrowserService>();
-                    if (browser is { })
-                    {
-                        browser.OpenUrl(Url);
-                    }
-                });
+                    await browser.OpenBrowserAsync(Url);
+                }
             }
         });
     }

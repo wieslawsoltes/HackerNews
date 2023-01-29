@@ -1,12 +1,13 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using HackerNews.Model;
 
 namespace HackerNews.Desktop;
 
 public class DesktopBrowserService : IBrowserService
 {
-    public void OpenUrl(System.Uri uri)
+    public async Task OpenBrowserAsync(System.Uri uri, bool external = false)
     {
         var url = uri.ToString();
 
@@ -30,5 +31,7 @@ public class DesktopBrowserService : IBrowserService
                 Process.Start("open", url);
             }
         }
+
+        await Task.Yield();
     }
 }
