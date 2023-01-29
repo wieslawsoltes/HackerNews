@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -103,6 +105,26 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
                 await navigation.NavigateAsync(pollViewModel);
             }
         });
+
+        VoteCommand = new AsyncRelayCommand(async () =>
+        {
+            // TODO:
+            await Task.Yield();
+        });
+
+        SaveCommand = new AsyncRelayCommand(async () =>
+        {
+            // TODO:
+            await Task.Yield();
+        });
+
+        OpenUrlCommand = new AsyncRelayCommand(async () =>
+        {
+            if (Url is { })
+            {
+                await Task.Run(() => Url.ToString());
+            }
+        });
     }
 
     public IAsyncRelayCommand? LoadUserCommand { get; }
@@ -110,6 +132,12 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     public IAsyncRelayCommand? LoadKidsCommand { get; }
 
     public IAsyncRelayCommand? LoadPartsCommand { get; }
+
+    public IAsyncRelayCommand? VoteCommand { get; }
+    
+    public IAsyncRelayCommand? SaveCommand { get; }
+
+    public IAsyncRelayCommand? OpenUrlCommand { get; }
 
     public bool IsLoaded()
     {
@@ -274,5 +302,33 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
 
         throw new Exception("Invalid item type.");
+    }
+
+    public static void OpenUrl(string url)
+    {
+        try
+        {
+            Process.Start(url);
+        }
+        catch
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                url = url.Replace("&", "^&");
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Process.Start("xdg-open", url);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                Process.Start("open", url);
+            }
+            else
+            {
+                throw;
+            }
+        }
     }
 }
