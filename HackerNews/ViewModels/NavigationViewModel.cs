@@ -19,7 +19,7 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
     {
         if (Items.Count >= 1)
         {
-            var currentLazyLoadable = Items[Items.Count - 1];
+            var currentLazyLoadable = Items[^1];
             currentLazyLoadable.IsVisible = false;
         }
 
@@ -44,13 +44,13 @@ public partial class NavigationViewModel : ViewModelBase, INavigation
     {
         if (Items.Count > 1)
         {
-            var currentLazyLoadable = Items[Items.Count - 1];
+            var currentLazyLoadable = Items[^1];
             currentLazyLoadable.IsVisible = false;
             Items.Remove(currentLazyLoadable);
 
             if (Items.Count >= 1)
             {
-                var nextLazyLoadable = Items[Items.Count - 1];
+                var nextLazyLoadable = Items[^1];
                 nextLazyLoadable.IsVisible = true;
             }
 
