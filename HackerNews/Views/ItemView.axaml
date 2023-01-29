@@ -8,7 +8,6 @@
              x:Class="HackerNews.Views.ItemView"
              x:CompileBindings="True" x:DataType="vm:ItemViewModel"
              controls:LazyLoadable.Enable="True">
-
   <Design.DataContext>
     <vm:ItemViewModel>
       <vm:ItemViewModel.Index>4</vm:ItemViewModel.Index>
@@ -26,18 +25,13 @@
       <vm:ItemViewModel.Descendants><x:Int32>300</x:Int32></vm:ItemViewModel.Descendants>
     </vm:ItemViewModel>
   </Design.DataContext>
-
   <DockPanel MinHeight="100">
-
     <!-- Bottom Separator -->
-
     <Rectangle Fill="{DynamicResource ItemSeparatorBackground}"
                Height="1.5"
                HorizontalAlignment="Stretch"
                DockPanel.Dock="Bottom" />
-
     <!-- Left Side -->
-
     <Border DockPanel.Dock="Left"
             Margin="0,0,0,0"
             Width="80" 
@@ -60,15 +54,11 @@
                    FontWeight="Normal" />
       </StackPanel>
     </Border>
-
     <!-- Right Side -->
-
     <StackPanel Background="{DynamicResource ItemTitleBackground}"
                 Spacing="6"
                 Margin="0,0.5,0,0.5">
-
       <!-- Item Title -->
-
       <TextBlock Text="{Binding Title}"
                  TextWrapping="Wrap"
                  FontSize="{DynamicResource ItemTitleFontSize}"
@@ -84,15 +74,11 @@
           </Style>
         </TextBlock.Styles>
       </TextBlock>
-
       <DockPanel>
-
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     DockPanel.Dock="Right">
-
           <!-- Item Comments -->
-
           <Button Command="{Binding LoadKidsCommand}"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Stretch"
@@ -120,9 +106,7 @@
                          VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
-
           <!-- Item Menu -->
-
           <Button HorizontalAlignment="Left"
                   VerticalAlignment="Stretch"
                   HorizontalContentAlignment="Stretch"
@@ -172,13 +156,9 @@
                        VerticalAlignment="Center" />
             </StackPanel>
           </Button>
-
         </StackPanel>
-
         <!-- Item Details -->
-
         <StackPanel>
-
           <!-- Item Url -->
           <TextBlock Text="{Binding Url.DnsSafeHost}"
                      TextWrapping="Wrap"
@@ -187,7 +167,6 @@
                      FontWeight="Regular"
                      FontStyle="Italic"
                      Margin="12,0,0,0" />
-
           <StackPanel Orientation="Horizontal"
                       Margin="12,6,12,0">
             <!-- Item Time -->
@@ -212,14 +191,9 @@
                        FontWeight="Regular"
                        Margin="0,0,0,0" />
           </StackPanel>
-
         </StackPanel>
-
       </DockPanel>
-
     </StackPanel>
-
   </DockPanel>
-
 </UserControl>
 

@@ -4,12 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:controls="clr-namespace:HackerNews.Controls"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="170"
              x:Class="HackerNews.Views.UserView"
              x:CompileBindings="True" x:DataType="vm:UserViewModel"
              controls:LazyLoadable.Enable="True">
-
   <Design.DataContext>
     <vm:UserViewModel>
       <vm:UserViewModel.Id>id</vm:UserViewModel.Id>
@@ -30,11 +28,8 @@
       <vm:UserViewModel.About>about</vm:UserViewModel.About>
     </vm:UserViewModel>
   </Design.DataContext>
-
   <DockPanel Background="{DynamicResource MainBackground}">
-
     <!-- Back -->
-
     <Button Command="{Binding BackAsync}"
             Width="80"
             Height="64"
@@ -52,12 +47,9 @@
                   Width="24" />
       </Panel>
     </Button>
-    
     <!-- TODO: -->
-
     <StackPanel Spacing="6"
                 Margin="12,0,12,12">
-
       <StackPanel Orientation="Horizontal" Spacing="6">
         <!-- Id -->
         <TextBlock Text="{Binding Id, FallbackValue=-}"
@@ -74,7 +66,6 @@
                    FontWeight="Light"
                    Margin="0,6,12,0" />
       </StackPanel>
-
       <!-- Created -->
       <TextBlock Text="{Binding Created, StringFormat={}Created: {0:d}, FallbackValue=-}"
                  TextWrapping="Wrap"
@@ -82,12 +73,8 @@
                  FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
                  FontWeight="Regular"
                  Margin="12,0,12,6" />
-
     </StackPanel>
-
     <!-- TODO: Submitted -->
-
   </DockPanel>
-
 </UserControl>
 

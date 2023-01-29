@@ -10,28 +10,21 @@
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
              Background="Transparent"
              controls:LazyLoadable.Enable="True">
-
   <Design.DataContext>
     <vm:MainViewViewModel />
   </Design.DataContext>
-
   <UserControl.GestureRecognizers>
+    <!-- TODO: -->
     <!--<PullGestureRecognizer PullDirection="TopToBottom"/>-->
+    <!-- TODO: -->
     <!--<PullGestureRecognizer PullDirection="BottomToTop"/>-->
     <PullGestureRecognizer PullDirection="RightToLeft"/>
     <PullGestureRecognizer PullDirection="LeftToRight"/>
   </UserControl.GestureRecognizers>
-  
   <DockPanel>
-
     <views:HeaderView DockPanel.Dock="Top"
                       IsVisible="{Binding !Navigation.CanGoBack, FallbackValue=True}"/>
-    
     <views:NavigationView  DataContext="{Binding Navigation}" />
-
-    <!--<views:ItemsView DataContext="{Binding CurrentItems}" />-->
-
   </DockPanel>
-
 </UserControl>
 

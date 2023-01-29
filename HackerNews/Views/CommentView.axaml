@@ -9,7 +9,6 @@
              x:Class="HackerNews.Views.CommentView"
              x:CompileBindings="True" x:DataType="vm:ItemViewModel"
              controls:LazyLoadable.Enable="True">
-
   <Design.DataContext>
     <vm:ItemViewModel>
       <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
@@ -36,27 +35,21 @@
       </vm:ItemViewModel.Kids>
     </vm:ItemViewModel>
   </Design.DataContext>
-
   <!-- TODO: -->
-
   <Border Background="{DynamicResource CommentBackground}"
           CornerRadius="2"
           Margin="9,3,9,4"
           ClipToBounds="True">
     <DockPanel>
-
       <!-- TODO: Background based on indent level. -->
       <Border Background="Red"
               Width="5"
               CornerRadius="2.5"
               HorizontalAlignment="Stretch"
               DockPanel.Dock="Left" />
-
       <DockPanel Margin="6,6,6,6"
                  DockPanel.Dock="Top">
-
         <!-- Comment Details -->
-
         <StackPanel Orientation="Horizontal"
                     Margin="12,6,12,0"
                     DockPanel.Dock="Left">
@@ -91,11 +84,8 @@
                        FontWeight="Regular"
                        Margin="0,0,0,0" />
           </Button>
-
         </StackPanel>
-
         <!-- Comment Menu -->
-
         <Button Width="40"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Stretch"
@@ -143,11 +133,8 @@
                      VerticalAlignment="Center" />
           </StackPanel>
         </Button>
-
       </DockPanel>
-
       <!-- Kids Expander -->
-
       <Button HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch"
               HorizontalContentAlignment="Stretch"
@@ -182,9 +169,7 @@
           </Panel>
         </StackPanel>
       </Button>
-
       <!-- Text -->
-
       <SelectableTextBlock Text="{Binding Text}"
                            TextWrapping="Wrap"
                            Foreground="{DynamicResource CommentForeground}"
@@ -197,6 +182,5 @@
 
     </DockPanel>
   </Border>
-
 </UserControl>
 

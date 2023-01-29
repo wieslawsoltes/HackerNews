@@ -6,21 +6,16 @@
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.SubmittedView"
              x:CompileBindings="True" x:DataType="vm:SubmittedViewModel">
-
   <Design.DataContext>
     <vm:SubmittedViewModel>
       <!-- TODO: -->
     </vm:SubmittedViewModel>
   </Design.DataContext>
-
   <Panel Background="{DynamicResource MainBackground}">
-    
     <!-- TODO: -->
     <TextBlock Text="Submitted"
                HorizontalAlignment="Center"
                VerticalAlignment="Center" />
-
   </Panel>
-
 </UserControl>
 
