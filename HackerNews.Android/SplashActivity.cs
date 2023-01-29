@@ -12,5 +12,6 @@ public class SplashActivity : AvaloniaSplashActivity<App>
         base.OnResume();
 
         StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+        Finish();
     }
 }
