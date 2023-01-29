@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -10,8 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HackerNews;
 
-public partial class App : Application
+public partial class App : Application, IBrowserService
 {
+    public static IBrowserService? BrowserService { get; set; }
+    
     public App()
     {
         ConfigureServices();
@@ -42,7 +45,7 @@ public partial class App : Application
         base.OnFrameworkInitializationCompleted();
     }
 
-    private static void ConfigureServices()
+    private void ConfigureServices()
     {
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
@@ -50,6 +53,7 @@ public partial class App : Application
                 .AddSingleton<IHackerNewsService, HackerNewsServiceV0>()
                 .AddSingleton<INavigationService, NavigationViewModel>()
                 .AddSingleton<IStateStorageService, StateStorageViewModel>()
+                .AddSingleton<IBrowserService, App>(x => this)
                 // ViewModels
                 .AddTransient<ItemViewModel>()
                 .AddTransient<ItemsViewModel>()
@@ -59,5 +63,10 @@ public partial class App : Application
                 .AddTransient<SubmittedViewModel>()
                 .AddTransient<MainViewViewModel>()
                 .BuildServiceProvider());
+    }
+
+    public void OpenUrl(Uri url)
+    {
+        BrowserService?.OpenUrl(url);
     }
 }

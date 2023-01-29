@@ -7,6 +7,10 @@ class Program
 {
     [STAThread]
     public static void Main(string[] args) => BuildAvaloniaApp()
+        .AfterSetup(_ =>
+        {
+            App.BrowserService = new DesktopBrowserService();
+        })
         .StartWithClassicDesktopLifetime(args);
 
     public static AppBuilder BuildAvaloniaApp()

@@ -125,8 +125,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             {
                 await Task.Run(() =>
                 {
-                    // TODO: Add support for Android, iOS etc.
-                    OpenUrl(Url.ToString());
+                    var browser = Ioc.Default.GetService<IBrowserService>();
+                    if (browser is { })
+                    {
+                        browser.OpenUrl(Url);
+                    }
                 });
             }
         });
@@ -307,33 +310,5 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
 
         throw new Exception("Invalid item type.");
-    }
-
-    public static void OpenUrl(string url)
-    {
-        try
-        {
-            Process.Start(url);
-        }
-        catch
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                url = url.Replace("&", "^&");
-                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                Process.Start("xdg-open", url);
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                Process.Start("open", url);
-            }
-            else
-            {
-                throw;
-            }
-        }
     }
 }
