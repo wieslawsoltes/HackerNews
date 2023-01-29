@@ -4,11 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:m="clr-namespace:HackerNews.Model"
+             xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HackerNews.Views.NavigationView"
              x:CompileBindings="True" x:DataType="vm:NavigationViewModel">
   <Design.DataContext>
-    <vm:NavigationViewModel />
+    <vm:NavigationViewModel>
+      <vm:NavigationViewModel.Items>
+        <objectModel:ObservableCollection x:TypeArguments="m:ILazyLoadable">
+          <vm:ItemViewModel IsVisible="False" />
+          <vm:CommentsViewModel IsVisible="True" />
+        </objectModel:ObservableCollection>
+      </vm:NavigationViewModel.Items>
+    </vm:NavigationViewModel>
   </Design.DataContext>
   <UserControl.Styles>
     <Style Selector="ItemsControl.navigation > ContentPresenter" x:DataType="m:ILazyLoadable">
