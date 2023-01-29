@@ -58,7 +58,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
         LoadUserCommand = new AsyncRelayCommand(async () =>
         {
-            var api = Ioc.Default.GetService<IHackerNewsApi>();
+            var api = Ioc.Default.GetService<IHackerNewsService>();
             var navigation = Ioc.Default.GetService<INavigation>();
 
             if (navigation is { })
@@ -151,7 +151,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        var api = Ioc.Default.GetService<IHackerNewsApi>();
+        var api = Ioc.Default.GetService<IHackerNewsService>();
 
         if (api is { } && _item is null && Id >= 0)
         {

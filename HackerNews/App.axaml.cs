@@ -47,7 +47,7 @@ public partial class App : Application
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
                 // Services
-                .AddSingleton<IHackerNewsApi, HackerNewsApiV0>()
+                .AddSingleton<IHackerNewsService, HackerNewsServiceV0>()
                 // ViewModels
                 .AddSingleton<INavigation, NavigationViewModel>()
                 .AddSingleton<IStateManager, StateManagerViewModel>()

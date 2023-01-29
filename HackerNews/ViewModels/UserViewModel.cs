@@ -50,7 +50,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        var api = Ioc.Default.GetService<IHackerNewsApi>();
+        var api = Ioc.Default.GetService<IHackerNewsService>();
 
         if (api is { } && Id is { })
         {

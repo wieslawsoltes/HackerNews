@@ -6,13 +6,13 @@ using HackerNews.Model;
 
 namespace HackerNews.Services;
 
-public class HackerNewsApiV0 : IHackerNewsApi
+public class HackerNewsServiceV0 : IHackerNewsService
 {
     private const string UriPrefix = "https://hacker-news.firebaseio.com/v0/";
     private readonly HttpClient _client;
     private readonly JsonSerializerOptions _options;
 
-    public HackerNewsApiV0()
+    public HackerNewsServiceV0()
     {
         _client = new HttpClient();
 

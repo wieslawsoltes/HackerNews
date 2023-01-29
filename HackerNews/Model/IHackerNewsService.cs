@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace HackerNews.Model;
 
-public interface IHackerNewsApi
+public interface IHackerNewsService
 {
     Task<T?> DeserializeAsync<T>(Stream stream);
     Task<Stream> GetStoriesJson(string storiesFeed);

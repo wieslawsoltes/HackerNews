@@ -34,7 +34,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
-        var api = Ioc.Default.GetService<IHackerNewsApi>();
+        var api = Ioc.Default.GetService<IHackerNewsService>();
         var navigation = Ioc.Default.GetService<INavigation>();
 
         if (api is { } && navigation is { } && _storiesFeed is { })
