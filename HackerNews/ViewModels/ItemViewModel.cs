@@ -59,7 +59,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         LoadUserCommand = new AsyncRelayCommand(async () =>
         {
             var api = Ioc.Default.GetService<IHackerNewsService>();
-            var navigation = Ioc.Default.GetService<INavigation>();
+            var navigation = Ioc.Default.GetService<INavigationService>();
 
             if (navigation is { })
             {
@@ -80,7 +80,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
         LoadKidsCommand = new AsyncRelayCommand(async () =>
         {
-            var navigation = Ioc.Default.GetService<INavigation>();
+            var navigation = Ioc.Default.GetService<INavigationService>();
             if (navigation is { })
             {
                 IsViewed = true;
@@ -98,7 +98,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
         LoadPartsCommand = new AsyncRelayCommand(async () =>
         {
-            var navigation = Ioc.Default.GetService<INavigation>();
+            var navigation = Ioc.Default.GetService<INavigationService>();
             if (navigation is { })
             {
                 var pollViewModel = new PollViewModel(this);
@@ -197,7 +197,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public async Task<bool> BackAsync()
     {
-        var navigation = Ioc.Default.GetService<INavigation>();
+        var navigation = Ioc.Default.GetService<INavigationService>();
         if (navigation is { })
         {
             return await navigation.BackAsync();

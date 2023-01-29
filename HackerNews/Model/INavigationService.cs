@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace HackerNews.Model;
 
-public interface INavigation
+public interface INavigationService
 {
     ObservableCollection<ILazyLoadable> Items { get; set; }
     bool CanGoBack { get; set; }

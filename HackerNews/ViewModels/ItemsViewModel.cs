@@ -35,7 +35,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     public async Task LoadAsync()
     {
         var api = Ioc.Default.GetService<IHackerNewsService>();
-        var navigation = Ioc.Default.GetService<INavigation>();
+        var navigation = Ioc.Default.GetService<INavigationService>();
 
         if (api is { } && navigation is { } && _storiesFeed is { })
         {
@@ -70,7 +70,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 
     public async Task<bool> BackAsync()
     {
-        var navigation = Ioc.Default.GetService<INavigation>();
+        var navigation = Ioc.Default.GetService<INavigationService>();
         if (navigation is { })
         {
             return await navigation.BackAsync();

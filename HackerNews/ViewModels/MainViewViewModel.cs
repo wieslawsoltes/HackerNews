@@ -13,7 +13,7 @@ namespace HackerNews.ViewModels;
 public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
     [ObservableProperty] private bool _isVisible;
-    [ObservableProperty] private INavigation? _navigation;
+    [ObservableProperty] private INavigationService? _navigation;
     [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;
     [ObservableProperty] private DateTimeOffset _lastUpdated;
@@ -21,7 +21,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public MainViewViewModel()
     {
-        _navigation = Ioc.Default.GetService<INavigation>();
+        _navigation = Ioc.Default.GetService<INavigationService>();
 
         _feeds = new ObservableCollection<ItemsViewModel>
         {
@@ -66,7 +66,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
             await CurrentFeed.LoadAsync();
 
-            var navigation = Ioc.Default.GetService<INavigation>();
+            var navigation = Ioc.Default.GetService<INavigationService>();
             if (navigation is { })
             {
                 await navigation.Clear();
@@ -85,7 +85,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     public async Task<bool> BackAsync()
     {
-        var navigation = Ioc.Default.GetService<INavigation>();
+        var navigation = Ioc.Default.GetService<INavigationService>();
         if (navigation is { })
         {
             return await navigation.BackAsync();

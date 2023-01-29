@@ -45,7 +45,7 @@ public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
 
     public async Task<bool> BackAsync()
     {
-        var navigation = Ioc.Default.GetService<INavigation>();
+        var navigation = Ioc.Default.GetService<INavigationService>();
         if (navigation is { })
         {
             return await navigation.BackAsync();

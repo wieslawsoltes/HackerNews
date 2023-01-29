@@ -49,7 +49,7 @@ public partial class App : Application
                 // Services
                 .AddSingleton<IHackerNewsService, HackerNewsServiceV0>()
                 // ViewModels
-                .AddSingleton<INavigation, NavigationViewModel>()
+                .AddSingleton<INavigationService, NavigationViewModel>()
                 .AddSingleton<IStateManager, StateManagerViewModel>()
                 // ViewModels
                 .AddTransient<ItemViewModel>()

@@ -30,7 +30,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
         LoadSubmittedCommand = new AsyncRelayCommand(async () =>
         {
-            var navigation = Ioc.Default.GetService<INavigation>();
+            var navigation = Ioc.Default.GetService<INavigationService>();
 
             if (navigation is { })
             {
@@ -75,7 +75,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
     public async Task<bool> BackAsync()
     {
-        var navigation = Ioc.Default.GetService<INavigation>();
+        var navigation = Ioc.Default.GetService<INavigationService>();
         if (navigation is { })
         {
             return await navigation.BackAsync();
