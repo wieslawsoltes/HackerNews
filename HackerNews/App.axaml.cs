@@ -48,9 +48,8 @@ public partial class App : Application
             new ServiceCollection()
                 // Services
                 .AddSingleton<IHackerNewsService, HackerNewsServiceV0>()
-                // ViewModels
                 .AddSingleton<INavigationService, NavigationViewModel>()
-                .AddSingleton<IStateManager, StateManagerViewModel>()
+                .AddSingleton<IStateStorageService, StateStorageViewModel>()
                 // ViewModels
                 .AddTransient<ItemViewModel>()
                 .AddTransient<ItemsViewModel>()

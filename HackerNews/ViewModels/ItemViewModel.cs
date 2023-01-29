@@ -46,7 +46,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public ItemViewModel(int id, int index = -1)
     {
-        var stateManager = Ioc.Default.GetService<IStateManager>();
+        var stateManager = Ioc.Default.GetService<IStateStorageService>();
 
         _id = id;
         _index = index;

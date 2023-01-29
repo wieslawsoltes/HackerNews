@@ -3,11 +3,11 @@ using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
 
-public partial class StateManagerViewModel : ViewModelBase, IStateManager
+public partial class StateStorageViewModel : ViewModelBase, IStateStorageService
 {
     private readonly HashSet<int> _viewedIds;
 
-    public StateManagerViewModel()
+    public StateStorageViewModel()
     {
         _viewedIds = new HashSet<int>();
     }
