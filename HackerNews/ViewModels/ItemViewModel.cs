@@ -122,7 +122,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         {
             if (Url is { })
             {
-                await Task.Run(() => Url.ToString());
+                await Task.Run(() =>
+                {
+                    // TODO: Add support for Android, iOS etc.
+                    OpenUrl(Url.ToString());
+                });
             }
         });
     }
