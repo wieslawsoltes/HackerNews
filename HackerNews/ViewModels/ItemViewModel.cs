@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using HackerNews.Converters;
 using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
@@ -98,14 +98,14 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
             if (_item.Type is { })
             {
-                Type = ItemTypeFromString(_item.Type);
+                Type = StringConverter.ItemTypeFromString(_item.Type);
             }
 
             ById = _item.By;
 
             Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
-            TimeAgo = ToTimeAgoString(Time);
-            Text = ParseHtmlString(_item.Text);
+            TimeAgo = StringConverter.ToTimeAgoString(Time);
+            Text = StringConverter.ParseHtmlString(_item.Text);
             Dead = _item.Dead;
             Parent = _item.Parent;
             Poll = _item.Poll;
@@ -243,25 +243,6 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public override string ToString()
-    {
-        return $"{Index}";
-    }
-
-    public static string? ParseHtmlString(string? text)
-    {
-        if (string.IsNullOrWhiteSpace(text))
-        {
-            return text;
-        }
-
-        var decoded = HttpUtility.HtmlDecode(text);
-
-        var breaks = decoded.Replace("<p>", $"{Environment.NewLine}{Environment.NewLine}");
-
-        return breaks;
-    }
-
     public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids)
     {
         var index = 1;
@@ -284,43 +265,9 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         });
         await Task.Yield();
     }
-
-    public static string ToTimeAgoString(DateTimeOffset dto)
+    
+    public override string ToString()
     {
-        var ts = DateTimeOffset.Now - dto;
-        if (ts.Days > 0)
-        {
-            return $"{ts.Days}d";
-        }
-        else if (ts.Hours > 0)
-        {
-            return $"{ts.Hours}h";
-        }
-        else if (ts.Minutes > 0)
-        {
-            return $"{ts.Minutes}m";
-        }
-        else if (ts.Seconds > 0)
-        {
-            return $"{ts.Seconds}s";
-        }
-        else
-        {
-            return $"{ts.Milliseconds}ms";
-        }
-    }
-
-    public static ItemType ItemTypeFromString(string type)
-    {
-        switch (type)
-        {
-            case "job": return ItemType.Job;
-            case "story": return ItemType.Story;
-            case "comment": return ItemType.Comment;
-            case "poll": return ItemType.Poll;
-            case "pollopt": return ItemType.PollOpt;
-        }
-
-        throw new Exception("Invalid item type.");
+        return $"{Index}";
     }
 }

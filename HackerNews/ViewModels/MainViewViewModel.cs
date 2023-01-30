@@ -6,6 +6,7 @@ using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using HackerNews.Converters;
 using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
@@ -113,6 +114,6 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     private void UpdateLastUpdatedAgo()
     {
-        LastUpdatedAgo = $"Last updated {ItemViewModel.ToTimeAgoString(LastUpdated)} ago";
+        LastUpdatedAgo = $"Last updated {StringConverter.ToTimeAgoString(LastUpdated)} ago";
     }
 }
