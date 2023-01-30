@@ -28,21 +28,7 @@
              DisplayMode="CompactOverlay"
              UseLightDismissOverlayMode="True">
       <SplitView.Pane>
-        <ItemsControl Items="{Binding Feeds}">
-          <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="vm:ItemsViewModel">
-              <Button Command="{Binding OpenFeedCommand}"
-                      HorizontalAlignment="Stretch"
-                      HorizontalContentAlignment="Left"
-                      VerticalAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      Background="Transparent">
-                <TextBlock Text="{Binding Title}"
-                           Margin="12"/>
-              </Button>
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <views:MainMenuView />
       </SplitView.Pane>
       <DockPanel>
         <views:HeaderView DockPanel.Dock="Top"
