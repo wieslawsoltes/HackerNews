@@ -1,8 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using HackerNews.Model;
+using HtmlAgilityPack;
 
 namespace HackerNews.Converters;
+
+public abstract class Node
+{
+    public List<Node> Nodes { get; }
+
+    protected Node()
+    {
+        Nodes = new List<Node>();
+    }
+}
+
+public class TextNode : Node
+{
+    public string Text { get; }
+
+    public TextNode(string text)
+    {
+        Text = text;
+    }
+}
+
+public class AnchorNode : Node
+{
+    public Node Content { get;  }
+
+    public string Href { get;  }
+
+    public AnchorNode(Node content, string href)
+    {
+        Content = content;
+        Href = href;
+    }
+}
+
+public class Layout
+{
+    public List<Node> Nodes { get; set; }
+
+    public Layout()
+    {
+        Nodes = new List<Node>();
+    }
+}
 
 public static class StringConverter
 {
@@ -13,6 +58,24 @@ public static class StringConverter
             return text;
         }
 
+        
+        
+        var doc = new HtmlDocument();
+        doc.LoadHtml(text);
+
+        Console.WriteLine($"[HtmlDocument]");
+        foreach (var htmlNode in doc.DocumentNode.Descendants())
+        {
+            Console.WriteLine($"  {htmlNode.Name})");
+
+            if (htmlNode.HasChildNodes)
+            {
+                // TODO:
+            }
+        }
+
+        
+        
         var decoded = HttpUtility.HtmlDecode(text);
 
         // TODO: Parse string to text layout object tree.
