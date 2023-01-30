@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using HackerNews.Model;
 
 namespace HackerNews.Controls;
