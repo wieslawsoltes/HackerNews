@@ -85,8 +85,15 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
         if (api is { } && _item is null && Id >= 0)
         {
-            var json = await api.GetItemJson(Id);
-            _item = await api.DeserializeAsync<Item>(json);
+            try
+            {
+                var json = await api.GetItemJson(Id);
+                _item = await api.DeserializeAsync<Item>(json);
+            }
+            catch (Exception e)
+            {
+                Ioc.Default.GetService<ILog>()?.Log(e);
+            }
         }
     }
 
@@ -160,20 +167,18 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     private async Task LoadUser()
     {
-        var api = Ioc.Default.GetService<IHackerNewsService>();
-        var navigation = Ioc.Default.GetService<INavigationService>();
-
-        if (navigation is { })
+        if (By is null)
         {
-            if (By is null)
+            if (_item?.By is { })
             {
-                if (api is { } && _item?.By is { })
-                {
-                    By = new UserViewModel(_item.By);
-                }
+                By = new UserViewModel(_item.By);
             }
+        }
 
-            if (By is { })
+        if (By is { })
+        {
+            var navigation = Ioc.Default.GetService<INavigationService>();
+            if (navigation is { })
             {
                 await navigation.NavigateAsync(By);
             }

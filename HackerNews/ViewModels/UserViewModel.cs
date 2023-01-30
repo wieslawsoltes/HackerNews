@@ -44,8 +44,15 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
         if (api is { } && Id is { })
         {
-            var json = await api.GetUserJson(Id);
-            _user = await api.DeserializeAsync<User>(json);
+            try
+            {
+                var json = await api.GetUserJson(Id);
+                _user = await api.DeserializeAsync<User>(json);
+            }
+            catch (Exception e)
+            {
+                Ioc.Default.GetService<ILog>()?.Log(e);
+            }
         }
     }
 

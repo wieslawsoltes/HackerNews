@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -35,9 +36,8 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     public async Task LoadAsync()
     {
         var api = Ioc.Default.GetService<IHackerNewsService>();
-        var navigation = Ioc.Default.GetService<INavigationService>();
 
-        if (api is { } && navigation is { } && _storiesFeed is { })
+        if (api is { } && _storiesFeed is { })
         {
             _ids ??= new List<int>();
             _ids.Clear();
@@ -45,10 +45,18 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
             Items ??= new ObservableCollection<ItemViewModel>();
             Items.Clear();
 
-            var json = await api.GetStoriesJson(_storiesFeed);
-            _ids = await api.DeserializeAsync<List<int>>(json);
-            if (_ids is null)
+            try
             {
+                var json = await api.GetStoriesJson(_storiesFeed);
+                _ids = await api.DeserializeAsync<List<int>>(json);
+                if (_ids is null)
+                {
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                Ioc.Default.GetService<ILog>()?.Log(e);
                 return;
             }
 
