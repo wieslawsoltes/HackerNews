@@ -1,5 +1,6 @@
 namespace HackerNews.Model.Html;
 
-public class QuoteNode : TextNode
+public class QuoteNode : Node
 {
+    public string? Text { get; set; }
 }
