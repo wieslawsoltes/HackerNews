@@ -33,7 +33,7 @@
   - [NuGet](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection)
 
 - Xamarin.Essential
-  - [Docs](https://learn.microsoft.com/pl-pl/xamarin/essentials/)
+  - [Docs](https://learn.microsoft.com/en-us/xamarin/essentials/)
   - [GitHub](https://github.com/xamarin/Essentials)
   - [NuGet](https://www.nuget.org/packages/Xamarin.Essentials)
   
