@@ -51,7 +51,7 @@
                  DockPanel.Dock="Top">
         <!-- Comment Details -->
         <StackPanel Orientation="Horizontal"
-                    Margin="12,6,12,0"
+                    Margin="6,6,6,0"
                     DockPanel.Dock="Left">
           <!-- Comment Time -->
           <TextBlock Text="{Binding TimeAgo}"
@@ -175,7 +175,7 @@
                            Foreground="{DynamicResource CommentForeground}"
                            FontSize="{DynamicResource CommentFontSize}"
                            FontWeight="Normal"
-                           Margin="18,12,18,12"
+                           Margin="12,6,12,6"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            IsEnabled="False" /> 

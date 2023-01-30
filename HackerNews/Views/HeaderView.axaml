@@ -12,7 +12,7 @@
     </vm:MainViewViewModel>
   </Design.DataContext>
   <DockPanel Background="{DynamicResource HeaderTitleBackground}"
-             Height="64">
+             Height="60">
     <!-- Hamburger Menu -->
     <Button Command="{Binding NavigationCommand}"
             Width="80"
@@ -80,7 +80,7 @@
                 Width="24" />
     </Button>
     <!-- Header Text -->
-    <StackPanel Spacing="6">
+    <StackPanel Spacing="3">
       <!-- Title -->
       <TextBlock Text="{Binding CurrentFeed.Title, FallbackValue=Title}"
                  TextWrapping="Wrap"

@@ -70,7 +70,7 @@
         </Panel>
       </Button>
       <StackPanel Background="{DynamicResource ItemTitleBackground}"
-                  Spacing="6"
+                  Spacing="3"
                   Margin="12,0,12,24"
                   DataContext="{Binding Item}">
         <!-- Item Title -->
@@ -127,7 +127,7 @@
                        FontStyle="Italic"
                        Margin="12,0,0,0" />
               <StackPanel Orientation="Horizontal"
-                          Margin="12,6,12,0">
+                          Margin="12,3,12,0">
                 <!-- Item Time -->
                 <TextBlock Text="{Binding TimeAgo}"
                            TextWrapping="Wrap"

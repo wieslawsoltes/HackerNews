@@ -39,7 +39,7 @@
       <StackPanel Spacing="6" 
                   HorizontalAlignment="Center" 
                   VerticalAlignment="Top"
-                  Margin="0,12,0,0">
+                  Margin="0,6,0,0">
         <!-- Item Index -->
         <TextBlock Text="{Binding Index}"
                    HorizontalAlignment="Center"
@@ -63,7 +63,7 @@
                  TextWrapping="Wrap"
                  FontSize="{DynamicResource ItemTitleFontSize}"
                  FontWeight="Regular"
-                 Margin="12,12,12,0"
+                 Margin="6,6,6,0"
                  Classes.viewed="{Binding IsViewed}">
         <TextBlock.Styles>
           <Style Selector="TextBlock">
@@ -86,8 +86,8 @@
                   VerticalContentAlignment="Stretch"
                   Background="Transparent"
                   Margin="0,0,0,0"
-                  Padding="12,0,0,0"
-                  MinWidth="96">
+                  Padding="6,0,0,0"
+                  MinWidth="90">
             <StackPanel Spacing="4"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -166,9 +166,9 @@
                      FontSize="{DynamicResource ItemDetailsFontSize}"
                      FontWeight="Regular"
                      FontStyle="Italic"
-                     Margin="12,0,0,0" />
+                     Margin="6,0,0,0" />
           <StackPanel Orientation="Horizontal"
-                      Margin="12,6,12,0">
+                      Margin="6,3,6,0">
             <!-- Item Time -->
             <TextBlock Text="{Binding TimeAgo}"
                        TextWrapping="Wrap"
