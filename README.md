@@ -16,3 +16,11 @@
 ### Issues
 
 - [Text processing fixes](https://github.com/AvaloniaUI/Avalonia/pull/10009)
+
+### Libraries Used
+
+- Xamarin.Essential
+  - [Xamarin.Essentials Docs](https://learn.microsoft.com/pl-pl/xamarin/essentials/)
+  - [Xamarin.Essentials GitHub](https://github.com/xamarin/Essentials)
+  - [Xamarin.Essentials NuGet](https://www.nuget.org/packages/Xamarin.Essentials)
+  
