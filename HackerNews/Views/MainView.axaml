@@ -21,10 +21,34 @@
     <PullGestureRecognizer PullDirection="RightToLeft"/>
     <PullGestureRecognizer PullDirection="LeftToRight"/>
   </UserControl.GestureRecognizers>
-  <DockPanel>
-    <views:HeaderView DockPanel.Dock="Top"
-                      IsVisible="{Binding !Navigation.CanGoBack, FallbackValue=True}"/>
-    <views:NavigationView  DataContext="{Binding Navigation}" />
-  </DockPanel>
+  <SplitView IsPaneOpen="{Binding IsMenuOpen}"
+             PanePlacement="Left"
+             OpenPaneLength="250"
+             CompactPaneLength="0"
+             DisplayMode="CompactOverlay"
+             UseLightDismissOverlayMode="True">
+      <SplitView.Pane>
+        <ItemsControl Items="{Binding Feeds}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="vm:ItemsViewModel">
+              <Button Command="{Binding OpenFeedCommand}"
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Left"
+                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Background="Transparent">
+                <TextBlock Text="{Binding Title}"
+                           Margin="12"/>
+              </Button>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </SplitView.Pane>
+      <DockPanel>
+        <views:HeaderView DockPanel.Dock="Top"
+                          IsVisible="{Binding !Navigation.CanGoBack, FallbackValue=True}"/>
+        <views:NavigationView  DataContext="{Binding Navigation}" />
+      </DockPanel>
+    </SplitView>
 </UserControl>
 

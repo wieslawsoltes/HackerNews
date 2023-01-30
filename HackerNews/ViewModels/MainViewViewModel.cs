@@ -15,6 +15,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
     [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private INavigationService? _navigation;
+    [ObservableProperty] private bool _isMenuOpen;
     [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;
     [ObservableProperty] private DateTimeOffset _lastUpdated;
@@ -26,17 +27,17 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
         _feeds = new ObservableCollection<ItemsViewModel>
         {
-            new ("topstories", "Top Stories"),
-            new ("newstories", "New Stories"),
-            new ("beststories", "Best Stories"),
-            new ("askstories", "Ask HN"),
-            new ("showstories", "Show HN"),
-            new ("jobstories", "Jobs"),
+            new ("topstories", "Top Stories", OpenFeedAsync),
+            new ("newstories", "New Stories", OpenFeedAsync),
+            new ("beststories", "Best Stories", OpenFeedAsync),
+            new ("askstories", "Ask HN", OpenFeedAsync),
+            new ("showstories", "Show HN", OpenFeedAsync),
+            new ("jobstories", "Jobs", OpenFeedAsync),
         };
 
         _currentFeed = _feeds.FirstOrDefault();
 
-        NavigationCommand = new AsyncRelayCommand(BackAsync);
+        NavigationCommand = new AsyncRelayCommand(ToggleMenuAsync);
 
         LoadCommand = new AsyncRelayCommand(LoadAsync);
 
@@ -95,9 +96,24 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         return await Task.FromResult(false);
     }
 
-    public async Task SearchAsync()
+    private async Task SearchAsync()
     {
         // TODO:
+        await Task.Yield();
+    }
+
+    private async Task OpenFeedAsync(ItemsViewModel feed)
+    {
+        CurrentFeed = feed;
+
+        IsMenuOpen = false;
+        
+        await LoadAsync();
+    }
+
+    private async Task ToggleMenuAsync()
+    {
+        IsMenuOpen = !IsMenuOpen;
         await Task.Yield();
     }
 

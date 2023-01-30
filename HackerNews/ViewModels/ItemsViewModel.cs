@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using HackerNews.Model;
 
 namespace HackerNews.ViewModels;
@@ -21,11 +22,15 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public ItemsViewModel(string storiesFeed, string title)
+    public ItemsViewModel(string storiesFeed, string title, Func<ItemsViewModel, Task> openFeed)
     {
         _storiesFeed = storiesFeed;
         _title = title;
+
+        OpenFeedCommand = new AsyncRelayCommand(async () => await openFeed(this));
     }
+
+    public IAsyncRelayCommand OpenFeedCommand { get; }
 
     public bool IsLoaded()
     {
