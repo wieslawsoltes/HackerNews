@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:HackerNews.ViewModels"
+             xmlns:converters="clr-namespace:HackerNews.Converters"
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="450"
+             x:Class="HackerNews.Views.MainMenuView"
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
+  <ItemsControl Items="{Binding Feeds}">
+    <ItemsControl.ItemTemplate>
+      <DataTemplate DataType="vm:ItemsViewModel">
+        <Button Command="{Binding OpenFeedCommand}"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Left"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Background="Transparent">
+          <StackPanel Spacing="4"
+                      Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+            <PathIcon Data="{Binding Icon, Converter={x:Static converters:IconConverter.Instance}}" 
+                      Height="18"
+                      Width="18" 
+                      Margin="12"/>
+            <TextBlock Text="{Binding Title}"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource ItemTitleForeground}"
+                       FontSize="{DynamicResource ItemTitleFontSize}"
+                       FontWeight="Regular"
+                       VerticalAlignment="Center"
+                       Margin="12"/>
+          </StackPanel>
+        </Button>
+      </DataTemplate>
+    </ItemsControl.ItemTemplate>
+  </ItemsControl>
+  <!-- TODO: The rest of menu items e.g. Settings -->
+</UserControl>
+
