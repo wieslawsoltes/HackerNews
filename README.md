@@ -17,10 +17,23 @@
 
 - [Text processing fixes](https://github.com/AvaloniaUI/Avalonia/pull/10009)
 
-### Libraries Used
+# Libraries Used
+
+- CommunityToolkit.Mvvm
+  - [Docs](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/?WT.mc_id=dotnet-0000-bramin)
+  - [Docs MVVM](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/)
+  - [Docs IoC](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/ioc)
+  - [GitHub](https://github.com/CommunityToolkit/dotnet)
+  - [GitHub MVVM](https://github.com/CommunityToolkit/MVVM-Samples)
+  - [NuGet](https://www.nuget.org/packages/CommunityToolkit.Mvvm)
+
+- Microsoft.Extensions.DependencyInjection
+  - [Docs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-7.0)
+  - [Docs](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)
+  - [NuGet](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection)
 
 - Xamarin.Essential
-  - [Xamarin.Essentials Docs](https://learn.microsoft.com/pl-pl/xamarin/essentials/)
-  - [Xamarin.Essentials GitHub](https://github.com/xamarin/Essentials)
-  - [Xamarin.Essentials NuGet](https://www.nuget.org/packages/Xamarin.Essentials)
+  - [Docs](https://learn.microsoft.com/pl-pl/xamarin/essentials/)
+  - [GitHub](https://github.com/xamarin/Essentials)
+  - [NuGet](https://www.nuget.org/packages/Xamarin.Essentials)
   
