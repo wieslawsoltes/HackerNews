@@ -7,7 +7,9 @@
              x:Class="HackerNews.Views.HeaderView"
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
   <Design.DataContext>
-    <vm:MainViewViewModel />
+    <vm:MainViewViewModel>
+      <vm:MainViewViewModel.LastUpdatedAgo>Last updated 12m ago</vm:MainViewViewModel.LastUpdatedAgo>
+    </vm:MainViewViewModel>
   </Design.DataContext>
   <DockPanel Background="{DynamicResource HeaderTitleBackground}"
              Height="64">
