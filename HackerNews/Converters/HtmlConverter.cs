@@ -109,15 +109,15 @@ public static class HtmlConverter
     {
         switch (node)
         {
+            case TextNode text:
+            {
+                sb.Append(text.Text);
+                break;
+            }
             case QuoteNode quote:
             {
                 // TODO: Format text with quote style.
                 sb.Append(quote.Text);
-                break;
-            }
-            case TextNode text:
-            {
-                sb.Append(text.Text);
                 break;
             }
             case ItalicNode italic:
