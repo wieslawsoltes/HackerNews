@@ -21,7 +21,8 @@
     <PullGestureRecognizer PullDirection="RightToLeft"/>
     <PullGestureRecognizer PullDirection="LeftToRight"/>
   </UserControl.GestureRecognizers>
-  <SplitView IsPaneOpen="{Binding IsMenuOpen}"
+  <SplitView Name="SplitView"
+             IsPaneOpen="{Binding IsMenuOpen}"
              PanePlacement="Left"
              OpenPaneLength="250"
              CompactPaneLength="0"
