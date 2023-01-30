@@ -27,12 +27,12 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
         _feeds = new ObservableCollection<ItemsViewModel>
         {
-            new ("topstories", "Top Stories", OpenFeedAsync),
-            new ("newstories", "New Stories", OpenFeedAsync),
-            new ("beststories", "Best Stories", OpenFeedAsync),
-            new ("askstories", "Ask HN", OpenFeedAsync),
-            new ("showstories", "Show HN", OpenFeedAsync),
-            new ("jobstories", "Jobs", OpenFeedAsync),
+            new ("topstories", "Top Stories", "ArrowTrendingFilledIcon", OpenFeedAsync),
+            new ("newstories", "New Stories", "BookExclamationMarkFilledIcon", OpenFeedAsync),
+            new ("beststories", "Best Stories", "ThumbLikeFilledIcon", OpenFeedAsync),
+            new ("askstories", "Ask HN", "BookQuestionMarkFilledIcon", OpenFeedAsync),
+            new ("showstories", "Show HN", "CheckmarkFilledIcon", OpenFeedAsync),
+            new ("jobstories", "Jobs", "BriefcaseFilledIcon", OpenFeedAsync),
         };
 
         _currentFeed = _feeds.FirstOrDefault();
