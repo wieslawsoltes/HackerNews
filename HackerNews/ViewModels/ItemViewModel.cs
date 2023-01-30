@@ -105,7 +105,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
             Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
             TimeAgo = StringConverter.ToTimeAgoString(Time);
-            Text = StringConverter.ParseHtmlString(_item.Text);
+            Text = HtmlConverter.ParseHtmlString(_item.Text);
             Dead = _item.Dead;
             Parent = _item.Parent;
             Poll = _item.Poll;

@@ -1,33 +1,14 @@
 ﻿using System;
+using System.Text;
 using System.Web;
 using HackerNews.Model;
+using HackerNews.Model.Html;
+using HtmlAgilityPack;
 
 namespace HackerNews.Converters;
 
 public static class StringConverter
 {
-    public static string? ParseHtmlString(string? text)
-    {
-        if (string.IsNullOrWhiteSpace(text))
-        {
-            return text;
-        }
-
-        var decoded = HttpUtility.HtmlDecode(text);
-
-        // TODO: Parse string to text layout object tree.
-
-        var breaks = decoded.Replace("<p>", $"{Environment.NewLine}{Environment.NewLine}");
-
-        // TODO: Add support for <a href="">...</a> tag.
-        // TODO: Add support for <i>...</i> tag.
-        // TODO: Add support for <pre>...</pre> tag.
-        // TODO: Add support for <code>...</code> tag.
-        // TODO: Add support for '>' citation char.
-
-        return breaks;
-    }
-
     public static string ToTimeAgoString(DateTimeOffset dto)
     {
         var ts = DateTimeOffset.Now - dto;

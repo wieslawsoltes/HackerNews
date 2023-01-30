@@ -36,4 +36,9 @@
   - [Docs](https://learn.microsoft.com/en-us/xamarin/essentials/)
   - [GitHub](https://github.com/xamarin/Essentials)
   - [NuGet](https://www.nuget.org/packages/Xamarin.Essentials)
+
+- HtmlAgilityPack
+  - [Docs](https://html-agility-pack.net/documentation)
+  - [GitHub](https://github.com/zzzprojects/html-agility-pack)
+  - [NuGet](https://www.nuget.org/packages/HtmlAgilityPack/)
   
