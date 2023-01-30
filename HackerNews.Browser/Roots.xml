@@ -1,0 +1,5 @@
+<linker>
+  <assembly fullname="HackerNews" preserve="All" />
+  <assembly fullname="HackerNews.Browser" preserve="All" />
+  <assembly fullname="Avalonia.Themes.Fluent" preserve="All" />
+</linker>
