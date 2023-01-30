@@ -46,12 +46,12 @@ public partial class MainView : UserControl
         {
             case PullDirection.LeftToRight:
                 // TODO: Show hamburger menu.
-                SplitView.IsPaneOpen = true;
+                SplitView.SetValue(SplitView.IsPaneOpenProperty, true);
                 e.Handled = true;
                 break;
             case PullDirection.RightToLeft:
                 // TODO: Hide hamburger menu.
-                SplitView.IsPaneOpen = false;
+                SplitView.SetValue(SplitView.IsPaneOpenProperty, false);
                 e.Handled = true;
                 break;
         }
