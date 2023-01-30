@@ -20,7 +20,7 @@
 # Libraries Used
 
 - CommunityToolkit.Mvvm
-  - [Docs](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/?WT.mc_id=dotnet-0000-bramin)
+  - [Docs](https://learn.microsoft.com/en-us/dotnet/communitytoolkit)
   - [Docs MVVM](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/)
   - [Docs IoC](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/ioc)
   - [GitHub](https://github.com/CommunityToolkit/dotnet)
@@ -28,8 +28,8 @@
   - [NuGet](https://www.nuget.org/packages/CommunityToolkit.Mvvm)
 
 - Microsoft.Extensions.DependencyInjection
-  - [Docs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-7.0)
-  - [Docs](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)
+  - [Docs Fundamentals](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-7.0)
+  - [Docs Extensions](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)
   - [NuGet](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection)
 
 - Xamarin.Essential
