@@ -39,7 +39,7 @@
       <StackPanel Spacing="6" 
                   HorizontalAlignment="Center" 
                   VerticalAlignment="Top"
-                  Margin="0,6,0,0">
+                  Margin="0,12,0,0">
         <!-- Item Index -->
         <TextBlock Text="{Binding Index}"
                    HorizontalAlignment="Center"
@@ -63,7 +63,7 @@
                  TextWrapping="Wrap"
                  FontSize="{DynamicResource ItemTitleFontSize}"
                  FontWeight="Regular"
-                 Margin="6,6,6,0"
+                 Margin="6,12,6,0"
                  Classes.viewed="{Binding IsViewed}">
         <TextBlock.Styles>
           <Style Selector="TextBlock">
