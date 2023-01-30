@@ -50,6 +50,7 @@ public partial class App : Application, IBrowserService
         Ioc.Default.ConfigureServices(
             new ServiceCollection()
                 // Services
+                .AddSingleton<ILog, ConsoleLog>()
                 .AddSingleton<IHackerNewsService, HackerNewsServiceV0>()
                 .AddSingleton<INavigationService, NavigationViewModel>()
                 .AddSingleton<IStateStorageService, StateStorageViewModel>()
