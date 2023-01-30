@@ -28,17 +28,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     {
         _id = id;
 
-        LoadSubmittedCommand = new AsyncRelayCommand(async () =>
-        {
-            var navigation = Ioc.Default.GetService<INavigationService>();
-
-            if (navigation is { })
-            {
-                var submittedViewModel = new SubmittedViewModel(this);
-
-                await navigation.NavigateAsync(submittedViewModel);
-            }
-        });
+        LoadSubmittedCommand = new AsyncRelayCommand(async () => await LoadSubmitted());
     }
 
     public IAsyncRelayCommand? LoadSubmittedCommand { get; }
@@ -92,6 +82,18 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
             Submitted.Clear();
 
             await ItemViewModel.LoadItemsAsync(Submitted, _user.Submitted);
+        }
+    }
+
+    private async Task LoadSubmitted()
+    {
+        var navigation = Ioc.Default.GetService<INavigationService>();
+
+        if (navigation is { })
+        {
+            var submittedViewModel = new SubmittedViewModel(this);
+
+            await navigation.NavigateAsync(submittedViewModel);
         }
     }
 

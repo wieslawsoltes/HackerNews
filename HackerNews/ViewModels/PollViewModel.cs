@@ -7,37 +7,36 @@ namespace HackerNews.ViewModels;
 
 public partial class PollViewModel : ViewModelBase, ILazyLoadable
 {
-    private readonly ItemViewModel? _itemViewModel;
-
     [ObservableProperty] private bool _isVisible;
+    [ObservableProperty] private ItemViewModel? _item;
 
     public PollViewModel()
     {
     }
 
-    public PollViewModel(ItemViewModel itemViewModel)
+    public PollViewModel(ItemViewModel item)
     {
-        _itemViewModel = itemViewModel;
+        _item = item;
     }
 
     public bool IsLoaded()
     {
-        return _itemViewModel?.Parts is { };
+        return Item?.Parts is { };
     }
 
     public async Task LoadAsync()
     {
-        if (_itemViewModel is { })
+        if (Item is { })
         {
-            await _itemViewModel.LoadKPartsAsync();
+            await Item.LoadKPartsAsync();
         }
     }
 
     public async Task UpdateAsync()
     {
-        if (_itemViewModel?.Parts is { })
+        if (Item?.Parts is { })
         {
-            foreach (var part in _itemViewModel.Parts)
+            foreach (var part in Item.Parts)
             {
                 await part.UpdateAsync();
             }

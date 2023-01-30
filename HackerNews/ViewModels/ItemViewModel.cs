@@ -44,90 +44,22 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public ItemViewModel(int id, int index = -1)
     {
-        var stateManager = Ioc.Default.GetService<IStateStorageService>();
-
         _id = id;
         _index = index;
   
-        if (stateManager is { })
-        {
-            _isViewed = stateManager.GetIsViewed(id);
-        }
+        LoadUserCommand = new AsyncRelayCommand(async () => await LoadUser());
 
-        LoadUserCommand = new AsyncRelayCommand(async () =>
-        {
-            var api = Ioc.Default.GetService<IHackerNewsService>();
-            var navigation = Ioc.Default.GetService<INavigationService>();
+        LoadKidsCommand = new AsyncRelayCommand(async () => await LoadKids());
 
-            if (navigation is { })
-            {
-                if (_by is null)
-                {
-                    if (api is { } && _item?.By is { })
-                    {
-                        By = new UserViewModel(_item.By);
-                    }
-                }
+        LoadPartsCommand = new AsyncRelayCommand(async () => await LoadParts());
 
-                if (_by is { })
-                {
-                    await navigation.NavigateAsync(_by);
-                }
-            }
-        });
+        VoteCommand = new AsyncRelayCommand(async () => await Vote());
 
-        LoadKidsCommand = new AsyncRelayCommand(async () =>
-        {
-            var navigation = Ioc.Default.GetService<INavigationService>();
-            if (navigation is { })
-            {
-                IsViewed = true;
+        SaveCommand = new AsyncRelayCommand(async () => await Save());
 
-                if (stateManager is { })
-                {
-                    stateManager.SetIsViewed(Id);
-                }
-                
-                var commentsViewModel = new CommentsViewModel(this);
-
-                await navigation.NavigateAsync(commentsViewModel);
-            }
-        });
-
-        LoadPartsCommand = new AsyncRelayCommand(async () =>
-        {
-            var navigation = Ioc.Default.GetService<INavigationService>();
-            if (navigation is { })
-            {
-                var pollViewModel = new PollViewModel(this);
-
-                await navigation.NavigateAsync(pollViewModel);
-            }
-        });
-
-        VoteCommand = new AsyncRelayCommand(async () =>
-        {
-            // TODO:
-            await Task.Yield();
-        });
-
-        SaveCommand = new AsyncRelayCommand(async () =>
-        {
-            // TODO:
-            await Task.Yield();
-        });
-
-        OpenUrlCommand = new AsyncRelayCommand(async () =>
-        {
-            if (Url is { })
-            {
-                var browser = Ioc.Default.GetService<IBrowserService>();
-                if (browser is { })
-                {
-                    await browser.OpenBrowserAsync(Url);
-                }
-            }
-        });
+        OpenUrlCommand = new AsyncRelayCommand(async () => await OpenUrl());
+ 
+        LoadIsViewed();
     }
 
     public IAsyncRelayCommand? LoadUserCommand { get; }
@@ -223,6 +155,91 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             Parts.Clear();
 
             await LoadItemsAsync(Parts, _item.Parts);
+        }
+    }
+
+    private async Task LoadUser()
+    {
+        var api = Ioc.Default.GetService<IHackerNewsService>();
+        var navigation = Ioc.Default.GetService<INavigationService>();
+
+        if (navigation is { })
+        {
+            if (By is null)
+            {
+                if (api is { } && _item?.By is { })
+                {
+                    By = new UserViewModel(_item.By);
+                }
+            }
+
+            if (By is { })
+            {
+                await navigation.NavigateAsync(By);
+            }
+        }
+    }
+
+    private async Task LoadKids()
+    {
+        var navigation = Ioc.Default.GetService<INavigationService>();
+        if (navigation is { })
+        {
+            IsViewed = true;
+
+            var stateManager = Ioc.Default.GetService<IStateStorageService>();
+            if (stateManager is { })
+            {
+                stateManager.SetIsViewed(Id);
+            }
+
+            var commentsViewModel = new CommentsViewModel(this);
+
+            await navigation.NavigateAsync(commentsViewModel);
+        }
+    }
+
+    private async Task LoadParts()
+    {
+        var navigation = Ioc.Default.GetService<INavigationService>();
+        if (navigation is { })
+        {
+            var pollViewModel = new PollViewModel(this);
+
+            await navigation.NavigateAsync(pollViewModel);
+        }
+    }
+
+    private async Task Vote()
+    {
+        // TODO:
+        await Task.Yield();
+    }
+
+    private async Task Save()
+    {
+        // TODO:
+        await Task.Yield();
+    }
+
+    private async Task OpenUrl()
+    {
+        if (Url is { })
+        {
+            var browser = Ioc.Default.GetService<IBrowserService>();
+            if (browser is { })
+            {
+                await browser.OpenBrowserAsync(Url);
+            }
+        }
+    }
+
+    private void LoadIsViewed()
+    {
+        var stateManager = Ioc.Default.GetService<IStateStorageService>();
+        if (stateManager is { })
+        {
+            IsViewed = stateManager.GetIsViewed(Id);
         }
     }
 

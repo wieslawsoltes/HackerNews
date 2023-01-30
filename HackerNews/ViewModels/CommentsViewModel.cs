@@ -8,35 +8,35 @@ namespace HackerNews.ViewModels;
 public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
 {
     [ObservableProperty] private bool _isVisible;
-    [ObservableProperty] private ItemViewModel? _itemViewModel;
+    [ObservableProperty] private ItemViewModel? _item;
 
     public CommentsViewModel()
     {
     }
 
-    public CommentsViewModel(ItemViewModel itemViewModel)
+    public CommentsViewModel(ItemViewModel item)
     {
-        _itemViewModel = itemViewModel;
+        _item = item;
     }
 
     public bool IsLoaded()
     {
-        return ItemViewModel?.Kids is { };
+        return Item?.Kids is { };
     }
 
     public async Task LoadAsync()
     {
-        if (ItemViewModel is { })
+        if (Item is { })
         {
-            await ItemViewModel.LoadKidsAsync();
+            await Item.LoadKidsAsync();
         }
     }
 
     public async Task UpdateAsync()
     {
-        if (ItemViewModel?.Kids is { })
+        if (Item?.Kids is { })
         {
-            foreach (var kid in ItemViewModel.Kids)
+            foreach (var kid in Item.Kids)
             {
                 await kid.UpdateAsync();
             }

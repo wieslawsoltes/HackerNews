@@ -14,9 +14,9 @@ public partial class SubmittedViewModel : ViewModelBase, ILazyLoadable
     {
     }
 
-    public SubmittedViewModel(UserViewModel userViewModel)
+    public SubmittedViewModel(UserViewModel user)
     {
-        _user = userViewModel;
+        _user = user;
     }
 
     public bool IsLoaded()
