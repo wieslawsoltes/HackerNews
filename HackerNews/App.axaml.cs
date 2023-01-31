@@ -11,10 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HackerNews;
 
-public partial class App : Application, IBrowserService
+public partial class App : Application, IBrowserService, IShareService
 {
     public static IBrowserService? BrowserService { get; set; }
-    
+
+    public static IShareService? ShareService { get; set; }
+
     public App()
     {
         ConfigureServices();
@@ -55,6 +57,7 @@ public partial class App : Application, IBrowserService
                 .AddSingleton<INavigationService, NavigationViewModel>()
                 .AddSingleton<IStateStorageService, StateStorageViewModel>()
                 .AddSingleton<IBrowserService, App>(_ => this)
+                .AddSingleton<IShareService, App>(_ => this)
                 // ViewModels
                 .AddTransient<ItemViewModel>()
                 .AddTransient<ItemsViewModel>()
@@ -66,11 +69,18 @@ public partial class App : Application, IBrowserService
                 .BuildServiceProvider());
     }
 
-    public async Task OpenBrowserAsync(System.Uri uri, bool external = false)
+    async Task IBrowserService.OpenBrowserAsync(System.Uri uri, bool external)
     {
         if (BrowserService is { })
         {
             await BrowserService.OpenBrowserAsync(uri, external);
+        }
+    }
+    async Task IShareService.ShareTextAsync(string title, string text, string uri)
+    {
+        if (ShareService is { })
+        {
+            await ShareService.ShareTextAsync(title, text, uri);
         }
     }
 }

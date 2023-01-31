@@ -11,7 +11,7 @@ namespace HackerNews.iOS;
 // User Interface of the application, as well as listening (and optionally responding) to 
 // application events from iOS.
 [Register("AppDelegate")]
-public class AppDelegate : AvaloniaAppDelegate<App>, IBrowserService
+public class AppDelegate : AvaloniaAppDelegate<App>, IBrowserService, IShareService
 {
     public async Task OpenBrowserAsync(System.Uri uri, bool external = false)
     {
@@ -31,12 +31,23 @@ public class AppDelegate : AvaloniaAppDelegate<App>, IBrowserService
         }
     }
 
+    public async Task ShareTextAsync(string title, string text, string uri)
+    {
+        await Share.RequestAsync(new ShareTextRequest
+        {
+            Title = title,
+            Text = text,
+            Uri = uri
+        });
+    }
+
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {
         return base.CustomizeAppBuilder(builder)
             .AfterSetup(_ =>
             {
                 App.BrowserService = this;
+                App.ShareService = this;
             });
     }
 }

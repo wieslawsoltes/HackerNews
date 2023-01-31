@@ -248,8 +248,17 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     private async Task Share()
     {
-        // TODO: Share
-        await Task.Yield();
+        if (Url is { })
+        {
+            var share = Ioc.Default.GetService<IShareService>();
+            if (share is { })
+            {
+                await share.ShareTextAsync(
+                    "Share Url", 
+                    Title ?? "", 
+                    Url.ToString());
+            }
+        }
     }
 
     private async Task Vote()

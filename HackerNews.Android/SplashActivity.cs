@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using Android.Net;
 using Avalonia.Android;
 using HackerNews.Model;
 using Xamarin.Essentials;
@@ -9,7 +8,7 @@ using Xamarin.Essentials;
 namespace HackerNews.Android;
 
 [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
-public class SplashActivity : AvaloniaSplashActivity<App>, IBrowserService
+public class SplashActivity : AvaloniaSplashActivity<App>, IBrowserService, IShareService
 {
     public async Task OpenBrowserAsync(System.Uri uri, bool external = false)
     {
@@ -29,12 +28,23 @@ public class SplashActivity : AvaloniaSplashActivity<App>, IBrowserService
         }
     }
 
+    public async Task ShareTextAsync(string title, string text, string uri)
+    {
+        await Share.RequestAsync(new ShareTextRequest
+        {
+            Title = title,
+            Text = text,
+            Uri = uri
+        });
+    }
+
     protected override Avalonia.AppBuilder CustomizeAppBuilder(Avalonia.AppBuilder builder)
     {
         return base.CustomizeAppBuilder(builder)
             .AfterSetup(_ =>
             {
                 App.BrowserService = this;
+                App.ShareService = this;
             });
     }
 

@@ -10,6 +10,7 @@ class Program
         .AfterSetup(_ =>
         {
             App.BrowserService = new DesktopBrowserService();
+            App.ShareService = new DesktopShareService();
         })
         .StartWithClassicDesktopLifetime(args);
 
