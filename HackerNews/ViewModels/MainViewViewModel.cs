@@ -15,7 +15,10 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 {
     [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private INavigationService? _navigation;
-    [ObservableProperty] private bool _isMenuOpen;
+    [ObservableProperty] private bool _isMenuViewOpen;
+    [ObservableProperty] private bool _isSearchViewOpen;
+    [ObservableProperty] private bool _isListDisplayOptionsViewOpen;
+    [ObservableProperty] private bool _isSettingViewOpen;
     [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;
     [ObservableProperty] private DateTimeOffset _lastUpdated;
@@ -39,20 +42,28 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
         _currentFeed = _feeds.FirstOrDefault();
 
-        NavigationCommand = new AsyncRelayCommand(ToggleMenuAsync);
-
         LoadCommand = new AsyncRelayCommand(LoadAsync);
 
+        MenuCommand = new AsyncRelayCommand(MenuAsync);
+
         SearchCommand = new AsyncRelayCommand(SearchAsync);
+
+        ListDisplayOptionsCommand = new AsyncRelayCommand(ListDisplayOptionsAsync);
+
+        SettingsCommand = new AsyncRelayCommand(SettingsAsync);
 
         RunUpdateTimer();
     }
 
     public IAsyncRelayCommand LoadCommand { get; }
 
-    public IAsyncRelayCommand NavigationCommand { get; }
+    public IAsyncRelayCommand MenuCommand { get; }
 
     public IAsyncRelayCommand SearchCommand { get; }
+
+    public IAsyncRelayCommand ListDisplayOptionsCommand { get; }
+
+    public IAsyncRelayCommand SettingsCommand { get; }
 
     public bool IsLoaded()
     {
@@ -98,25 +109,45 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         return await Task.FromResult(false);
     }
 
-    private async Task SearchAsync()
-    {
-        // TODO:
-        await Task.Yield();
-    }
-
     private async Task OpenFeedAsync(ItemsViewModel feed)
     {
         CurrentFeed = feed;
 
-        IsMenuOpen = false;
-        
+        HideViews();
+
         await LoadAsync();
     }
 
-    private async Task ToggleMenuAsync()
+    private async Task MenuAsync()
     {
-        IsMenuOpen = !IsMenuOpen;
+        IsMenuViewOpen = !IsMenuViewOpen;
         await Task.Yield();
+    }
+
+    private async Task SearchAsync()
+    {
+        IsSearchViewOpen = !IsSearchViewOpen;
+        await Task.Yield();
+    }
+
+    private async Task ListDisplayOptionsAsync()
+    {
+        IsListDisplayOptionsViewOpen = !IsListDisplayOptionsViewOpen;
+        await Task.Yield();
+    }
+
+    private async Task SettingsAsync()
+    {
+        IsSettingViewOpen = !IsSettingViewOpen;
+        await Task.Yield();
+    }
+
+    private void HideViews()
+    {
+        IsMenuViewOpen = false;
+        IsSearchViewOpen = false;
+        IsListDisplayOptionsViewOpen = false;
+        IsSettingViewOpen = false;
     }
 
     private void RunUpdateTimer()
