@@ -24,16 +24,15 @@
             DockPanel.Dock="Left">
       <Panel Width="24" 
              Height="24" 
-             ClipToBounds="False"
-             DataContext="{Binding Navigation}">
+             ClipToBounds="False">
         <PathIcon Data="{DynamicResource NavigationIcon}" 
                   Height="24"
                   Width="24"
-                  IsVisible="{Binding !CanGoBack}" />
+                  IsVisible="{Binding !Navigation.CanGoBack}" />
         <PathIcon Data="{DynamicResource ArrowLeftFilledIcon}" 
                   Height="24"
                   Width="24"
-                  IsVisible="{Binding CanGoBack}" />
+                  IsVisible="{Binding Navigation.CanGoBack}" />
       </Panel>
     </Button>
     <!-- Settings Menu -->
