@@ -18,8 +18,8 @@
     <!--<PullGestureRecognizer PullDirection="TopToBottom"/>-->
     <!-- TODO: -->
     <!--<PullGestureRecognizer PullDirection="BottomToTop"/>-->
-    <PullGestureRecognizer PullDirection="RightToLeft"/>
-    <PullGestureRecognizer PullDirection="LeftToRight"/>
+    <!--<PullGestureRecognizer PullDirection="RightToLeft"/>-->
+    <!--<PullGestureRecognizer PullDirection="LeftToRight"/>-->
   </UserControl.GestureRecognizers>
   <SplitView Name="SplitView"
              IsPaneOpen="{Binding IsMenuViewOpen}"
