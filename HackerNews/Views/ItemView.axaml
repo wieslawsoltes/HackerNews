@@ -127,10 +127,18 @@
             </Button.Styles>
             <Button.Flyout>
               <MenuFlyout Placement="LeftEdgeAlignedTop">
-                <MenuItem Header="Refresh" Command="{Binding RefreshCommand}" />
-                <MenuItem Header="Add comment" Command="{Binding CommentCommand}" />
-                <MenuItem Header="View user" Command="{Binding LoadUserCommand}" />
-                <MenuItem Header="Share" Command="{Binding ShareCommand}" />
+                <MenuItem Header="Refresh" 
+                          Padding="12"
+                          Command="{Binding RefreshCommand}" />
+                <MenuItem Header="Add comment" 
+                          Padding="12"
+                          Command="{Binding CommentCommand}" />
+                <MenuItem Header="View user" 
+                          Padding="12"
+                          Command="{Binding LoadUserCommand}" />
+                <MenuItem Header="Share" 
+                          Padding="12"
+                          Command="{Binding ShareCommand}" />
               </MenuFlyout>
             </Button.Flyout>
             <StackPanel Spacing="3"
