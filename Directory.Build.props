@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <AvaloniaVersion>11.0.999-cibuild0029293-beta</AvaloniaVersion>
+    <AvaloniaVersion>11.0.999-cibuild0029326-beta</AvaloniaVersion>
     <XamlNameReferenceGeneratorVersion>1.5.1</XamlNameReferenceGeneratorVersion>
     <CommunityToolkitMvvmVersion>8.1.0</CommunityToolkitMvvmVersion>
     <MicrosoftExtensionsDependencyInjectionVersion>7.0.0</MicrosoftExtensionsDependencyInjectionVersion>
