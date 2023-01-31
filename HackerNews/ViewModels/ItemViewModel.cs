@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using HackerNews.Converters;
 using HackerNews.Model;
+using HackerNews.Model.Html;
 
 namespace HackerNews.ViewModels;
 
@@ -26,6 +27,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private DateTimeOffset _time;
     [ObservableProperty] private string? _timeAgo;
     [ObservableProperty] private string? _text;
+    [ObservableProperty] private Node? _textNode;
     [ObservableProperty] private bool _dead;
     [ObservableProperty] private int? _parent;
     [ObservableProperty] private int? _poll;
@@ -112,7 +114,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
             Time = DateTimeOffset.FromUnixTimeSeconds(_item.Time);
             TimeAgo = StringConverter.ToTimeAgoString(Time);
-            Text = HtmlConverter.ParseHtmlString(_item.Text);
+
+            var node = HtmlConverter.ParseHtml(_item.Text);
+            Text = HtmlConverter.ToString(node);
+            TextNode = node;
+
             Dead = _item.Dead;
             Parent = _item.Parent;
             Poll = _item.Poll;

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:controls="clr-namespace:HackerNews.Controls"
+             xmlns:views="clr-namespace:HackerNews.Views"
              xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="170"
              x:Class="HackerNews.Views.CommentView"
@@ -170,6 +171,8 @@
         </StackPanel>
       </Button>
       <!-- Text -->
+      <!-- TODO: -->
+      <!--
       <SelectableTextBlock Text="{Binding Text}"
                            TextWrapping="Wrap"
                            Foreground="{DynamicResource CommentForeground}"
@@ -178,8 +181,10 @@
                            Margin="12,6,12,6"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           IsEnabled="False" /> 
-
+                           IsEnabled="False" /
+      -->
+      <views:HtmlView DataContext="{Binding TextNode}"
+                      Margin="12,6,12,6" />
     </DockPanel>
   </Border>
 </UserControl>

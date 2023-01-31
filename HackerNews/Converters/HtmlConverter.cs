@@ -110,39 +110,39 @@ public static class HtmlConverter
     {
         switch (node)
         {
-            case TextNode text:
+            case TextNode textNode:
             {
-                sb.Append(text.Text);
+                sb.Append(textNode.Text);
                 break;
             }
-            case QuoteNode quote:
+            case QuoteNode quoteNode:
             {
                 // TODO: Format text with quote style.
-                sb.Append(quote.Text);
+                sb.Append(quoteNode.Text);
                 break;
             }
-            case ItalicNode italic:
+            case ItalicNode italicNode:
             {
                 // TODO: Format text with italic style.
                 break;
             }
-            case ParagraphNode paragraph:
+            case ParagraphNode paragraphNode:
             {
                 sb.AppendLine();
                 sb.AppendLine();
                 break;
             }
-            case AnchorNode anchor:
+            case AnchorNode anchorNode:
             {
                 // TODO: Add anchor control.
                 break;
             }
-            case PreNode pre:
+            case PreNode preNode:
             {
                 // TODO: Format text with pre style.
                 break;
             }
-            case CodeNode code:
+            case CodeNode codeNode:
             {
                 // TODO: Format text with code style.
                 break;
@@ -155,35 +155,50 @@ public static class HtmlConverter
         }
     }
 
-    public static string? ParseHtmlString(string? html)
+    public static Node? ParseHtml(string? html)
     {
-        // TODO: Return html object model instead of string.
+        var root = new Node();
 
         if (string.IsNullOrWhiteSpace(html))
         {
-            return html;
+            return root;
         }
 
         try
         {
-            var root = new Node();
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
             ParseHtml(doc.DocumentNode, root);
+            return root;
+        }
+        catch (Exception e)
+        {
+#if DEBUG
+            Console.WriteLine(e);
+#endif
+            return null;
+        }
+    }
+
+    public static string? ToString(Node? node)
+    {
+        if (node is null)
+        {
+            return null;
+        }
+
+        try
+        {
             var sb = new StringBuilder();
-            PrintNode(root, sb);
+            PrintNode(node, sb);
             return sb.ToString();
         }
         catch (Exception e)
         {
-            // TODO: Return null.
+#if DEBUG
             Console.WriteLine(e);
-            return $"Error: {e.Message}";
+#endif
+            return null;
         }
-
-        // TODO: Remove below old code.
-        // var decoded = HttpUtility.HtmlDecode(html);
-        // var breaks = decoded.Replace("<p>", $"{Environment.NewLine}{Environment.NewLine}");
-        // return breaks;
     }
 }
