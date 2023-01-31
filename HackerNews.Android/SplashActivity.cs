@@ -34,6 +34,7 @@ public class SplashActivity : AvaloniaSplashActivity<App>, IBrowserService, ISha
         {
             Title = title,
             Text = text,
+            Subject = text,
             Uri = uri
         });
     }
