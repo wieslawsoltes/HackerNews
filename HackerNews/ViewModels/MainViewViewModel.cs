@@ -18,7 +18,6 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _isMenuViewOpen;
     [ObservableProperty] private bool _isSearchViewOpen;
     [ObservableProperty] private bool _isListDisplayOptionsViewOpen;
-    [ObservableProperty] private bool _isSettingViewOpen;
     [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;
     [ObservableProperty] private DateTimeOffset _lastUpdated;
@@ -138,8 +137,15 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
 
     private async Task SettingsAsync()
     {
-        IsSettingViewOpen = !IsSettingViewOpen;
-        await Task.Yield();
+        var navigation = Ioc.Default.GetService<INavigationService>();
+        if (navigation is { })
+        {
+            HideViews();
+
+            var settingsViewModel = new SettingsViewModel();
+
+            await navigation.NavigateAsync(settingsViewModel);
+        }
     }
 
     private void HideViews()
@@ -147,7 +153,6 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         IsMenuViewOpen = false;
         IsSearchViewOpen = false;
         IsListDisplayOptionsViewOpen = false;
-        IsSettingViewOpen = false;
     }
 
     private void RunUpdateTimer()
