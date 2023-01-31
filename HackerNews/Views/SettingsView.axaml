@@ -27,7 +27,7 @@
         <Panel Width="24" 
                Height="24" 
                ClipToBounds="False">
-          <PathIcon Data="{DynamicResource ArrowLeftIcon}" 
+          <PathIcon Data="{DynamicResource ArrowLeftFilledIcon}" 
                     Height="24"
                     Width="24" />
         </Panel>
