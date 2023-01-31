@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:HackerNews.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
+             x:Class="HackerNews.Views.SettingsView"
+             x:CompileBindings="True" x:DataType="vm:SettingsViewModel">
+  <Design.DataContext>
+    <vm:SettingsViewModel>
+      <!-- TODO: -->
+    </vm:SettingsViewModel>
+  </Design.DataContext>
+  <DockPanel>
+    <DockPanel Background="{DynamicResource MainBackground}"
+               DockPanel.Dock="Top">
+      <!-- Back -->
+      <Button Command="{Binding BackAsync}"
+              Width="80"
+              Height="64"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Stretch"
+              HorizontalContentAlignment="Stretch"
+              VerticalContentAlignment="Stretch"
+              Background="Transparent"
+              DockPanel.Dock="Top">
+        <Panel Width="24" 
+               Height="24" 
+               ClipToBounds="False">
+          <PathIcon Data="{DynamicResource ArrowLeftIcon}" 
+                    Height="24"
+                    Width="24" />
+        </Panel>
+      </Button>
+    </DockPanel>
+    <!-- TODO: -->
+      <TextBlock Text="Settings"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center" />
+  </DockPanel>
+</UserControl>
+
