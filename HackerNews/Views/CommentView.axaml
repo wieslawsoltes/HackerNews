@@ -103,17 +103,17 @@
               <Setter Property="BorderBrush" Value="Transparent" />
               <Setter Property="BorderThickness" Value="1" />
             </Style>
+            <Style Selector="MenuItem">
+              <Setter Property="Padding" Value="12" />
+            </Style>
           </Button.Styles>
           <Button.Flyout>
-            <MenuFlyout Placement="LeftEdgeAlignedTop">
+            <MenuFlyout Placement="BottomEdgeAlignedRight">
               <MenuItem Header="Vote up" 
-                        Padding="12"
                         Command="{Binding VoteCommand}" />
               <MenuItem Header="Add comment" 
-                        Padding="12"
                         Command="{Binding CommentCommand}" />
               <MenuItem Header="Share" 
-                        Padding="12"
                         Command="{Binding ShareCommand}" />
             </MenuFlyout>
           </Button.Flyout>
