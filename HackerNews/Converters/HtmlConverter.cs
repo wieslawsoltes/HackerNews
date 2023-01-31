@@ -10,7 +10,7 @@ public static class HtmlConverter
 {
     private static void ParseHtml(HtmlNode htmlNode, Node root)
     {
-        foreach (var htmlNodeDescendant in htmlNode.Descendants())
+        foreach (var htmlNodeDescendant in htmlNode.ChildNodes)
         {
             var name = htmlNodeDescendant.Name;
             switch (name)
