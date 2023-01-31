@@ -55,6 +55,12 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
         LoadPartsCommand = new AsyncRelayCommand(async () => await LoadParts());
 
+        RefreshCommand = new AsyncRelayCommand(async () => await Refresh());
+
+        CommentCommand = new AsyncRelayCommand(async () => await Comment());
+
+        ShareCommand = new AsyncRelayCommand(async () => await Share());
+
         VoteCommand = new AsyncRelayCommand(async () => await Vote());
 
         SaveCommand = new AsyncRelayCommand(async () => await Save());
@@ -69,6 +75,12 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     public IAsyncRelayCommand? LoadKidsCommand { get; }
 
     public IAsyncRelayCommand? LoadPartsCommand { get; }
+
+    public IAsyncRelayCommand? RefreshCommand { get; }
+    
+    public IAsyncRelayCommand? CommentCommand { get; }
+    
+    public IAsyncRelayCommand? ShareCommand { get; }
 
     public IAsyncRelayCommand? VoteCommand { get; }
     
@@ -221,15 +233,34 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
+    private async Task Refresh()
+    {
+        _item = null;
+        await LoadAsync();
+        await UpdateAsync();
+    }
+
+    private async Task Comment()
+    {
+        // TODO: Comment
+        await Task.Yield();
+    }
+
+    private async Task Share()
+    {
+        // TODO: Share
+        await Task.Yield();
+    }
+
     private async Task Vote()
     {
-        // TODO:
+        // TODO: Vote
         await Task.Yield();
     }
 
     private async Task Save()
     {
-        // TODO:
+        // TODO: Save
         await Task.Yield();
     }
 
