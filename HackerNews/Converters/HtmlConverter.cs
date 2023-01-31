@@ -24,6 +24,7 @@ public static class HtmlConverter
                     }
                     if (innerText.StartsWith('>'))
                     {
+                        // TODO: Make QuoteNode root until next tag start.
                         var quote = new QuoteNode
                         {
                             Text = innerText.TrimStart('>').TrimStart()
