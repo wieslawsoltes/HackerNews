@@ -34,7 +34,7 @@
       <DockPanel>
         <views:HeaderView DockPanel.Dock="Top"
                           IsVisible="{Binding !Navigation.CanGoBack, FallbackValue=True}"/>
-        <views:NavigationView  DataContext="{Binding Navigation}" />
+        <views:NavigationView DataContext="{Binding Navigation}" />
       </DockPanel>
     </SplitView>
 </UserControl>
