@@ -30,7 +30,7 @@
                   Height="24"
                   Width="24"
                   IsVisible="{Binding !CanGoBack}" />
-        <PathIcon Data="{DynamicResource ArrowLeftIcon}" 
+        <PathIcon Data="{DynamicResource ArrowLeftFilledIcon}" 
                   Height="24"
                   Width="24"
                   IsVisible="{Binding CanGoBack}" />
