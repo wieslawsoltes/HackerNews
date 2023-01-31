@@ -18,7 +18,7 @@
     <x:Double x:Key="HeaderLastUpdatedFontSize">14</x:Double>
 
     <!-- Item -->
-    
+
     <SolidColorBrush x:Key="ItemTitleBackground">#212121</SolidColorBrush>
     <x:Double x:Key="ItemTitleFontSize">18</x:Double>
     <SolidColorBrush x:Key="ItemTitleForeground">#FFFFFF</SolidColorBrush>
@@ -37,13 +37,15 @@
     <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
 
     <!-- Comment -->
-    
+
     <SolidColorBrush x:Key="CommentBackground">#212121</SolidColorBrush>
     <SolidColorBrush x:Key="CommentForeground">#FFFFFF</SolidColorBrush>
     <x:Double x:Key="CommentFontSize">16</x:Double>
-    
+
     <SolidColorBrush x:Key="CommentDetailsForeground">#A2A2A2</SolidColorBrush>
     <x:Double x:Key="CommentDetailsFontSize">16</x:Double>
+
+    <SolidColorBrush x:Key="CommentHyperlinkForeground">#FF0000</SolidColorBrush>
 
   </Styles.Resources>
 </Styles>
