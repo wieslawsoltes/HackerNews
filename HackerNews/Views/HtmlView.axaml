@@ -4,23 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:h="clr-namespace:HackerNews.Model.Html"
              xmlns:converters="clr-namespace:HackerNews.Converters"
-             xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
              x:Class="HackerNews.Views.HtmlView"
              x:CompileBindings="True" x:DataType="h:Node">
   <Design.DataContext>
     <h:Node>
-      <h:Node.Nodes>
-        <generic:List x:TypeArguments="h:Node">
-          <h:AnchorNode Href="http://www.someurl.com/">
-            <h:Node.Nodes>
-              <generic:List x:TypeArguments="h:Node">
-                <h:TextNode Text="http://www.someurl.com/" />
-              </generic:List>
-            </h:Node.Nodes>
-          </h:AnchorNode>
-        </generic:List>
-      </h:Node.Nodes>
+      <h:TextNode Text="Url: " />
+      <h:AnchorNode Href="http://www.someurl.com/">
+        <h:TextNode Text="http://www.someurl.com/" />
+      </h:AnchorNode>
+      <h:ParagraphNode>
+        <h:TextNode Text="Paragraph with plain text" />
+      </h:ParagraphNode>
+      <h:ParagraphNode>
+        <h:ItalicNode>
+          <h:TextNode Text="Paragraph with Italic text" />
+        </h:ItalicNode>
+      </h:ParagraphNode>
+      <h:PreNode>
+        <h:TextNode Text="Pre with plain text" />
+      </h:PreNode>
+      <h:PreNode>
+        <h:CodeNode>
+          <h:TextNode Text="Pre with code text" />
+        </h:CodeNode>
+      </h:PreNode>
     </h:Node>
   </Design.DataContext>
   <UserControl.Styles>
