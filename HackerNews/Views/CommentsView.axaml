@@ -73,8 +73,7 @@
           </Panel>
         </Button>
         <!-- Share -->
-        <Button Command="{Binding ShareCommand}"
-                DataContext="{Binding Item}"
+        <Button Command="{Binding Item.ShareCommand}"
                 Width="80"
                 Height="64"
                 HorizontalAlignment="Left"
@@ -94,22 +93,21 @@
       </DockPanel>
       <StackPanel Background="{DynamicResource ItemTitleBackground}"
                   Spacing="3"
-                  Margin="12,0,12,24"
-                  DataContext="{Binding Item}">
+                  Margin="12,0,12,24">
         <!-- Item Title -->
-        <TextBlock Text="{Binding Title}"
+        <TextBlock Text="{Binding Item.Title}"
                    TextWrapping="Wrap"
                    Foreground="{DynamicResource ItemTitleForeground}"
                    FontSize="{DynamicResource HeaderTitleFontSize}"
                    FontWeight="Regular"
                    Margin="12,12,12,6"
-                   Classes.viewed="{Binding IsViewed}" />
+                   Classes.viewed="{Binding Item.IsViewed}" />
         <DockPanel>
           <StackPanel Orientation="Horizontal"
                       HorizontalAlignment="Right"
                       DockPanel.Dock="Right">
             <!-- Item Vote -->
-            <Button Command="{Binding VoteCommand}"
+            <Button Command="{Binding Item.VoteCommand}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
@@ -124,7 +122,7 @@
                         Width="24" />
             </Button>
             <!-- Item Save -->
-            <Button Command="{Binding SaveCommand}"
+            <Button Command="{Binding Item.SaveCommand}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Stretch"
                     HorizontalContentAlignment="Stretch"
@@ -142,7 +140,7 @@
           <!-- Item Details -->
           <StackPanel>
             <!-- Item Url -->
-            <TextBlock Text="{Binding Url.DnsSafeHost, FallbackValue=''}"
+            <TextBlock Text="{Binding Item.Url.DnsSafeHost, FallbackValue=''}"
                        TextWrapping="Wrap"
                        Foreground="{DynamicResource ItemTitleForeground}"
                        FontSize="{DynamicResource ItemDetailsFontSize}"
@@ -152,7 +150,7 @@
               <StackPanel Orientation="Horizontal"
                           Margin="12,3,12,0">
                 <!-- Item Time -->
-                <TextBlock Text="{Binding TimeAgo}"
+                <TextBlock Text="{Binding Item.TimeAgo}"
                            TextWrapping="Wrap"
                            Foreground="{DynamicResource ItemTitleForeground}"
                            FontSize="{DynamicResource ItemDetailsFontSize}"
@@ -166,7 +164,7 @@
                            FontWeight="Regular"
                            Margin="6,0,6,0" />
                 <!-- Item Author -->
-                <Button Command="{Binding LoadUserCommand}"
+                <Button Command="{Binding Item.LoadUserCommand}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
@@ -175,7 +173,7 @@
                         Margin="0,0,0,0"
                         Padding="0,0,0,0">
                   <!-- TODO: Foreground based on indent level. -->
-                  <TextBlock Text="{Binding ById}"
+                  <TextBlock Text="{Binding Item.ById}"
                              TextWrapping="Wrap"
                              Foreground="Red"
                              FontSize="{DynamicResource ItemDetailsFontSize}"
@@ -186,7 +184,7 @@
           </StackPanel>
         </DockPanel>
         <!-- Item Url -->
-        <Button Command="{Binding OpenUrlCommand}"
+        <Button Command="{Binding Item.OpenUrlCommand}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
@@ -217,11 +215,10 @@
       <RefreshContainer HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         PullDirection="TopToBottom"
-                        RefreshRequested="Refresh_OnRefreshRequested"
-                        DataContext="{Binding Item}">
+                        RefreshRequested="Refresh_OnRefreshRequested">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto">
-          <ItemsControl Items="{Binding Kids}"
+          <ItemsControl Items="{Binding Item.Kids}"
                         HorizontalAlignment="Stretch">
             <ItemsControl.ItemTemplate>
               <DataTemplate DataType="vm:ItemViewModel">
