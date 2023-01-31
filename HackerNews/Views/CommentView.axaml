@@ -106,12 +106,9 @@
           </Button.Styles>
           <Button.Flyout>
             <MenuFlyout Placement="LeftEdgeAlignedTop">
-              <!-- TODO: Vote up Command binding. -->
-              <MenuItem Header="Vote up" />
-              <!-- TODO: Add comment Command binding. -->
-              <MenuItem Header="Add comment" />
-              <!-- TODO: Share Command binding. -->
-              <MenuItem Header="Share" />
+              <MenuItem Header="Vote up" Command="{Binding VoteCommand}" />
+              <MenuItem Header="Add comment" Command="{Binding CommentCommand}" />
+              <MenuItem Header="Share" Command="{Binding ShareCommand}" />
             </MenuFlyout>
           </Button.Flyout>
           <StackPanel Spacing="3"
