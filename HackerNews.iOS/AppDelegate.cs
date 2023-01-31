@@ -37,6 +37,7 @@ public class AppDelegate : AvaloniaAppDelegate<App>, IBrowserService, IShareServ
         {
             Title = title,
             Text = text,
+            Subject = text,
             Uri = uri
         });
     }
