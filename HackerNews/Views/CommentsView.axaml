@@ -51,24 +51,47 @@
   <DockPanel>
     <DockPanel Background="{DynamicResource MainBackground}"
                DockPanel.Dock="Top">
-      <!-- Back -->
-      <Button Command="{Binding BackAsync}"
-              Width="80"
-              Height="64"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Stretch"
-              HorizontalContentAlignment="Stretch"
-              VerticalContentAlignment="Stretch"
-              Background="Transparent"
-              DockPanel.Dock="Top">
-        <Panel Width="24" 
-               Height="24" 
-               ClipToBounds="False">
-          <PathIcon Data="{DynamicResource ArrowLeftIcon}" 
-                    Height="24"
-                    Width="24" />
-        </Panel>
-      </Button>
+      <DockPanel DockPanel.Dock="Top" 
+                 HorizontalAlignment="Stretch"
+                 LastChildFill="False">
+        <!-- Back -->
+        <Button Command="{Binding BackAsync}"
+                Width="80"
+                Height="64"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Background="Transparent"
+                DockPanel.Dock="Left">
+          <Panel Width="24" 
+                 Height="24" 
+                 ClipToBounds="False">
+            <PathIcon Data="{DynamicResource ArrowLeftFilledIcon}" 
+                      Height="24"
+                      Width="24" />
+          </Panel>
+        </Button>
+        <!-- Share -->
+        <Button Command="{Binding ShareCommand}"
+                DataContext="{Binding Item}"
+                Width="80"
+                Height="64"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Background="Transparent"
+                DockPanel.Dock="Right">
+          <Panel Width="24" 
+                 Height="24" 
+                 ClipToBounds="False">
+            <PathIcon Data="{DynamicResource ShareFilledIcon}" 
+                      Height="24"
+                      Width="24" />
+          </Panel>
+        </Button>
+      </DockPanel>
       <StackPanel Background="{DynamicResource ItemTitleBackground}"
                   Spacing="3"
                   Margin="12,0,12,24"
