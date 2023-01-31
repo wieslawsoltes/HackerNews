@@ -22,16 +22,16 @@ public static class HtmlConverter
                     {
                         break;
                     }
-                    if (innerText.StartsWith('>'))
-                    {
-                        // TODO: Make QuoteNode root until next tag start.
-                        var quote = new QuoteNode
-                        {
-                            Text = innerText.TrimStart('>').TrimStart()
-                        };
-                        root.Nodes.Add(quote);
-                    }
-                    else
+                    // TODO: Make QuoteNode root until next tag start.
+                    // if (innerText.StartsWith('>'))
+                    // {
+                    //     var quote = new QuoteNode
+                    //     {
+                    //         Text = innerText.TrimStart('>').TrimStart()
+                    //     };
+                    //     root.Nodes.Add(quote);
+                    // }
+                    // else
                     {
                         var text = new TextNode
                         {
@@ -115,12 +115,12 @@ public static class HtmlConverter
                 sb.Append(textNode.Text);
                 break;
             }
-            case QuoteNode quoteNode:
-            {
-                // TODO: Format text with quote style.
-                sb.Append(quoteNode.Text);
-                break;
-            }
+            // TODO: Format text with quote style.
+            // case QuoteNode quoteNode:
+            // {
+            //     sb.Append(quoteNode.Text);
+            //     break;
+            // }
             case ItalicNode italicNode:
             {
                 // TODO: Format text with italic style.
