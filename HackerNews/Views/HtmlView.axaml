@@ -4,14 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:h="clr-namespace:HackerNews.Model.Html"
              xmlns:converters="clr-namespace:HackerNews.Converters"
+             xmlns:generic="clr-namespace:System.Collections.Generic;assembly=System.Collections"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
              x:Class="HackerNews.Views.HtmlView"
              x:CompileBindings="True" x:DataType="h:Node">
   <Design.DataContext>
     <h:Node>
-      
+      <h:Node.Nodes>
+        <generic:List x:TypeArguments="h:Node">
+          <h:AnchorNode Href="http://www.someurl.com/">
+            <h:Node.Nodes>
+              <generic:List x:TypeArguments="h:Node">
+                <h:TextNode Text="http://www.someurl.com/" />
+              </generic:List>
+            </h:Node.Nodes>
+          </h:AnchorNode>
+        </generic:List>
+      </h:Node.Nodes>
     </h:Node>
   </Design.DataContext>
+  <UserControl.Styles>
+    <Style Selector="SelectableTextBlock Run.text">
+      <Setter Property="Foreground" Value="{DynamicResource CommentForeground}" />
+      <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
+    </Style>
+    <Style Selector="SelectableTextBlock Italic.i > Run">
+      <Setter Property="Foreground" Value="{DynamicResource CommentForeground}" />
+      <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
+    </Style>
+    <Style Selector="SelectableTextBlock Underline.a > Run">
+      <Setter Property="Foreground" Value="{DynamicResource CommentHyperlinkForeground}" />
+      <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
+    </Style>
+    <Style Selector="SelectableTextBlock Span.p > Run">
+      <Setter Property="Foreground" Value="{DynamicResource CommentForeground}" />
+      <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
+    </Style>
+    <Style Selector="SelectableTextBlock Span.pre > Run">
+      <Setter Property="Foreground" Value="{DynamicResource CommentForeground}" />
+      <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
+      <Setter Property="FontFamily" Value="{DynamicResource RobotoMonoFontFamily}" />
+    </Style>
+    <Style Selector="SelectableTextBlock Span.code > Run">
+      <Setter Property="Foreground" Value="{DynamicResource CommentForeground}" />
+      <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
+      <Setter Property="FontFamily" Value="{DynamicResource RobotoMonoFontFamily}" />
+    </Style>
+  </UserControl.Styles>
   <SelectableTextBlock Inlines="{Binding Mode=OneWay, Converter={x:Static converters:InlinesConverter.Instance}}"
                        TextWrapping="Wrap"
                        Foreground="{DynamicResource CommentForeground}"
@@ -19,6 +58,7 @@
                        FontWeight="Normal"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       IsEnabled="False" /> 
+                       IsEnabled="False">
+  </SelectableTextBlock>
 </UserControl>
 
