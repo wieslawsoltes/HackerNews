@@ -49,9 +49,9 @@
                       VerticalAlignment="Stretch"
                       PullDirection="TopToBottom"
                       RefreshRequested="Refresh_OnRefreshRequested">
+      <!--
       <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                     VerticalScrollBarVisibility="Auto">
-        <!--
         <ItemsControl Items="{Binding Items}"
                       HorizontalAlignment="Stretch">
           <ItemsControl.ItemTemplate>
@@ -65,7 +65,8 @@
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
         </ItemsControl>
-        -->
+      </ScrollViewer>
+      -->
         <TreeView Items="{Binding Items}">
           <TreeView.Styles>
             <Style Selector="TreeViewItem">
@@ -94,7 +95,7 @@
             </ItemsPanelTemplate>
           </TreeView.ItemsPanel>
         </TreeView>
-      </ScrollViewer>
+
     </RefreshContainer>
   </Panel>
 </UserControl>
