@@ -174,18 +174,6 @@
         </StackPanel>
       </Button>
       <!-- Text -->
-      <!-- TODO: -->
-      <!--
-      <SelectableTextBlock Text="{Binding Text}"
-                           TextWrapping="Wrap"
-                           Foreground="{DynamicResource CommentForeground}"
-                           FontSize="{DynamicResource CommentFontSize}"
-                           FontWeight="Normal"
-                           Margin="12,6,12,6"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           IsEnabled="False" /
-      -->
       <views:HtmlView DataContext="{Binding TextNode}"
                       Margin="12,6,12,6" />
     </DockPanel>
