@@ -13,7 +13,7 @@ public class IconConverter : IValueConverter
     {
         if (value is string icon)
         {
-            if (Application.Current?.Resources.TryGetResource(icon, out var resource) == true)
+            if (Application.Current?.Resources.TryGetResource(icon, null, out var resource) == true)
             {
                 return resource;
             }
