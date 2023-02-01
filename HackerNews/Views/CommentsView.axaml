@@ -216,6 +216,7 @@
                         VerticalAlignment="Stretch"
                         PullDirection="TopToBottom"
                         RefreshRequested="Refresh_OnRefreshRequested">
+        <!--
         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto">
           <ItemsControl Items="{Binding Item.Kids}"
@@ -232,6 +233,32 @@
             </ItemsControl.ItemsPanel>
           </ItemsControl>
         </ScrollViewer>
+        -->
+        <TreeView Items="{Binding Item.Kids}">
+          <TreeView.Styles>
+            <Style Selector="TreeViewItem">
+              <Setter Property="IsExpanded" Value="True" />
+              <Setter Property="ItemsPanel">
+                <ItemsPanelTemplate>
+                  <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+              </Setter>
+            </Style>
+          </TreeView.Styles>
+          <TreeView.DataTemplates>
+            <TreeDataTemplate ItemsSource="{Binding Kids}" DataType="vm:ItemViewModel">
+              <views:CommentView />
+            </TreeDataTemplate>
+            <DataTemplate DataType="vm:ItemViewModel">
+              <views:CommentView />
+            </DataTemplate>
+          </TreeView.DataTemplates>
+          <TreeView.ItemsPanel>
+            <ItemsPanelTemplate>
+              <VirtualizingStackPanel />
+            </ItemsPanelTemplate>
+          </TreeView.ItemsPanel>
+        </TreeView>
       </RefreshContainer>
     </Panel>
   </DockPanel>
