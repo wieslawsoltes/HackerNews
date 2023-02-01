@@ -18,6 +18,8 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private int _index;
     [ObservableProperty] private bool _isViewed;
+    [ObservableProperty] private bool _isExpanded;
+    [ObservableProperty] private int _level;
 
     [ObservableProperty] private int _id;
     [ObservableProperty] private bool _deleted;
@@ -44,11 +46,14 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         _index = -1;
     }
 
-    public ItemViewModel(int id, int index = -1)
+    public ItemViewModel(int id, int index = -1, int level = 0)
     {
         _id = id;
         _index = index;
-  
+        _isViewed = false;
+        _isExpanded = false;
+        _level = level;
+ 
         LoadUserCommand = new AsyncRelayCommand(async () => await LoadUser());
 
         LoadKidsCommand = new AsyncRelayCommand(async () => await LoadKids());
@@ -66,9 +71,13 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         SaveCommand = new AsyncRelayCommand(async () => await Save());
 
         OpenUrlCommand = new AsyncRelayCommand(async () => await OpenUrl());
- 
+
+        ToggleIsExpandedCommand = new AsyncRelayCommand(async () => await ToggleIsExpanded());
+
         LoadIsViewed();
     }
+
+    public IAsyncRelayCommand? ToggleIsExpandedCommand { get; }
 
     public IAsyncRelayCommand? LoadUserCommand { get; }
 
@@ -168,7 +177,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             Kids ??= new ObservableCollection<ItemViewModel>();
             Kids.Clear();
 
-            await LoadItemsAsync(Kids, _item.Kids);
+            await LoadItemsAsync(Kids, _item.Kids, Level + 1);
         }
     }
 
@@ -179,7 +188,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             Parts ??= new ObservableCollection<ItemViewModel>();
             Parts.Clear();
 
-            await LoadItemsAsync(Parts, _item.Parts);
+            await LoadItemsAsync(Parts, _item.Parts, Level + 1);
         }
     }
 
@@ -294,13 +303,19 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         }
     }
 
-    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids)
+    private async Task ToggleIsExpanded()
+    {
+        IsExpanded = !IsExpanded;
+        await Task.Yield();
+    }
+
+    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids, int level)
     {
         var index = 1;
 
         foreach (var id in ids)
         {
-            var itemViewModel = new ItemViewModel(id, index++);
+            var itemViewModel = new ItemViewModel(id, index++, level);
 
             items.Add(itemViewModel);
         }
