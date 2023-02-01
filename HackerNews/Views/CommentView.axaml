@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:controls="clr-namespace:HackerNews.Controls"
+             xmlns:converters="clr-namespace:HackerNews.Converters"
              xmlns:views="clr-namespace:HackerNews.Views"
              xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="170"
              x:Class="HackerNews.Views.CommentView"
              x:CompileBindings="True" x:DataType="vm:ItemViewModel"
+             Margin="{Binding Level, Converter={x:Static converters:IndentConverter.Instance}}"
              controls:LazyLoadable.Enable="True">
   <Design.DataContext>
     <vm:ItemViewModel>
@@ -37,146 +39,165 @@
     </vm:ItemViewModel>
   </Design.DataContext>
   <!-- TODO: -->
-  <Border Background="{DynamicResource CommentBackground}"
-          CornerRadius="2"
-          Margin="9,3,9,4"
-          ClipToBounds="True">
-    <DockPanel>
-      <!-- TODO: Background based on indent level. -->
-      <Border Background="Red"
-              Width="5"
-              CornerRadius="2.5"
-              HorizontalAlignment="Stretch"
-              DockPanel.Dock="Left" />
-      <DockPanel Margin="6,6,6,6"
-                 DockPanel.Dock="Top">
-        <!-- Comment Details -->
-        <StackPanel Orientation="Horizontal"
-                    Margin="6,6,6,0"
-                    DockPanel.Dock="Left">
-          <!-- Comment Time -->
-          <TextBlock Text="{Binding TimeAgo}"
-                     TextWrapping="Wrap"
-                     Foreground="{DynamicResource CommentDetailsForeground}"
-                     FontSize="{DynamicResource CommentDetailsFontSize}"
-                     FontWeight="Regular"
-                     Margin="0,0,0,0" />
-          <!-- Separator -->
-          <TextBlock Text="-"
-                     TextWrapping="Wrap"
-                     Foreground="{DynamicResource CommentDetailsForeground}"
-                     FontSize="{DynamicResource CommentDetailsFontSize}"
-                     FontWeight="Regular"
-                     Margin="6,0,6,0" />
-          <!-- Comment Author -->
-          <Button Command="{Binding LoadUserCommand}"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Stretch"
-                  HorizontalContentAlignment="Stretch"
-                  VerticalContentAlignment="Stretch"
-                  Background="Transparent"
-                  Margin="0,0,0,0"
-                  Padding="0,0,0,0">
-            <!-- TODO: Foreground based on indent level. -->
-            <TextBlock Text="{Binding ById}"
+  <DockPanel>
+    <Border Background="{DynamicResource CommentBackground}"
+            CornerRadius="2"
+            Margin="9,3,9,4"
+            ClipToBounds="True"
+            DockPanel.Dock="Top">
+      <DockPanel>
+        <!-- TODO: Background based on indent level. -->
+        <Border Background="Red"
+                Width="5"
+                CornerRadius="2.5"
+                HorizontalAlignment="Stretch"
+                DockPanel.Dock="Left" />
+        <DockPanel Margin="6,6,6,6"
+                   DockPanel.Dock="Top">
+          <!-- Comment Details -->
+          <StackPanel Orientation="Horizontal"
+                      Margin="6,6,6,0"
+                      DockPanel.Dock="Left">
+            <!-- Comment Time -->
+            <TextBlock Text="{Binding TimeAgo}"
                        TextWrapping="Wrap"
-                       Foreground="Red"
+                       Foreground="{DynamicResource CommentDetailsForeground}"
                        FontSize="{DynamicResource CommentDetailsFontSize}"
                        FontWeight="Regular"
                        Margin="0,0,0,0" />
+            <!-- Separator -->
+            <TextBlock Text="-"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource CommentDetailsForeground}"
+                       FontSize="{DynamicResource CommentDetailsFontSize}"
+                       FontWeight="Regular"
+                       Margin="6,0,6,0" />
+            <!-- Comment Author -->
+            <Button Command="{Binding LoadUserCommand}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Background="Transparent"
+                    Margin="0,0,0,0"
+                    Padding="0,0,0,0">
+              <!-- TODO: Foreground based on indent level. -->
+              <TextBlock Text="{Binding ById}"
+                         TextWrapping="Wrap"
+                         Foreground="Red"
+                         FontSize="{DynamicResource CommentDetailsFontSize}"
+                         FontWeight="Regular"
+                         Margin="0,0,0,0" />
+            </Button>
+          </StackPanel>
+          <!-- Comment Menu -->
+          <Button Width="40"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  Background="Transparent" 
+                  DockPanel.Dock="Right">
+            <Button.Styles>
+              <Style Selector="PopupRoot">
+                <Setter Property="Background" Value="{DynamicResource CommentBackground}" />
+              </Style>
+              <Style Selector="MenuFlyoutPresenter">
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="1" />
+              </Style>
+              <Style Selector="MenuItem">
+                <Setter Property="Padding" Value="12" />
+              </Style>
+            </Button.Styles>
+            <Button.Flyout>
+              <MenuFlyout Placement="BottomEdgeAlignedRight">
+                <MenuItem Header="Vote up" 
+                          Command="{Binding VoteCommand}" />
+                <MenuItem Header="Add comment" 
+                          Command="{Binding CommentCommand}" />
+                <MenuItem Header="Share" 
+                          Command="{Binding ShareCommand}" />
+              </MenuFlyout>
+            </Button.Flyout>
+            <StackPanel Spacing="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+              <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
+                       Width="4"
+                       Height="4"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+              <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
+                       Width="4"
+                       Height="4"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+              <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
+                       Width="4"
+                       Height="4"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            </StackPanel>
           </Button>
-        </StackPanel>
-        <!-- Comment Menu -->
-        <Button Width="40"
-                HorizontalAlignment="Right"
+        </DockPanel>
+        <!-- Kids Expander -->
+        <Button Command="{Binding ToggleIsExpandedCommand}"
+                HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
-                Background="Transparent" 
-                DockPanel.Dock="Right">
-          <Button.Styles>
-            <Style Selector="PopupRoot">
-              <Setter Property="Background" Value="{DynamicResource CommentBackground}" />
-            </Style>
-            <Style Selector="MenuFlyoutPresenter">
-              <Setter Property="CornerRadius" Value="0" />
-              <Setter Property="BorderBrush" Value="Transparent" />
-              <Setter Property="BorderThickness" Value="1" />
-            </Style>
-            <Style Selector="MenuItem">
-              <Setter Property="Padding" Value="12" />
-            </Style>
-          </Button.Styles>
-          <Button.Flyout>
-            <MenuFlyout Placement="BottomEdgeAlignedRight">
-              <MenuItem Header="Vote up" 
-                        Command="{Binding VoteCommand}" />
-              <MenuItem Header="Add comment" 
-                        Command="{Binding CommentCommand}" />
-              <MenuItem Header="Share" 
-                        Command="{Binding ShareCommand}" />
-            </MenuFlyout>
-          </Button.Flyout>
-          <StackPanel Spacing="3"
+                Background="Transparent"
+                Margin="18,0,18,6"
+                IsVisible="{Binding !!Kids}"
+                DockPanel.Dock="Bottom">
+          <StackPanel Spacing="4"
+                      Orientation="Horizontal"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center">
-            <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
-                     Width="4"
-                     Height="4"
-                     HorizontalAlignment="Center"
-                     VerticalAlignment="Center" />
-            <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
-                     Width="4"
-                     Height="4"
-                     HorizontalAlignment="Center"
-                     VerticalAlignment="Center" />
-            <Ellipse Fill="{DynamicResource CommentDetailsForeground}"
-                     Width="4"
-                     Height="4"
-                     HorizontalAlignment="Center"
-                     VerticalAlignment="Center" />
+            <TextBlock Text="{Binding Kids.Count, StringFormat={}Comments {0}, FallbackValue=0}"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource ItemDetailsForeground}"
+                       FontSize="{DynamicResource ItemDetailsFontSize}"
+                       FontWeight="Regular"
+                       Margin="6,0,6,0"
+                       VerticalAlignment="Center"/>
+            <Panel>
+              <!-- TODO: Handle IsVisible for chevron based on expanded state for Kids -->
+              <PathIcon Data="{DynamicResource ChevronUpIcon}" 
+                        Height="16"
+                        Width="16" 
+                        Foreground="{DynamicResource ItemDetailsForeground}"
+                        IsVisible="{Binding !IsExpanded}"/>
+              <PathIcon Data="{DynamicResource ChevronDownIcon}" 
+                        Height="16"
+                        Width="16" 
+                        Foreground="{DynamicResource ItemDetailsForeground}"
+                        IsVisible="{Binding IsExpanded}"/>
+            </Panel>
           </StackPanel>
         </Button>
+        <!-- Text -->
+        <views:HtmlView DataContext="{Binding TextNode}"
+                        Margin="12,6,12,6" />
       </DockPanel>
-      <!-- Kids Expander -->
-      <Button HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch"
-              HorizontalContentAlignment="Stretch"
-              VerticalContentAlignment="Stretch"
-              Background="Transparent"
-              Margin="18,0,18,6"
-              IsVisible="{Binding !!Kids}"
-              DockPanel.Dock="Bottom">
-        <StackPanel Spacing="4"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-          <TextBlock Text="{Binding Kids.Count, StringFormat={}Comments {0}, FallbackValue=0}"
-                     TextWrapping="Wrap"
-                     Foreground="{DynamicResource ItemDetailsForeground}"
-                     FontSize="{DynamicResource ItemDetailsFontSize}"
-                     FontWeight="Regular"
-                     Margin="6,0,6,0"
-                     VerticalAlignment="Center"/>
-          <Panel>
-            <!-- TODO: Handle IsVisible for chevron based on expanded state for Kids -->
-            <PathIcon Data="{DynamicResource ChevronUpIcon}" 
-                      Height="16"
-                      Width="16" 
-                      Foreground="{DynamicResource ItemDetailsForeground}"
-                      IsVisible="False"/>
-            <PathIcon Data="{DynamicResource ChevronDownIcon}" 
-                      Height="16"
-                      Width="16" 
-                      Foreground="{DynamicResource ItemDetailsForeground}"
-                      IsVisible="True"/>
-          </Panel>
-        </StackPanel>
-      </Button>
-      <!-- Text -->
-      <views:HtmlView DataContext="{Binding TextNode}"
-                      Margin="12,6,12,6" />
-    </DockPanel>
-  </Border>
+    </Border>
+    <!-- Kids -->
+    <ItemsControl Items="{Binding Kids}"
+                  HorizontalAlignment="Stretch"
+                  IsVisible="{Binding IsExpanded}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate DataType="vm:ItemViewModel">
+          <views:CommentView />
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <VirtualizingStackPanel />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+    </ItemsControl>
+  </DockPanel>
 </UserControl>
 
