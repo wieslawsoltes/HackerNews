@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
+             xmlns:controls="clr-namespace:HackerNews.Controls"
              xmlns:views="clr-namespace:HackerNews.Views"
              xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
@@ -50,6 +51,7 @@
                       RefreshRequested="Refresh_OnRefreshRequested">
       <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                     VerticalScrollBarVisibility="Auto">
+        <!--
         <ItemsControl Items="{Binding Items}"
                       HorizontalAlignment="Stretch">
           <ItemsControl.ItemTemplate>
@@ -63,6 +65,35 @@
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
         </ItemsControl>
+        -->
+        <TreeView Items="{Binding Items}">
+          <TreeView.Styles>
+            <Style Selector="TreeViewItem">
+              <Setter Property="ItemsPanel">
+                <ItemsPanelTemplate>
+                  <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+              </Setter>
+            </Style>
+          </TreeView.Styles>
+          <TreeView.DataTemplates>
+            <TreeDataTemplate ItemsSource="{Binding Kids}" DataType="vm:ItemViewModel">
+              <TextBlock Text="{Binding Title}" 
+                         Foreground="Green" 
+                         controls:LazyLoadable.Enable="True" />
+            </TreeDataTemplate>
+            <DataTemplate DataType="vm:ItemViewModel">
+              <TextBlock Text="{Binding Title}" 
+                         controls:LazyLoadable.Enable="True"
+                         Foreground="Red" />
+            </DataTemplate>
+          </TreeView.DataTemplates>
+          <TreeView.ItemsPanel>
+            <ItemsPanelTemplate>
+              <VirtualizingStackPanel />
+            </ItemsPanelTemplate>
+          </TreeView.ItemsPanel>
+        </TreeView>
       </ScrollViewer>
     </RefreshContainer>
   </Panel>

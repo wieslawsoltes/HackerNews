@@ -103,6 +103,8 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             {
                 var json = await api.GetItemJson(Id);
                 _item = await api.DeserializeAsync<Item>(json);
+
+                await LoadKidsAsync();
             }
             catch (Exception e)
             {
