@@ -2,12 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:HackerNews"
              Name="Hacker News"
+             RequestedThemeVariant="Dark"
              x:Class="HackerNews.App">
   <Application.DataTemplates>
     <local:ViewLocator />
   </Application.DataTemplates>
   <Application.Styles>
-    <FluentTheme Mode="Dark" />
+    <FluentTheme />
     <StyleInclude Source="/Themes/Theme.axaml" />
   </Application.Styles>
   <Application.Resources>
