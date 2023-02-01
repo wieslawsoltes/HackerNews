@@ -88,7 +88,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
             Submitted ??= new ObservableCollection<ItemViewModel>();
             Submitted.Clear();
 
-            await ItemViewModel.LoadItemsAsync(Submitted, _user.Submitted);
+            await ItemViewModel.LoadItemsAsync(Submitted, _user.Submitted, 0);
         }
     }
 
