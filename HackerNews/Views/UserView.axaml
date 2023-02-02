@@ -14,57 +14,27 @@
       <vm:UserViewModel.Id>id</vm:UserViewModel.Id>
       <vm:UserViewModel.Karma><x:Int32>10</x:Int32></vm:UserViewModel.Karma>
       <vm:UserViewModel.About>about</vm:UserViewModel.About>
+      <vm:UserViewModel.Submitted>
+        <vm:ItemListViewModel>
+          <!-- TODO: -->
+        </vm:ItemListViewModel>
+      </vm:UserViewModel.Submitted>
     </vm:UserViewModel>
   </Design.DataContext>
-  <DockPanel Background="{DynamicResource MainBackground}">
-    <!-- Back -->
-    <Button Command="{Binding BackAsync}"
-            Width="80"
-            Height="64"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Stretch"
-            HorizontalContentAlignment="Stretch"
-            VerticalContentAlignment="Stretch"
-            Background="Transparent"
-            DockPanel.Dock="Top">
-      <Panel Width="24" 
-             Height="24" 
-             ClipToBounds="False">
-        <PathIcon Data="{DynamicResource ArrowLeftFilledIcon}" 
-                  Height="24"
-                  Width="24" />
-      </Panel>
-    </Button>
-    <!-- TODO: -->
-    <StackPanel Spacing="6"
-                Margin="12,0,12,12"
-                DockPanel.Dock="Top">
-      <StackPanel Orientation="Horizontal" Spacing="6">
-        <!-- Id -->
-        <TextBlock Text="{Binding Id, FallbackValue=-}"
-                   TextWrapping="Wrap"
-                   Foreground="{DynamicResource HeaderTitleForeground}"
-                   FontSize="{DynamicResource HeaderTitleFontSize}"
-                   FontWeight="Regular"
-                   Margin="12,6,0,0" />
-        <!-- Karma -->
-        <TextBlock Text="{Binding Karma, StringFormat={}({0}), FallbackValue=-}"
-                   TextWrapping="Wrap"
-                   Foreground="{DynamicResource HeaderTitleForeground}"
-                   FontSize="{DynamicResource HeaderTitleFontSize}"
-                   FontWeight="Light"
-                   Margin="0,6,12,0" />
-      </StackPanel>
-      <!-- Created -->
-      <TextBlock Text="{Binding Created, StringFormat={}Created: {0:d}, FallbackValue=-}"
-                 TextWrapping="Wrap"
-                 Foreground="{DynamicResource HeaderLastUpdatedForeground}"
-                 FontSize="{DynamicResource HeaderLastUpdatedFontSize}"
-                 FontWeight="Regular"
-                 Margin="12,0,12,6" />
-    </StackPanel>
-    <!-- TODO: Submitted -->
-    <views:SubmittedView />
+  <DockPanel>
+    <views:UserHeaderView DockPanel.Dock="Top" />
+    <Panel>
+      <RefreshContainer HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        PullDirection="TopToBottom"
+                        RefreshRequested="Refresh_OnRefreshRequested">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+          <!-- TODO: -->
+          <views:SubmittedView />
+        </ScrollViewer>
+      </RefreshContainer>
+    </Panel>
   </DockPanel>
 </UserControl>
 
