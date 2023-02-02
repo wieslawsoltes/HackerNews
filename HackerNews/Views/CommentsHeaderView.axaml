@@ -92,7 +92,7 @@
                   Background="Transparent"
                   Margin="0,0,0,0"
                   Padding="0,0,0,0"
-                  Width="68">
+                  Width="69">
             <!-- TODO: Change foreground color if voted up. -->
             <PathIcon Data="{DynamicResource ThumbLikeFilledIcon}" 
                       Height="24"
@@ -107,7 +107,7 @@
                   Background="Transparent"
                   Margin="2,0,0,0"
                   Padding="0,0,0,0"
-                  Width="68">
+                  Width="69">
             <!-- TODO: Switch to BookmarkFilledIcon if saved. -->
             <PathIcon Data="{DynamicResource BookmarkIcon}" 
                       Height="24"
@@ -169,7 +169,7 @@
               Background="Transparent"
               Margin="0,0,0,0"
               Padding="0,6,0,6"
-              Width="138">
+              Width="140">
         <StackPanel Spacing="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
