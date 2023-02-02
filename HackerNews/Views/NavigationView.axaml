@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:m="clr-namespace:HackerNews.Model"
+             xmlns:views="clr-namespace:HackerNews.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HackerNews.Views.NavigationView"
              x:CompileBindings="True" x:DataType="vm:NavigationViewModel">
@@ -25,6 +26,26 @@
   </UserControl.Styles>
   <ItemsControl Items="{Binding Items}"
                 Classes="navigation">
+    <ItemsControl.DataTemplates>
+      <DataTemplate DataType="vm:CommentsViewModel">
+        <views:CommentsView />
+      </DataTemplate>
+      <DataTemplate DataType="vm:ItemsViewModel">
+        <views:ItemsView />
+      </DataTemplate>
+      <DataTemplate DataType="vm:PollViewModel">
+        <views:PollView />
+      </DataTemplate>
+      <DataTemplate DataType="vm:SubmittedViewModel">
+        <views:SubmittedView />
+      </DataTemplate>
+      <DataTemplate DataType="vm:SettingsViewModel">
+        <views:SettingsView />
+      </DataTemplate>
+      <DataTemplate DataType="vm:UserViewModel">
+        <views:UserView />
+      </DataTemplate>
+    </ItemsControl.DataTemplates>
     <ItemsControl.ItemsPanel>
       <ItemsPanelTemplate>
         <Panel />

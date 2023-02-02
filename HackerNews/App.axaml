@@ -1,12 +1,8 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:HackerNews"
              Name="Hacker News"
              RequestedThemeVariant="Dark"
              x:Class="HackerNews.App">
-  <Application.DataTemplates>
-    <local:ViewLocator />
-  </Application.DataTemplates>
   <Application.Styles>
     <FluentTheme />
     <StyleInclude Source="/Themes/Theme.axaml" />
