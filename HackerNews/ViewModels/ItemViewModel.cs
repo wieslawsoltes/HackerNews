@@ -39,10 +39,8 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private ItemListViewModel? _parts;
     [ObservableProperty] private int? _descendants;
 
-    public ItemViewModel()
+    public ItemViewModel() : this(-1)
     {
-        _id = -1;
-        _index = -1;
     }
 
     public ItemViewModel(int id, int index = -1, int level = 0)

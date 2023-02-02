@@ -19,11 +19,11 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private string? _about;
     [ObservableProperty] private ItemListViewModel? _submitted;
 
-    public UserViewModel()
+    public UserViewModel() : this(null)
     {
     }
 
-    public UserViewModel(string id)
+    public UserViewModel(string? id)
     {
         _id = id;
 

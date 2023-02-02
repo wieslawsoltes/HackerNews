@@ -18,17 +18,20 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private string? _icon;
     [ObservableProperty] private ItemListViewModel? _items;
 
-    public ItemsViewModel()
+    public ItemsViewModel() : this(null, null, null, null)
     {
     }
 
-    public ItemsViewModel(string storiesFeed, string title, string icon, Func<ItemsViewModel, Task> openFeed)
+    public ItemsViewModel(string? storiesFeed, string? title, string? icon, Func<ItemsViewModel, Task>? openFeed)
     {
         _storiesFeed = storiesFeed;
         _title = title;
         _icon = icon;
 
-        OpenFeedCommand = new AsyncRelayCommand(async () => await openFeed(this));
+        if (openFeed is { })
+        {
+            OpenFeedCommand = new AsyncRelayCommand(async () => await openFeed(this));
+        }
     }
 
     public IAsyncRelayCommand? OpenFeedCommand { get; }

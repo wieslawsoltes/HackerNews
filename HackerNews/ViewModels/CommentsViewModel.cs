@@ -10,11 +10,11 @@ public partial class CommentsViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private ItemViewModel? _item;
 
-    public CommentsViewModel()
+    public CommentsViewModel() : this(null)
     {
     }
 
-    public CommentsViewModel(ItemViewModel item)
+    public CommentsViewModel(ItemViewModel? item = null)
     {
         _item = item;
     }

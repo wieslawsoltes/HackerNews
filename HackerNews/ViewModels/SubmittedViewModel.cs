@@ -10,11 +10,11 @@ public partial class SubmittedViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private UserViewModel? _user;
 
-    public SubmittedViewModel()
+    public SubmittedViewModel() : this(null)
     {
     }
 
-    public SubmittedViewModel(UserViewModel user)
+    public SubmittedViewModel(UserViewModel? user)
     {
         _user = user;
     }

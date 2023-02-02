@@ -10,11 +10,11 @@ public partial class PollViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private ItemViewModel? _item;
 
-    public PollViewModel()
+    public PollViewModel() : this(null)
     {
     }
 
-    public PollViewModel(ItemViewModel item)
+    public PollViewModel(ItemViewModel? item)
     {
         _item = item;
     }
