@@ -7,12 +7,12 @@ namespace HackerNews.ViewModels;
 
 public partial class NavigationViewModel : ViewModelBase, INavigationService
 {
-    [ObservableProperty] private ObservableCollection<ILazyLoadable> _items;
+    [ObservableProperty] private LazyLoadableList _items;
     [ObservableProperty] private bool _canGoBack;
 
     public NavigationViewModel()
     {
-        _items = new ObservableCollection<ILazyLoadable>();
+        _items = new LazyLoadableList();
     }
 
     public async Task NavigateAsync(ILazyLoadable lazyLoadable)

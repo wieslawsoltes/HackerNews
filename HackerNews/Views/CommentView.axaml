@@ -6,7 +6,6 @@
              xmlns:controls="clr-namespace:HackerNews.Controls"
              xmlns:converters="clr-namespace:HackerNews.Converters"
              xmlns:views="clr-namespace:HackerNews.Views"
-             xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="170"
              x:Class="HackerNews.Views.CommentView"
              x:CompileBindings="True" x:DataType="vm:ItemViewModel"
@@ -18,7 +17,7 @@
       <vm:ItemViewModel.Text>Comment</vm:ItemViewModel.Text>
       <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
       <vm:ItemViewModel.Kids>
-        <objectModel:ObservableCollection x:TypeArguments="vm:ItemViewModel">
+        <vm:ItemListViewModel>
           <vm:ItemViewModel>
             <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
             <vm:ItemViewModel.Text>Comment 1</vm:ItemViewModel.Text>
@@ -34,7 +33,7 @@
             <vm:ItemViewModel.Text>Comment 3</vm:ItemViewModel.Text>
             <vm:ItemViewModel.ById>user3</vm:ItemViewModel.ById>
           </vm:ItemViewModel>
-        </objectModel:ObservableCollection>
+        </vm:ItemListViewModel>
       </vm:ItemViewModel.Kids>
     </vm:ItemViewModel>
   </Design.DataContext>
@@ -183,20 +182,8 @@
       </DockPanel>
     </Border>
     <!-- Kids -->
-    <ItemsControl Items="{Binding Kids}"
-                  HorizontalAlignment="Stretch"
-                  IsVisible="{Binding IsExpanded}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate DataType="vm:ItemViewModel">
-          <views:CommentView />
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-      <ItemsControl.ItemsPanel>
-        <ItemsPanelTemplate>
-          <VirtualizingStackPanel />
-        </ItemsPanelTemplate>
-      </ItemsControl.ItemsPanel>
-    </ItemsControl>
+    <Panel IsVisible="{Binding IsExpanded}">
+      <views:CommentKidsView DataContext="{Binding Kids}" />
+    </Panel>
   </DockPanel>
 </UserControl>
-

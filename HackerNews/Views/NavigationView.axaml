@@ -11,10 +11,10 @@
   <Design.DataContext>
     <vm:NavigationViewModel>
       <vm:NavigationViewModel.Items>
-        <objectModel:ObservableCollection x:TypeArguments="m:ILazyLoadable">
+        <m:LazyLoadableList>
           <vm:ItemViewModel IsVisible="False" />
           <vm:CommentsViewModel IsVisible="True" />
-        </objectModel:ObservableCollection>
+        </m:LazyLoadableList>
       </vm:NavigationViewModel.Items>
     </vm:NavigationViewModel>
   </Design.DataContext>

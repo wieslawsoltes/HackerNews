@@ -4,14 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:views="clr-namespace:HackerNews.Views"
-             xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.ItemsView"
              x:CompileBindings="True" x:DataType="vm:ItemsViewModel">
   <Design.DataContext>
     <vm:ItemsViewModel>
       <vm:ItemsViewModel.Items>
-        <objectModel:ObservableCollection x:TypeArguments="vm:ItemViewModel">
+        <vm:ItemListViewModel>
           <vm:ItemViewModel>
             <vm:ItemViewModel.Index>1</vm:ItemViewModel.Index>
             <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
@@ -39,7 +38,7 @@
             <vm:ItemViewModel.ById>user3</vm:ItemViewModel.ById>
             <vm:ItemViewModel.Descendants><x:Int32>200</x:Int32></vm:ItemViewModel.Descendants>
           </vm:ItemViewModel>
-        </objectModel:ObservableCollection>
+        </vm:ItemListViewModel>
       </vm:ItemsViewModel.Items>
     </vm:ItemsViewModel>
   </Design.DataContext>

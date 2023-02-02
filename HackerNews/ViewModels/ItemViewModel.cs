@@ -33,11 +33,11 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _dead;
     [ObservableProperty] private int? _parent;
     [ObservableProperty] private int? _poll;
-    [ObservableProperty] private ObservableCollection<ItemViewModel>? _kids;
+    [ObservableProperty] private ItemListViewModel? _kids;
     [ObservableProperty] private Uri? _url;
     [ObservableProperty] private int _score;
     [ObservableProperty] private string? _title;
-    [ObservableProperty] private ObservableCollection<ItemViewModel>? _parts;
+    [ObservableProperty] private ItemListViewModel? _parts;
     [ObservableProperty] private int? _descendants;
 
     public ItemViewModel()
@@ -174,7 +174,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     {
         if (_item is { } && _item.Kids is { })
         {
-            Kids ??= new ObservableCollection<ItemViewModel>();
+            Kids ??= new ItemListViewModel();
             Kids.Clear();
 
             await LoadItemsAsync(Kids, _item.Kids, Level + 1);
@@ -185,7 +185,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
     {
         if (_item is { } && _item.Parts is { })
         {
-            Parts ??= new ObservableCollection<ItemViewModel>();
+            Parts ??= new ItemListViewModel();
             Parts.Clear();
 
             await LoadItemsAsync(Parts, _item.Parts, Level + 1);
@@ -224,6 +224,8 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
             {
                 stateManager.SetIsViewed(Id);
             }
+
+            IsExpanded = true;
 
             var commentsViewModel = new CommentsViewModel(this);
 
@@ -309,7 +311,7 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
         await Task.Yield();
     }
 
-    public static async Task LoadItemsAsync(ObservableCollection<ItemViewModel> items, List<int> ids, int level)
+    public static async Task LoadItemsAsync(ItemListViewModel items, List<int> ids, int level)
     {
         var index = 1;
 

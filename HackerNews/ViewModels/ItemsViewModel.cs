@@ -17,7 +17,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _isVisible;
     [ObservableProperty] private string? _title;
     [ObservableProperty] private string? _icon;
-    [ObservableProperty] private ObservableCollection<ItemViewModel>? _items;
+    [ObservableProperty] private ItemListViewModel? _items;
 
     public ItemsViewModel()
     {
@@ -49,7 +49,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
             _ids ??= new List<int>();
             _ids.Clear();
 
-            Items ??= new ObservableCollection<ItemViewModel>();
+            Items ??= new ItemListViewModel();
             Items.Clear();
 
             try

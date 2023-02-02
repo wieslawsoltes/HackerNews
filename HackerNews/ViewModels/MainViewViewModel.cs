@@ -18,7 +18,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private bool _isMenuViewOpen;
     [ObservableProperty] private bool _isSearchViewOpen;
     [ObservableProperty] private bool _isListDisplayOptionsViewOpen;
-    [ObservableProperty] private ObservableCollection<ItemsViewModel>? _feeds;
+    [ObservableProperty] private ItemsListViewModel? _feeds;
     [ObservableProperty] private ItemsViewModel? _currentFeed;
     [ObservableProperty] private DateTimeOffset _lastUpdated;
     [ObservableProperty] private string? _lastUpdatedAgo;
@@ -27,7 +27,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
     {
         _navigation = Ioc.Default.GetService<INavigationService>();
 
-        _feeds = new ObservableCollection<ItemsViewModel>
+        _feeds = new ItemsListViewModel
         {
             new ("topstories", "Top Stories", "ArrowTrendingFilledIcon", OpenFeedAsync),
             // TODO: Catch Up

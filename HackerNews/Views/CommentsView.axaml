@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:views="clr-namespace:HackerNews.Views"
-             xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.CommentsView"
              x:CompileBindings="True" x:DataType="vm:CommentsViewModel">
@@ -26,7 +25,7 @@
           <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
           <vm:ItemViewModel.Descendants><x:Int32>300</x:Int32></vm:ItemViewModel.Descendants>
           <vm:ItemViewModel.Kids>
-            <objectModel:ObservableCollection x:TypeArguments="vm:ItemViewModel">
+            <vm:ItemListViewModel>
               <vm:ItemViewModel>
                 <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
                 <vm:ItemViewModel.Text>Comment 1</vm:ItemViewModel.Text>
@@ -42,7 +41,7 @@
                 <vm:ItemViewModel.Text>Comment 3</vm:ItemViewModel.Text>
                 <vm:ItemViewModel.ById>user3</vm:ItemViewModel.ById>
               </vm:ItemViewModel>
-            </objectModel:ObservableCollection>
+            </vm:ItemListViewModel>
           </vm:ItemViewModel.Kids>
         </vm:ItemViewModel>
       </vm:CommentsViewModel.Item>
@@ -218,19 +217,7 @@
                         RefreshRequested="Refresh_OnRefreshRequested">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto">
-          <ItemsControl Items="{Binding Item.Kids}"
-                        HorizontalAlignment="Stretch">
-            <ItemsControl.ItemTemplate>
-              <DataTemplate DataType="vm:ItemViewModel">
-                <views:CommentView />
-              </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-              <ItemsPanelTemplate>
-                <VirtualizingStackPanel />
-              </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-          </ItemsControl>
+          <views:CommentKidsView DataContext="{Binding Item.Kids}" />
         </ScrollViewer>
       </RefreshContainer>
     </Panel>

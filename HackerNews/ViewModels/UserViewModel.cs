@@ -18,7 +18,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     [ObservableProperty] private DateTimeOffset? _created;
     [ObservableProperty] private int? _karma;
     [ObservableProperty] private string? _about;
-    [ObservableProperty] private ObservableCollection<ItemViewModel>? _submitted;
+    [ObservableProperty] private ItemListViewModel? _submitted;
 
     public UserViewModel()
     {
@@ -85,7 +85,7 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
     {
         if (_user is { } && _user?.Submitted is { })
         {
-            Submitted ??= new ObservableCollection<ItemViewModel>();
+            Submitted ??= new ItemListViewModel();
             Submitted.Clear();
 
             await ItemViewModel.LoadItemsAsync(Submitted, _user.Submitted, 0);
