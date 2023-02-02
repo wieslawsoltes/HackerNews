@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace HackerNews.Views;
 
-public partial class HeaderView : UserControl
+public partial class NavigationHeaderView : UserControl
 {
-    public HeaderView()
+    public NavigationHeaderView()
     {
         InitializeComponent();
     }

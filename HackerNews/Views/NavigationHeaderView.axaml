@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:HackerNews.ViewModels"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="100"
-             x:Class="HackerNews.Views.HeaderView"
+             x:Class="HackerNews.Views.NavigationHeaderView"
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
   <Design.DataContext>
     <vm:MainViewViewModel>

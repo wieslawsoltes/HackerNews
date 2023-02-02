@@ -16,7 +16,6 @@
   <UserControl.GestureRecognizers>
     <!-- TODO: -->
     <!--<PullGestureRecognizer PullDirection="TopToBottom"/>-->
-    <!-- TODO: -->
     <!--<PullGestureRecognizer PullDirection="BottomToTop"/>-->
     <!--<PullGestureRecognizer PullDirection="RightToLeft"/>-->
     <!--<PullGestureRecognizer PullDirection="LeftToRight"/>-->
@@ -32,8 +31,8 @@
         <views:MainMenuView />
       </SplitView.Pane>
       <DockPanel>
-        <views:HeaderView DockPanel.Dock="Top"
-                          IsVisible="{Binding !Navigation.CanGoBack, FallbackValue=True}"/>
+        <views:NavigationHeaderView DockPanel.Dock="Top"
+                                    IsVisible="{Binding !Navigation.CanGoBack, FallbackValue=True}"/>
         <views:NavigationView DataContext="{Binding Navigation}" />
       </DockPanel>
     </SplitView>
