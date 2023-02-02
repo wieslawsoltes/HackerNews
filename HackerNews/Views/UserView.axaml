@@ -11,19 +11,6 @@
   <Design.DataContext>
     <vm:UserViewModel>
       <vm:UserViewModel.Id>id</vm:UserViewModel.Id>
-      <!--<vm:UserViewModel.Created>
-        <system:DateTimeOffset>
-          <x:Arguments>
-            <system:DateTime>
-              <x:Arguments>
-                <x:Int32>2022</x:Int32>
-                <x:Int32>1</x:Int32>
-                <x:Int32>1</x:Int32>
-              </x:Arguments>
-            </system:DateTime>
-          </x:Arguments>
-        </system:DateTimeOffset>
-      </vm:UserViewModel.Created>-->
       <vm:UserViewModel.Karma><x:Int32>10</x:Int32></vm:UserViewModel.Karma>
       <vm:UserViewModel.About>about</vm:UserViewModel.About>
     </vm:UserViewModel>
