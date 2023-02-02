@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:HackerNews.Controls"
              xmlns:converters="clr-namespace:HackerNews.Converters"
              xmlns:views="clr-namespace:HackerNews.Views"
-             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="170"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.CommentView"
              x:CompileBindings="True" x:DataType="vm:ItemViewModel"
              Margin="{Binding Level, Converter={x:Static converters:IndentConverter.Instance}}"
@@ -16,22 +16,26 @@
       <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
       <vm:ItemViewModel.Text>Comment</vm:ItemViewModel.Text>
       <vm:ItemViewModel.ById>user</vm:ItemViewModel.ById>
+      <vm:ItemViewModel.Level>0</vm:ItemViewModel.Level>
       <vm:ItemViewModel.Kids>
         <vm:ItemListViewModel>
           <vm:ItemViewModel>
             <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
             <vm:ItemViewModel.Text>Comment 1</vm:ItemViewModel.Text>
             <vm:ItemViewModel.ById>user1</vm:ItemViewModel.ById>
+            <vm:ItemViewModel.Level>1</vm:ItemViewModel.Level>
           </vm:ItemViewModel>
           <vm:ItemViewModel>
             <vm:ItemViewModel.TimeAgo>25m</vm:ItemViewModel.TimeAgo>
             <vm:ItemViewModel.Text>Comment 2</vm:ItemViewModel.Text>
             <vm:ItemViewModel.ById>user2</vm:ItemViewModel.ById>
+            <vm:ItemViewModel.Level>1</vm:ItemViewModel.Level>
           </vm:ItemViewModel>
           <vm:ItemViewModel>
             <vm:ItemViewModel.TimeAgo>100d</vm:ItemViewModel.TimeAgo>
             <vm:ItemViewModel.Text>Comment 3</vm:ItemViewModel.Text>
             <vm:ItemViewModel.ById>user3</vm:ItemViewModel.ById>
+            <vm:ItemViewModel.Level>1</vm:ItemViewModel.Level>
           </vm:ItemViewModel>
         </vm:ItemListViewModel>
       </vm:ItemViewModel.Kids>
