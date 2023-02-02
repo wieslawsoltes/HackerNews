@@ -164,13 +164,12 @@
                        Margin="6,0,6,0"
                        VerticalAlignment="Center"/>
             <Panel>
-              <!-- TODO: Handle IsVisible for chevron based on expanded state for Kids -->
-              <PathIcon Data="{DynamicResource ChevronUpIcon}" 
+              <PathIcon Data="{DynamicResource ChevronDownIcon}" 
                         Height="16"
                         Width="16" 
                         Foreground="{DynamicResource ItemDetailsForeground}"
                         IsVisible="{Binding !IsExpanded}"/>
-              <PathIcon Data="{DynamicResource ChevronDownIcon}" 
+              <PathIcon Data="{DynamicResource ChevronUpIcon}" 
                         Height="16"
                         Width="16" 
                         Foreground="{DynamicResource ItemDetailsForeground}"
