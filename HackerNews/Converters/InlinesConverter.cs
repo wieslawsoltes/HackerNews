@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Data.Converters;
-using Avalonia.Input;
 using Avalonia.Media;
-using CommunityToolkit.Mvvm.DependencyInjection;
-using CommunityToolkit.Mvvm.Input;
 using HackerNews.Controls;
-using HackerNews.Model;
 using HackerNews.Model.Html;
 
 namespace HackerNews.Converters;
@@ -98,7 +92,6 @@ public class InlinesConverter : IValueConverter
             }
             case CodeNode _:
             {
-                // TODO: Set font to monospaced.
                 var span = new Span();
                 span.Classes.Add("code");
                 inlines.Add(span);
