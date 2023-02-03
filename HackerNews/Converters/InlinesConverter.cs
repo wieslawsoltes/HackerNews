@@ -73,7 +73,7 @@ public class InlinesConverter : IValueConverter
             {
                 var hyperlink = new Hyperlink(anchorNode.Href);
                 var content = hyperlink.Content;
-                content.Classes.Add("pre");
+                content.Classes.Add("a");
                 content.Foreground = Brushes.Red;
                 inlines.Add(hyperlink);
                 childInlines = content.Inlines;
