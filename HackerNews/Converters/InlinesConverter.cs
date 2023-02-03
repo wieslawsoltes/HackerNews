@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Data.Converters;
+using Avalonia.Input;
 using Avalonia.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
+using HackerNews.Model;
 using HackerNews.Model.Html;
 
 namespace HackerNews.Converters;
@@ -76,14 +82,40 @@ public class InlinesConverter : IValueConverter
                 childInlines = span.Inlines;
                 break;
             }
-            case AnchorNode _:
+            case AnchorNode anchorNode:
             {
                 // TODO: Use Hyperlink inline.
                 var underline = new Underline();
                 underline.Classes.Add("a");
                 underline.Foreground = Brushes.Red;
-                inlines.Add(underline);
+                //inlines.Add(underline);
+                //childInlines = underline.Inlines;
+
+                var textBlock = new TextBlock();
+                textBlock.Inlines = new InlineCollection();
+                textBlock.Inlines.Add(underline);
+                var button = new Button
+                {
+                    Background = Brushes.Transparent,
+                    Margin = new Thickness(),
+                    Padding = new Thickness(),
+                    Cursor = new Cursor(StandardCursorType.Hand),
+                    Content = textBlock
+                };
+
+                if (anchorNode.Href is { })
+                {
+                    var url = new Uri(anchorNode.Href);
+
+                    button.Command =  new AsyncRelayCommand(async () => await OpenUrl(url));
+
+                    ToolTip.SetTip(button, anchorNode.Href);
+                }
+
+                var inline = new InlineUIContainer(button);
+                inlines.Add(inline);
                 childInlines = underline.Inlines;
+
                 break;
             }
             case PreNode _:
@@ -113,6 +145,18 @@ public class InlinesConverter : IValueConverter
         foreach (var childNode in node.Nodes)
         {
             PrintNode(childNode, childInlines ?? inlines);
+        }
+    }
+
+    private static async Task OpenUrl(Uri? url)
+    {
+        if (url is { })
+        {
+            var browser = Ioc.Default.GetService<IBrowserService>();
+            if (browser is { })
+            {
+                await browser.OpenBrowserAsync(url);
+            }
         }
     }
 }
