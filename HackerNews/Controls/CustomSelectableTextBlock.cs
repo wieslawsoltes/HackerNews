@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Styling;
@@ -9,6 +10,15 @@ namespace HackerNews.Controls;
 
 public class CustomSelectableTextBlock : SelectableTextBlock, IStyleable
 {
+    public static readonly StyledProperty<bool> IsSelectionEnabledProperty = 
+        AvaloniaProperty.Register<CustomSelectableTextBlock, bool>(nameof(IsSelectionEnabled), true);
+
+    public bool IsSelectionEnabled
+    {
+        get => GetValue(IsSelectionEnabledProperty);
+        set => SetValue(IsSelectionEnabledProperty, value);
+    }
+
     Type IStyleable.StyleKey => typeof(SelectableTextBlock);
 
     private bool IsInputElement(PointerEventArgs e)
@@ -19,7 +29,7 @@ public class CustomSelectableTextBlock : SelectableTextBlock, IStyleable
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
-        if (!IsInputElement(e))
+        if (!IsInputElement(e) && IsSelectionEnabled)
         {
             base.OnPointerPressed(e);
         }
@@ -27,7 +37,7 @@ public class CustomSelectableTextBlock : SelectableTextBlock, IStyleable
 
     protected override void OnPointerMoved(PointerEventArgs e)
     {
-        if (!IsInputElement(e))
+        if (!IsInputElement(e) && IsSelectionEnabled)
         {
             base.OnPointerMoved(e);
         }
@@ -35,7 +45,7 @@ public class CustomSelectableTextBlock : SelectableTextBlock, IStyleable
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
-        if (!IsInputElement(e))
+        if (!IsInputElement(e) && IsSelectionEnabled)
         {
             base.OnPointerReleased(e);
         }
