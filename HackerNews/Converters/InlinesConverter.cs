@@ -100,7 +100,6 @@ public class InlinesConverter : IValueConverter
                 inlines.Add(span);
                 childInlines = span.Inlines;
                 break;
-                
             }
             case CodeNode _:
             {
