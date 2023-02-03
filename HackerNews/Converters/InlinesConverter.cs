@@ -121,7 +121,6 @@ public class InlinesConverter : IValueConverter
             case PreNode _:
             {
                 // TODO: Disable text wrapping by using custom Inline element.
-                // TODO: Set font to monospaced.
                 var span = new Span();
                 span.Classes.Add("pre");
                 inlines.Add(new LineBreak());
