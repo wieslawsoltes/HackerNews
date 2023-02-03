@@ -165,7 +165,8 @@
         <StackPanel>
           <!-- Item Url -->
           <TextBlock Text="{Binding Url.DnsSafeHost}"
-                     TextWrapping="Wrap"
+                     TextWrapping="NoWrap"
+                     TextTrimming="CharacterEllipsis"
                      Foreground="{DynamicResource ItemDetailsForeground}"
                      FontSize="{DynamicResource ItemDetailsFontSize}"
                      FontWeight="Regular"
@@ -189,7 +190,8 @@
                        Margin="6,0,6,0" />
             <!-- Item Author -->
             <TextBlock Text="{Binding ById}"
-                       TextWrapping="Wrap"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
                        Foreground="{DynamicResource ItemDetailsForeground}"
                        FontSize="{DynamicResource ItemDetailsFontSize}"
                        FontWeight="Regular"
