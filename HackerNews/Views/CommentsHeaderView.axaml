@@ -118,7 +118,8 @@
         <StackPanel>
           <!-- Item Url -->
           <TextBlock Text="{Binding Item.Url.DnsSafeHost, FallbackValue=''}"
-                     TextWrapping="Wrap"
+                     TextWrapping="NoWrap"
+                     TextTrimming="CharacterEllipsis"
                      Foreground="{DynamicResource ItemTitleForeground}"
                      FontSize="{DynamicResource ItemDetailsFontSize}"
                      FontWeight="Regular"
@@ -135,7 +136,7 @@
                          Margin="0,0,0,0" />
               <!-- Separator -->
               <TextBlock Text="-"
-                         TextWrapping="Wrap"
+                         TextWrapping="NoWrap"
                          Foreground="{DynamicResource ItemTitleForeground}"
                          FontSize="{DynamicResource ItemDetailsFontSize}"
                          FontWeight="Regular"
@@ -151,7 +152,8 @@
                       Padding="0,0,0,0">
                 <!-- TODO: Foreground based on indent level. -->
                 <TextBlock Text="{Binding Item.ById}"
-                           TextWrapping="Wrap"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
                            Foreground="Red"
                            FontSize="{DynamicResource ItemDetailsFontSize}"
                            FontWeight="Regular"
