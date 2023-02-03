@@ -162,6 +162,7 @@
       </DockPanel>
       <!-- Item Url -->
       <Button Command="{Binding Item.OpenUrlCommand}"
+              Cursor="Hand"
               HorizontalAlignment="Right"
               VerticalAlignment="Stretch"
               HorizontalContentAlignment="Center"
