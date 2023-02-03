@@ -22,23 +22,11 @@ public static class HtmlConverter
                     {
                         break;
                     }
-                    // TODO: Make QuoteNode root until next tag start.
-                    // if (innerText.StartsWith('>'))
-                    // {
-                    //     var quote = new QuoteNode
-                    //     {
-                    //         Text = innerText.TrimStart('>').TrimStart()
-                    //     };
-                    //     root.Nodes.Add(quote);
-                    // }
-                    // else
+                    var text = new TextNode
                     {
-                        var text = new TextNode
-                        {
-                            Text = innerText
-                        };
-                        root.Nodes.Add(text);
-                    }
+                        Text = innerText
+                    };
+                    root.Nodes.Add(text);
                     break;
                 }
                 case "p":
@@ -115,34 +103,28 @@ public static class HtmlConverter
                 sb.Append(textNode.Text);
                 break;
             }
-            // TODO: Format text with quote style.
-            // case QuoteNode quoteNode:
-            // {
-            //     sb.Append(quoteNode.Text);
-            //     break;
-            // }
-            case ItalicNode italicNode:
+            case ItalicNode _:
             {
                 // TODO: Format text with italic style.
                 break;
             }
-            case ParagraphNode paragraphNode:
+            case ParagraphNode _:
             {
                 sb.AppendLine();
                 sb.AppendLine();
                 break;
             }
-            case AnchorNode anchorNode:
+            case AnchorNode _:
             {
                 // TODO: Add anchor control.
                 break;
             }
-            case PreNode preNode:
+            case PreNode _:
             {
                 // TODO: Format text with pre style.
                 break;
             }
-            case CodeNode codeNode:
+            case CodeNode _:
             {
                 // TODO: Format text with code style.
                 break;

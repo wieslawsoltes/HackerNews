@@ -57,14 +57,6 @@ public class InlinesConverter : IValueConverter
                 }
                 break;
             }
-            // TODO: Add line break after italic.
-            // case QuoteNode quoteNode:
-            // {
-            //     var italic = new Italic();
-            //     inlines.Add(italic);
-            //     childInlines = italic.Inlines;
-            //     break;
-            // }
             case ItalicNode _:
             {
                 var italic = new Italic();
