@@ -20,8 +20,6 @@ public class Hyperlink : InlineUIContainer
     public Hyperlink(string? href)
     {
         _underline = new Underline();
-        _underline.Classes.Add("a");
-        _underline.Foreground = Brushes.Red;
 
         var textBlock = new TextBlock
         {
