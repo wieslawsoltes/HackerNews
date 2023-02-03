@@ -13,7 +13,7 @@
       <vm:ItemViewModel.Index>4</vm:ItemViewModel.Index>
       <vm:ItemViewModel.IsViewed>false</vm:ItemViewModel.IsViewed>
       <vm:ItemViewModel.TimeAgo>1d</vm:ItemViewModel.TimeAgo>
-      <vm:ItemViewModel.Score>10</vm:ItemViewModel.Score>
+      <vm:ItemViewModel.Score>1000</vm:ItemViewModel.Score>
       <vm:ItemViewModel.Title>Item title</vm:ItemViewModel.Title>
       <vm:ItemViewModel.Url>https://www.itemurl.com/</vm:ItemViewModel.Url>
       <vm:ItemViewModel.By>
@@ -25,7 +25,7 @@
       <vm:ItemViewModel.Descendants><x:Int32>300</x:Int32></vm:ItemViewModel.Descendants>
     </vm:ItemViewModel>
   </Design.DataContext>
-  <DockPanel MinHeight="100">
+  <DockPanel VerticalAlignment="Top">
     <!-- Bottom Separator -->
     <Rectangle Fill="{DynamicResource ItemSeparatorBackground}"
                Height="1.5"
@@ -34,12 +34,12 @@
     <!-- Left Side -->
     <Border DockPanel.Dock="Left"
             Margin="0,0,0,0"
-            Width="80" 
+            Width="64" 
             Background="{DynamicResource ItemIndexBackground}">
       <StackPanel Spacing="6" 
                   HorizontalAlignment="Center" 
                   VerticalAlignment="Top"
-                  Margin="0,12,0,0">
+                  Margin="0,6,0,6">
         <!-- Item Index -->
         <TextBlock Text="{Binding Index}"
                    HorizontalAlignment="Center"
@@ -63,7 +63,7 @@
                  TextWrapping="Wrap"
                  FontSize="{DynamicResource ItemTitleFontSize}"
                  FontWeight="Regular"
-                 Margin="6,12,6,0"
+                 Margin="6,6,6,0"
                  Classes.viewed="{Binding IsViewed}">
         <TextBlock.Styles>
           <Style Selector="TextBlock">
@@ -172,7 +172,7 @@
                      FontStyle="Italic"
                      Margin="6,0,0,0" />
           <StackPanel Orientation="Horizontal"
-                      Margin="6,3,6,0">
+                      Margin="6,3,6,6">
             <!-- Item Time -->
             <TextBlock Text="{Binding TimeAgo}"
                        TextWrapping="Wrap"
