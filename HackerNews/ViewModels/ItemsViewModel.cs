@@ -44,9 +44,10 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
+        var serializer = Ioc.Default.GetService<ISerializerService>();
         var api = Ioc.Default.GetService<IHackerNewsService>();
 
-        if (api is { } && _storiesFeed is { })
+        if (api is { } && serializer is { } && _storiesFeed is { })
         {
             _ids ??= new List<int>();
             _ids.Clear();
@@ -57,7 +58,7 @@ public partial class ItemsViewModel : ViewModelBase, ILazyLoadable
             try
             {
                 var json = await api.GetStoriesJson(_storiesFeed);
-                _ids = await api.DeserializeAsync<List<int>>(json);
+                _ids = await serializer.DeserializeAsync<List<int>>(json);
                 if (_ids is null)
                 {
                     return;

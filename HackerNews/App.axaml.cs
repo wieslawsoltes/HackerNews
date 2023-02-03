@@ -53,6 +53,7 @@ public partial class App : Application, IBrowserService, IShareService
             new ServiceCollection()
                 // Services
                 .AddSingleton<ILog, ConsoleLog>()
+                .AddSingleton<ISerializerService, JsonSerializerService>()
                 .AddSingleton<IHackerNewsService, HackerNewsServiceV0>()
                 .AddSingleton<INavigationService, NavigationViewModel>()
                 .AddSingleton<IStateStorageService, StateStorageViewModel>()

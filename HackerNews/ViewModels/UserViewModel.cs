@@ -39,14 +39,15 @@ public partial class UserViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
+        var serializer = Ioc.Default.GetService<ISerializerService>();
         var api = Ioc.Default.GetService<IHackerNewsService>();
 
-        if (api is { } && Id is { })
+        if (api is { } && serializer is { }  && Id is { })
         {
             try
             {
                 var json = await api.GetUserJson(Id);
-                _user = await api.DeserializeAsync<User>(json);
+                _user = await serializer.DeserializeAsync<User>(json);
             }
             catch (Exception e)
             {

@@ -101,14 +101,15 @@ public partial class ItemViewModel : ViewModelBase, ILazyLoadable
 
     public async Task LoadAsync()
     {
+        var serializer = Ioc.Default.GetService<ISerializerService>();
         var api = Ioc.Default.GetService<IHackerNewsService>();
 
-        if (api is { } && _item is null && Id >= 0)
+        if (api is { } && serializer is { } && _item is null && Id >= 0)
         {
             try
             {
                 var json = await api.GetItemJson(Id);
-                _item = await api.DeserializeAsync<Item>(json);
+                _item = await serializer.DeserializeAsync<Item>(json);
             }
             catch (Exception e)
             {
