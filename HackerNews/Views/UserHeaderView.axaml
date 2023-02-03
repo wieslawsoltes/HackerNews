@@ -18,7 +18,7 @@
   <DockPanel Background="{DynamicResource MainBackground}">
     <!-- Back -->
     <Button Command="{Binding BackAsync}"
-            Width="80"
+            Width="64"
             Height="64"
             HorizontalAlignment="Left"
             VerticalAlignment="Stretch"

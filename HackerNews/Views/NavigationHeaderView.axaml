@@ -15,7 +15,7 @@
              Height="60">
     <!-- Hamburger Menu -->
     <Button Command="{Binding MenuCommand}"
-            Width="80"
+            Width="64"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
