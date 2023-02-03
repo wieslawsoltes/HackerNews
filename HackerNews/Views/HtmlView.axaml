@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:h="clr-namespace:HackerNews.Model.Html"
              xmlns:converters="clr-namespace:HackerNews.Converters"
+             xmlns:controls="clr-namespace:HackerNews.Controls"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
              x:Class="HackerNews.Views.HtmlView"
              x:CompileBindings="True" x:DataType="h:Node">
@@ -44,6 +45,10 @@
       <Setter Property="Foreground" Value="{DynamicResource CommentHyperlinkForeground}" />
       <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
     </Style>
+    <Style Selector="TextBlock Underline.a > Run">
+      <Setter Property="Foreground" Value="{DynamicResource CommentHyperlinkForeground}" />
+      <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
+    </Style>
     <Style Selector="SelectableTextBlock Span.p > Run">
       <Setter Property="Foreground" Value="{DynamicResource CommentForeground}" />
       <Setter Property="FontSize" Value="{DynamicResource CommentFontSize}" />
@@ -59,13 +64,13 @@
       <Setter Property="FontFamily" Value="{DynamicResource RobotoMonoFontFamily}" />
     </Style>
   </UserControl.Styles>
-  <SelectableTextBlock Inlines="{Binding Mode=OneWay, Converter={x:Static converters:InlinesConverter.Instance}}"
-                       TextWrapping="Wrap"
-                       Foreground="{DynamicResource CommentForeground}"
-                       FontSize="{DynamicResource CommentFontSize}"
-                       FontWeight="Normal"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       IsEnabled="False" />
+  <controls:CustomSelectableTextBlock Inlines="{Binding Mode=OneWay, Converter={x:Static converters:InlinesConverter.Instance}}"
+                                      TextWrapping="Wrap"
+                                      Foreground="{DynamicResource CommentForeground}"
+                                      FontSize="{DynamicResource CommentFontSize}"
+                                      FontWeight="Normal"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      IsEnabled="True"/>
 </UserControl>
 
