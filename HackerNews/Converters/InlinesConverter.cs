@@ -86,8 +86,11 @@ public class InlinesConverter : IValueConverter
             case AnchorNode anchorNode:
             {
                 var hyperlink = new Hyperlink(anchorNode.Href);
+                var content = hyperlink.Content;
+                content.Classes.Add("pre");
+                content.Foreground = Brushes.Red;
                 inlines.Add(hyperlink);
-                childInlines = hyperlink.Content.Inlines;
+                childInlines = content.Inlines;
                 break;
             }
             case PreNode _:
