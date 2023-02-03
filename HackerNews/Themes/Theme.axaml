@@ -29,7 +29,7 @@
     <x:Double x:Key="ItemIndexFontSize">18</x:Double>
 
     <SolidColorBrush x:Key="ItemScoreForeground">#A2A2A2</SolidColorBrush>
-    <x:Double x:Key="ItemScoreFontSize">16</x:Double>
+    <x:Double x:Key="ItemScoreFontSize">14</x:Double>
 
     <SolidColorBrush x:Key="ItemDetailsForeground">#A2A2A2</SolidColorBrush>
     <x:Double x:Key="ItemDetailsFontSize">16</x:Double>
@@ -43,7 +43,7 @@
     <x:Double x:Key="CommentFontSize">16</x:Double>
 
     <SolidColorBrush x:Key="CommentDetailsForeground">#A2A2A2</SolidColorBrush>
-    <x:Double x:Key="CommentDetailsFontSize">16</x:Double>
+    <x:Double x:Key="CommentDetailsFontSize">14</x:Double>
 
     <SolidColorBrush x:Key="CommentHyperlinkForeground">#FF0000</SolidColorBrush>
 
