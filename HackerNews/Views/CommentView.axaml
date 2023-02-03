@@ -182,7 +182,7 @@
         </Button>
         <!-- Text -->
         <views:HtmlView DataContext="{Binding TextNode}"
-                        Margin="12,6,12,6" />
+                        Margin="12,6,12,12" />
       </DockPanel>
     </Border>
     <!-- Kids -->
