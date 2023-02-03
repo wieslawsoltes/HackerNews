@@ -71,6 +71,7 @@
                                       FontWeight="Normal"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top"
-                                      IsEnabled="True"/>
+                                      IsEnabled="True"
+                                      IsSelectionEnabled="False"/>
 </UserControl>
 
