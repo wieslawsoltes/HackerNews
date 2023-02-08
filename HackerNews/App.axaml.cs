@@ -77,6 +77,7 @@ public partial class App : Application, IBrowserService, IShareService
             await BrowserService.OpenBrowserAsync(uri, external);
         }
     }
+
     async Task IShareService.ShareTextAsync(string title, string text, string uri)
     {
         if (ShareService is { })
