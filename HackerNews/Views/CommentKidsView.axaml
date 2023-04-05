@@ -26,7 +26,7 @@
       </vm:ItemViewModel>
     </vm:ItemListViewModel>
   </Design.DataContext>
-  <ItemsControl Items="{Binding}"
+  <ItemsControl ItemsSource="{Binding}"
                 HorizontalAlignment="Stretch">
     <ItemsControl.ItemTemplate>
       <DataTemplate DataType="vm:ItemViewModel">

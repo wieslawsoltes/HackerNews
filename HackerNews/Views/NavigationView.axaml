@@ -24,7 +24,7 @@
       <Setter Property="IsVisible" Value="{Binding IsVisible}" />
     </Style>
   </UserControl.Styles>
-  <ItemsControl Items="{Binding Items}"
+  <ItemsControl ItemsSource="{Binding Items}"
                 Classes="navigation">
     <ItemsControl.DataTemplates>
       <DataTemplate DataType="vm:CommentsViewModel">

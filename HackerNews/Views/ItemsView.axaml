@@ -49,7 +49,7 @@
                       RefreshRequested="Refresh_OnRefreshRequested">
       <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                     VerticalScrollBarVisibility="Auto">
-        <ItemsControl Items="{Binding Items}"
+        <ItemsControl ItemsSource="{Binding Items}"
                       HorizontalAlignment="Stretch">
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="vm:ItemViewModel">

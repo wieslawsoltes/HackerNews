@@ -42,7 +42,7 @@
                  DockPanel.Dock="Bottom"/>
       <!-- TODO: The rest of menu items e.g. Settings -->
       <!-- Feeds -->
-      <ItemsControl Items="{Binding Feeds}">
+      <ItemsControl ItemsSource="{Binding Feeds}">
         <ItemsControl.ItemTemplate>
           <DataTemplate DataType="vm:ItemsViewModel">
             <Button Command="{Binding OpenFeedCommand}"
