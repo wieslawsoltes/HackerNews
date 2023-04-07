@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Avalonia;
 using Avalonia.Android;
 using HackerNews.Model;
 using Xamarin.Essentials;
+using Application = Android.App.Application;
 
 namespace HackerNews.Android;
 
@@ -39,9 +41,10 @@ public class SplashActivity : AvaloniaSplashActivity<App>, IBrowserService, ISha
         });
     }
 
-    protected override Avalonia.AppBuilder CustomizeAppBuilder(Avalonia.AppBuilder builder)
+    protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {
         return base.CustomizeAppBuilder(builder)
+            .WithInterFont()
             .AfterSetup(_ =>
             {
                 App.BrowserService = this;
