@@ -9,7 +9,8 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <IsPackable>False</IsPackable>
-
+  </PropertyGroup>
+  <PropertyGroup>
     <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
     <MauiUseDefaultAotProfile>false</MauiUseDefaultAotProfile>
     <AvaloniaUseDefaultAotProfile>false</AvaloniaUseDefaultAotProfile>
@@ -17,6 +18,8 @@
   <ItemGroup>
     <!-- Rebuild profile with this commands https://github.com/jonathanpeppers/Mono.Profiler.Android#usage-of-the-aot-profiler -->
     <AndroidAotProfile Include="custom.aprof" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Icon.png">
       <Link>Resources\drawable\Icon.png</Link>
     </AndroidResource>
