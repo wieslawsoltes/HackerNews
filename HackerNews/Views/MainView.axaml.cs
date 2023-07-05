@@ -13,9 +13,10 @@ public partial class MainView : UserControl
         InitializeComponent();
     }
 
-    protected override void OnLoaded()
+
+    protected override void OnLoaded(RoutedEventArgs e)
     {
-        base.OnLoaded();
+        base.OnLoaded(e);
 
         AddHandler(Gestures.PullGestureEvent, OnPullGesture);
         AddHandler(Gestures.PullGestureEndedEvent, PullGestureEnded);
@@ -26,9 +27,9 @@ public partial class MainView : UserControl
         }
     }
 
-    protected override void OnUnloaded()
+    protected override void OnUnloaded(RoutedEventArgs e)
     {
-        base.OnUnloaded();
+        base.OnUnloaded(e);
 
         RemoveHandler(Gestures.PullGestureEvent, OnPullGesture);
         RemoveHandler(Gestures.PullGestureEndedEvent, PullGestureEnded);
