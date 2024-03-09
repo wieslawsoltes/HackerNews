@@ -1,52 +1,71 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <Styles.Resources>
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Color x:Key="ItemBackground">Transparent</Color>
+  <ResourceDictionary.ThemeDictionaries>
 
-    <Color x:Key="MainBackground">#212121</Color>
+    <ResourceDictionary x:Key='Default'>
+      <Color x:Key="ItemBackground">Transparent</Color>
+      <Color x:Key="MainBackground">#FFFFFF</Color>
+      <SolidColorBrush x:Key="HamburgerBackground">#000000</SolidColorBrush>
+      <!-- Header -->
+      <SolidColorBrush x:Key="HeaderTitleBackground">#FFFFFF</SolidColorBrush>
+      <SolidColorBrush x:Key="HeaderTitleForeground">#000000</SolidColorBrush>
+      <x:Double x:Key="HeaderTitleFontSize">20</x:Double>
+      <SolidColorBrush x:Key="HeaderLastUpdatedForeground">#000000</SolidColorBrush>
+      <x:Double x:Key="HeaderLastUpdatedFontSize">14</x:Double>
+      <!-- Item -->
+      <SolidColorBrush x:Key="ItemTitleBackground">#FFFFFF</SolidColorBrush>
+      <x:Double x:Key="ItemTitleFontSize">18</x:Double>
+      <SolidColorBrush x:Key="ItemTitleForeground">#000000</SolidColorBrush>
+      <SolidColorBrush x:Key="ItemTitleViewedForeground">#A2A2A2</SolidColorBrush>
+      <SolidColorBrush x:Key="ItemIndexForeground">#000000</SolidColorBrush>
+      <SolidColorBrush x:Key="ItemIndexBackground">WhiteSmoke</SolidColorBrush>
+      <x:Double x:Key="ItemIndexFontSize">18</x:Double>
+      <SolidColorBrush x:Key="ItemScoreForeground">#A2A2A2</SolidColorBrush>
+      <x:Double x:Key="ItemScoreFontSize">14</x:Double>
+      <SolidColorBrush x:Key="ItemDetailsForeground">#A2A2A2</SolidColorBrush>
+      <x:Double x:Key="ItemDetailsFontSize">16</x:Double>
+      <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
+      <!-- Comment -->
+      <SolidColorBrush x:Key="CommentBackground">#FFFFFF</SolidColorBrush>
+      <SolidColorBrush x:Key="CommentForeground">#000000</SolidColorBrush>
+      <x:Double x:Key="CommentFontSize">16</x:Double>
+      <SolidColorBrush x:Key="CommentDetailsForeground">#A2A2A2</SolidColorBrush>
+      <x:Double x:Key="CommentDetailsFontSize">14</x:Double>
+      <SolidColorBrush x:Key="CommentHyperlinkForeground">#FF0000</SolidColorBrush>
+    </ResourceDictionary>
 
-    <SolidColorBrush x:Key="HamburgerBackground">#FFFFFF</SolidColorBrush>
+    <ResourceDictionary x:Key='Dark'>
+      <Color x:Key="ItemBackground">Transparent</Color>
+      <Color x:Key="MainBackground">#212121</Color>
+      <SolidColorBrush x:Key="HamburgerBackground">#FFFFFF</SolidColorBrush>
+      <!-- Header -->
+      <SolidColorBrush x:Key="HeaderTitleBackground">#212121</SolidColorBrush>
+      <SolidColorBrush x:Key="HeaderTitleForeground">#FFFFFF</SolidColorBrush>
+      <x:Double x:Key="HeaderTitleFontSize">20</x:Double>
+      <SolidColorBrush x:Key="HeaderLastUpdatedForeground">#FFFFFF</SolidColorBrush>
+      <x:Double x:Key="HeaderLastUpdatedFontSize">14</x:Double>
+      <!-- Item -->
+      <SolidColorBrush x:Key="ItemTitleBackground">#212121</SolidColorBrush>
+      <x:Double x:Key="ItemTitleFontSize">18</x:Double>
+      <SolidColorBrush x:Key="ItemTitleForeground">#FFFFFF</SolidColorBrush>
+      <SolidColorBrush x:Key="ItemTitleViewedForeground">#A2A2A2</SolidColorBrush>
+      <SolidColorBrush x:Key="ItemIndexForeground">#FFFFFF</SolidColorBrush>
+      <SolidColorBrush x:Key="ItemIndexBackground">#424242</SolidColorBrush>
+      <x:Double x:Key="ItemIndexFontSize">18</x:Double>
+      <SolidColorBrush x:Key="ItemScoreForeground">#A2A2A2</SolidColorBrush>
+      <x:Double x:Key="ItemScoreFontSize">14</x:Double>
+      <SolidColorBrush x:Key="ItemDetailsForeground">#A2A2A2</SolidColorBrush>
+      <x:Double x:Key="ItemDetailsFontSize">16</x:Double>
+      <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
+      <!-- Comment -->
+      <SolidColorBrush x:Key="CommentBackground">#212121</SolidColorBrush>
+      <SolidColorBrush x:Key="CommentForeground">#FFFFFF</SolidColorBrush>
+      <x:Double x:Key="CommentFontSize">16</x:Double>
+      <SolidColorBrush x:Key="CommentDetailsForeground">#A2A2A2</SolidColorBrush>
+      <x:Double x:Key="CommentDetailsFontSize">14</x:Double>
+      <SolidColorBrush x:Key="CommentHyperlinkForeground">#FF0000</SolidColorBrush>
+    </ResourceDictionary>
 
-    <!-- Header -->
-    
-    <SolidColorBrush x:Key="HeaderTitleBackground">#212121</SolidColorBrush>
-    <SolidColorBrush x:Key="HeaderTitleForeground">#FFFFFF</SolidColorBrush>
-    <x:Double x:Key="HeaderTitleFontSize">20</x:Double>
-    
-    <SolidColorBrush x:Key="HeaderLastUpdatedForeground">#FFFFFF</SolidColorBrush>
-    <x:Double x:Key="HeaderLastUpdatedFontSize">14</x:Double>
-
-    <!-- Item -->
-
-    <SolidColorBrush x:Key="ItemTitleBackground">#212121</SolidColorBrush>
-    <x:Double x:Key="ItemTitleFontSize">18</x:Double>
-    <SolidColorBrush x:Key="ItemTitleForeground">#FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="ItemTitleViewedForeground">#A2A2A2</SolidColorBrush>
-
-    <SolidColorBrush x:Key="ItemIndexForeground">#FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="ItemIndexBackground">#424242</SolidColorBrush>
-    <x:Double x:Key="ItemIndexFontSize">18</x:Double>
-
-    <SolidColorBrush x:Key="ItemScoreForeground">#A2A2A2</SolidColorBrush>
-    <x:Double x:Key="ItemScoreFontSize">14</x:Double>
-
-    <SolidColorBrush x:Key="ItemDetailsForeground">#A2A2A2</SolidColorBrush>
-    <x:Double x:Key="ItemDetailsFontSize">16</x:Double>
-
-    <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
-
-    <!-- Comment -->
-
-    <SolidColorBrush x:Key="CommentBackground">#212121</SolidColorBrush>
-    <SolidColorBrush x:Key="CommentForeground">#FFFFFF</SolidColorBrush>
-    <x:Double x:Key="CommentFontSize">16</x:Double>
-
-    <SolidColorBrush x:Key="CommentDetailsForeground">#A2A2A2</SolidColorBrush>
-    <x:Double x:Key="CommentDetailsFontSize">14</x:Double>
-
-    <SolidColorBrush x:Key="CommentHyperlinkForeground">#FF0000</SolidColorBrush>
-
-  </Styles.Resources>
-</Styles>
-
+  </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
