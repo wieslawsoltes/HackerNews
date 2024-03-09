@@ -25,7 +25,7 @@
       <x:Double x:Key="ItemScoreFontSize">14</x:Double>
       <SolidColorBrush x:Key="ItemDetailsForeground">#A2A2A2</SolidColorBrush>
       <x:Double x:Key="ItemDetailsFontSize">16</x:Double>
-      <SolidColorBrush x:Key="ItemSeparatorBackground">#333333</SolidColorBrush>
+      <SolidColorBrush x:Key="ItemSeparatorBackground">#EEEEEE</SolidColorBrush>
       <!-- Comment -->
       <SolidColorBrush x:Key="CommentBackground">#FFFFFF</SolidColorBrush>
       <SolidColorBrush x:Key="CommentForeground">#000000</SolidColorBrush>
