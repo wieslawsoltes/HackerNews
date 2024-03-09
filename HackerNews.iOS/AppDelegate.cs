@@ -25,21 +25,28 @@ public class AppDelegate : AvaloniaAppDelegate<App>, IBrowserService, IShareServ
             // var intent = new Intent (Intent.ActionView, Uri.Parse (uri.ToString()));
             // StartActivity (intent);
         }
-        catch (System.Exception)
+        catch (System.Exception exception)
         {
-            // ignored
+            System.Console.WriteLine(exception);
         }
     }
 
     public async Task ShareTextAsync(string title, string text, string uri)
     {
-        await Share.RequestAsync(new ShareTextRequest
+        try
         {
-            Title = title,
-            Text = text,
-            Subject = text,
-            Uri = uri
-        });
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Title = title,
+                Text = text,
+                Subject = text,
+                Uri = uri
+            });
+        }
+        catch (System.Exception exception)
+        {
+            System.Console.WriteLine(exception);
+        }
     }
 
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
