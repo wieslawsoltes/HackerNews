@@ -1,7 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Name="Hacker News"
-             RequestedThemeVariant="Dark"
+             RequestedThemeVariant="Light"
              x:Class="HackerNews.App">
   <Application.Styles>
     <FluentTheme />
