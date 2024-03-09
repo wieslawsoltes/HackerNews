@@ -3,7 +3,8 @@ using Avalonia;
 using Avalonia.iOS;
 using Foundation;
 using HackerNews.Model;
-using Xamarin.Essentials;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.ApplicationModel.DataTransfer;
 
 namespace HackerNews.iOS;
 
@@ -20,10 +21,6 @@ public class AppDelegate : AvaloniaAppDelegate<App>, IBrowserService, IShareServ
             await Browser.OpenAsync(
                 uri, 
                 external ? BrowserLaunchMode.External : BrowserLaunchMode.SystemPreferred);
-
-            // TODO: External alternative.
-            // var intent = new Intent (Intent.ActionView, Uri.Parse (uri.ToString()));
-            // StartActivity (intent);
         }
         catch (System.Exception exception)
         {

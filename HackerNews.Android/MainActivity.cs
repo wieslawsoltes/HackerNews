@@ -4,7 +4,9 @@ using Android.Content.PM;
 using Avalonia;
 using Avalonia.Android;
 using HackerNews.Model;
-using Xamarin.Essentials;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.ApplicationModel.DataTransfer;
+
 namespace HackerNews.Android;
 
 [Activity(Label = "HackerNews", Theme = "@style/MyTheme.NoActionBar", Icon = "@drawable/icon", MainLauncher = true, LaunchMode = LaunchMode.SingleInstance, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.UiMode)]
@@ -17,10 +19,6 @@ public class MainActivity : AvaloniaMainActivity<App>, IBrowserService, IShareSe
             await Browser.OpenAsync(
                 uri, 
                 external ? BrowserLaunchMode.External : BrowserLaunchMode.SystemPreferred);
-
-            // TODO: External alternative.
-            // var intent = new Intent (Intent.ActionView, Uri.Parse (uri.ToString()));
-            // StartActivity (intent);
         }
         catch (System.Exception exception)
         {
