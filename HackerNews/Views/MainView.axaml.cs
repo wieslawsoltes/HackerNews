@@ -40,20 +40,25 @@ public partial class MainView : UserControl
         }
     }
 
-    private void OnPullGesture(object? sender, PullGestureEventArgs e)
+    private async void OnPullGesture(object? sender, PullGestureEventArgs e)
     {
         //Console.WriteLine($"PullGesture {e.Id} {e.PullDirection} {e.Delta}");
         switch (e.PullDirection)
         {
             case PullDirection.LeftToRight:
                 // TODO: Show hamburger menu.
-                SplitView.SetValue(SplitView.IsPaneOpenProperty, true);
-                e.Handled = true;
+                // SplitView.SetValue(SplitView.IsPaneOpenProperty, true);
+                // e.Handled = true;
+                if (DataContext is ILazyLoadable lazyLoadable)
+                {
+                    var handled = await lazyLoadable.BackAsync();
+                    e.Handled = handled;
+                }
                 break;
             case PullDirection.RightToLeft:
                 // TODO: Hide hamburger menu.
-                SplitView.SetValue(SplitView.IsPaneOpenProperty, false);
-                e.Handled = true;
+                // SplitView.SetValue(SplitView.IsPaneOpenProperty, false);
+                // e.Handled = true;
                 break;
         }
     }
