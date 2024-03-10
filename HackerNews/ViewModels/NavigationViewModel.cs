@@ -8,6 +8,7 @@ public partial class NavigationViewModel : ViewModelBase, INavigationService
 {
     [ObservableProperty] private LazyLoadableList _items;
     [ObservableProperty] private bool _canGoBack;
+    [ObservableProperty] private bool _isHeaderVisible;
 
     public NavigationViewModel()
     {
@@ -26,6 +27,8 @@ public partial class NavigationViewModel : ViewModelBase, INavigationService
         lazyLoadable.IsVisible = true;
 
         CanGoBack = Items.Count > 1;
+        
+        IsHeaderVisible = Items.Count <= 1;
 
         await lazyLoadable.LoadAsync();
     }
@@ -35,6 +38,7 @@ public partial class NavigationViewModel : ViewModelBase, INavigationService
         Items.Clear();
 
         CanGoBack = false;
+        IsHeaderVisible = true;
 
         await Task.Yield();
     }
@@ -45,18 +49,25 @@ public partial class NavigationViewModel : ViewModelBase, INavigationService
         {
             var currentLazyLoadable = Items[^1];
             currentLazyLoadable.IsVisible = false;
-            Items.Remove(currentLazyLoadable);
 
-            if (Items.Count >= 1)
+            if (Items.Count - 1 >= 1)
             {
-                var nextLazyLoadable = Items[^1];
+                var nextLazyLoadable = Items[^2];
                 nextLazyLoadable.IsVisible = true;
             }
 
-            CanGoBack = Items.Count > 1;
+            CanGoBack = Items.Count - 1 > 1;
+
+            IsHeaderVisible = Items.Count - 1 <= 1;
+
+            await Task.Delay(400);
+
+            Items.Remove(currentLazyLoadable);
 
             return await Task.FromResult(true);
         }
+
+        IsHeaderVisible = true;
 
         return await Task.FromResult(false);
     }

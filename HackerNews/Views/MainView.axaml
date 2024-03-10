@@ -5,6 +5,7 @@
              xmlns:vm="using:HackerNews.ViewModels"
              xmlns:views="clr-namespace:HackerNews.Views"
              xmlns:controls="clr-namespace:HackerNews.Controls"
+             xmlns:animations="clr-namespace:HackerNews.Animations"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              x:Class="HackerNews.Views.MainView"
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
@@ -32,7 +33,9 @@
       </SplitView.Pane>
       <DockPanel>
         <views:NavigationHeaderView DockPanel.Dock="Top"
-                                    IsVisible="{Binding !Navigation.CanGoBack, FallbackValue=True}"/>
+                                    Tag="{Binding !Navigation.CanGoBack, FallbackValue=True}"
+                                    IsVisible="{Binding Navigation.IsHeaderVisible, FallbackValue=True}"
+                                    animations:SlidingAnimation.Top="400"/>
         <views:NavigationView DataContext="{Binding Navigation}" />
       </DockPanel>
     </SplitView>
