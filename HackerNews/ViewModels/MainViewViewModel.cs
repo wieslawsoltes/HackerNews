@@ -107,7 +107,7 @@ public partial class MainViewViewModel : ViewModelBase, ILazyLoadable
         return await Task.FromResult(false);
     }
 
-    private async Task OpenFeedAsync(ItemsViewModel feed)
+    public async Task OpenFeedAsync(ItemsViewModel feed)
     {
         CurrentFeed = feed;
 
