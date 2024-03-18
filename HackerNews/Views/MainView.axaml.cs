@@ -17,7 +17,6 @@ public partial class MainView : UserControl
         InitializeComponent();
     }
 
-
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
