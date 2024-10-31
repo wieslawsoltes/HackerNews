@@ -1,8 +1,8 @@
 ﻿<Project>
   <PropertyGroup>
-    <AvaloniaVersion>11.0.10</AvaloniaVersion>
-    <CommunityToolkitMvvmVersion>8.1.0</CommunityToolkitMvvmVersion>
-    <HtmlAgilityPackVersion>1.11.46</HtmlAgilityPackVersion>
-    <MicrosoftExtensionsDependencyInjectionVersion>7.0.0</MicrosoftExtensionsDependencyInjectionVersion>
+    <AvaloniaVersion>11.2.0</AvaloniaVersion>
+    <CommunityToolkitMvvmVersion>8.3.2</CommunityToolkitMvvmVersion>
+    <HtmlAgilityPackVersion>1.11.70</HtmlAgilityPackVersion>
+    <MicrosoftExtensionsDependencyInjectionVersion>8.0.1</MicrosoftExtensionsDependencyInjectionVersion>
   </PropertyGroup>
 </Project>
